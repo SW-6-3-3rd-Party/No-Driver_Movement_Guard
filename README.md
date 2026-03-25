@@ -8,10 +8,10 @@ This project is the first project of the Hyundai AutoEver Mobility SW School, fo
 이러한 유형의 사고는 국내외에서 지속적으로 발생하고 있으며, 운전자의 단순 부주의로 인해 발생하는 대표적인 차량 안전 문제 중 하나로 지적되고 있다.
 
 ### 사례  
-후진 기어 놓고 내려 20대 운전자 사망 - https://www.joongang.co.kr/article/25402548 
-후진 기어 놓고 내려 40대 운전자 사망 - https://www.yna.co.kr/view/AKR20260313174500063 
-후진 기어 놓고 내려 50대 운전자 사망 - https://news.jtbc.co.kr/article/NB12277706 
-D단에 놓고 내려 보행자와 추돌 - https://www.kyeonggi.com/article/20260122580550 
+후진 기어 놓고 내려 20대 운전자 사망 - https://www.joongang.co.kr/article/25402548  
+후진 기어 놓고 내려 40대 운전자 사망 - https://www.yna.co.kr/view/AKR20260313174500063  
+후진 기어 놓고 내려 50대 운전자 사망 - https://news.jtbc.co.kr/article/NB12277706  
+D단에 놓고 내려 보행자와 추돌 - https://www.kyeonggi.com/article/20260122580550  
 
 ### 시나리오  
 차량을 N단이나 D단에 두고 운전자가 차 문을 열었을 때 스피커로 경고 메시지를 알려준다.(parking으로 안되어 있다는 알림)
