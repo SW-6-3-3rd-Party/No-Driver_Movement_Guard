@@ -766,9 +766,12 @@ def send_url_worker() -> None:
         return
 
     app_url = f"http://{resolve_public_web_host()}:{WEB_PORT}"
-    if not open_web_url(app_url):
-        print("[SEND_URL] browser did not open, skipping send command.")
-        return
+    has_gui = bool(os.getenv("DISPLAY") or os.getenv("WAYLAND_DISPLAY"))
+    if has_gui:
+        if not open_web_url(app_url):
+            print("[WEB] browser open failed, continue send in service mode.")
+    else:
+        print("[WEB] headless mode detected, skip browser open.")
 
     if run_send_url_module_send():
         return
