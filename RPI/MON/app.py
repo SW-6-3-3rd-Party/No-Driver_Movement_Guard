@@ -1,8 +1,13 @@
+import importlib.util
 import json
 import os
+import shlex
+import socket
 import sqlite3
+import subprocess
 import threading
 import time
+import webbrowser
 from contextlib import closing
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -25,6 +30,11 @@ WEB_HOST = os.getenv("MON_WEB_HOST", "0.0.0.0")
 WEB_PORT = int(os.getenv("MON_WEB_PORT", "5000"))
 AUTO_REFRESH_SEC = int(os.getenv("MON_AUTO_REFRESH_SEC", "5"))
 TIMEZONE_NAME = os.getenv("MON_TIMEZONE", "Asia/Seoul")
+SEND_URL_ENABLED = os.getenv("MON_SEND_URL_ENABLED", "1") == "1"
+SEND_URL_COMMAND = os.getenv("MON_SEND_URL_COMMAND", "send_url send {url}")
+SEND_URL_TIMEOUT_SEC = float(os.getenv("MON_SEND_URL_TIMEOUT_SEC", "20"))
+SEND_URL_POLL_INTERVAL_SEC = float(os.getenv("MON_SEND_URL_POLL_INTERVAL_SEC", "0.2"))
+PUBLIC_WEB_HOST = os.getenv("MON_PUBLIC_HOST", "").strip()
 
 app = Flask(__name__)
 app.json.ensure_ascii = False
@@ -32,8 +42,17 @@ _db_lock = threading.Lock()
 
 
 VALID_CATEGORIES = {"warning", "brake", "system"}
-VALID_WARNING_TYPES = {"1차", "강화", "Rollaway"}
-VALID_BRAKE_TYPES = {"D단", "R단", "Rollaway", "긴급"}
+EVENT_WARNING_PRIMARY = "\u0031\ucc28"
+EVENT_WARNING_ENHANCED = "\uac15\ud654"
+EVENT_BRAKE_D = "D\ub2e8"
+EVENT_BRAKE_R = "R\ub2e8"
+EVENT_BRAKE_EMERGENCY = "\uae34\uae09"
+EVENT_SYSTEM_RELEASE_DRIVER = "\uc81c\ub3d9 \ud574\uc81c(\uc6b4\uc804\uc790 \ubcf5\uadc0)"
+EVENT_SYSTEM_RELEASE_P = "\uc81c\ub3d9 \ud574\uc81c(P\ub2e8 \uc804\ud658)"
+EVENT_SYSTEM_LOG_SENT = "\uc774\ubca4\ud2b8 \ub85c\uadf8 \uc804\uc1a1 \uc644\ub8cc"
+
+VALID_WARNING_TYPES = {EVENT_WARNING_PRIMARY, EVENT_WARNING_ENHANCED, "Rollaway"}
+VALID_BRAKE_TYPES = {EVENT_BRAKE_D, EVENT_BRAKE_R, "Rollaway", EVENT_BRAKE_EMERGENCY}
 VALID_GEAR = {"P", "R", "N", "D", "UNKNOWN", ""}
 VALID_DOOR = {"OPEN", "CLOSED", "UNKNOWN", ""}
 
@@ -91,15 +110,15 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
 
     return [
         # warning events (FR-LOG-01)
-        {"event_category": "warning", "event_type": "1차", "event_time": ts(42), "source": source},
-        {"event_category": "warning", "event_type": "강화", "event_time": ts(39), "source": source},
+        {"event_category": "warning", "event_type": EVENT_WARNING_PRIMARY, "event_time": ts(42), "source": source},
+        {"event_category": "warning", "event_type": EVENT_WARNING_ENHANCED, "event_time": ts(39), "source": source},
         {"event_category": "warning", "event_type": "Rollaway", "event_time": ts(36), "source": source},
-        {"event_category": "warning", "event_type": "1차", "event_time": ts(33), "source": source},
-        {"event_category": "warning", "event_type": "강화", "event_time": ts(30), "source": source},
+        {"event_category": "warning", "event_type": EVENT_WARNING_PRIMARY, "event_time": ts(33), "source": source},
+        {"event_category": "warning", "event_type": EVENT_WARNING_ENHANCED, "event_time": ts(30), "source": source},
         # brake events (FR-LOG-02~06)
         {
             "event_category": "brake",
-            "event_type": "D단",
+            "event_type": EVENT_BRAKE_D,
             "event_time": ts(27),
             "gear_state": "D",
             "door_state": "OPEN",
@@ -109,7 +128,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         },
         {
             "event_category": "brake",
-            "event_type": "D단",
+            "event_type": EVENT_BRAKE_D,
             "event_time": ts(24),
             "gear_state": "D",
             "door_state": "CLOSED",
@@ -119,7 +138,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         },
         {
             "event_category": "brake",
-            "event_type": "R단",
+            "event_type": EVENT_BRAKE_R,
             "event_time": ts(21),
             "gear_state": "R",
             "door_state": "OPEN",
@@ -129,7 +148,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         },
         {
             "event_category": "brake",
-            "event_type": "R단",
+            "event_type": EVENT_BRAKE_R,
             "event_time": ts(18),
             "gear_state": "R",
             "door_state": "CLOSED",
@@ -149,7 +168,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         },
         {
             "event_category": "brake",
-            "event_type": "긴급",
+            "event_type": EVENT_BRAKE_EMERGENCY,
             "event_time": ts(12),
             "gear_state": "D",
             "door_state": "OPEN",
@@ -159,7 +178,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         },
         {
             "event_category": "brake",
-            "event_type": "긴급",
+            "event_type": EVENT_BRAKE_EMERGENCY,
             "event_time": ts(9),
             "gear_state": "R",
             "door_state": "OPEN",
@@ -170,7 +189,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         # system events (release/status)
         {
             "event_category": "system",
-            "event_type": "제동 해제(운전자 복귀)",
+            "event_type": EVENT_SYSTEM_RELEASE_DRIVER,
             "event_time": ts(6),
             "gear_state": "P",
             "door_state": "CLOSED",
@@ -180,7 +199,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         },
         {
             "event_category": "system",
-            "event_type": "제동 해제(P단 전환)",
+            "event_type": EVENT_SYSTEM_RELEASE_P,
             "event_time": ts(4),
             "gear_state": "P",
             "door_state": "CLOSED",
@@ -190,7 +209,7 @@ def build_sample_events(source: str = "sample") -> list[Dict[str, Any]]:
         },
         {
             "event_category": "system",
-            "event_type": "이벤트 로그 전송 완료",
+            "event_type": EVENT_SYSTEM_LOG_SENT,
             "event_time": ts(2),
             "gear_state": "P",
             "door_state": "CLOSED",
@@ -255,45 +274,135 @@ def normalize_text(value: Any) -> str:
 
 
 def normalize_category(value: Any) -> str:
-    text = normalize_text(value).lower()
+    text = normalize_text(value)
+    lower = text.lower()
     mapping = {
         "warn": "warning",
         "warning": "warning",
         "경고": "warning",
+        "寃쎄퀬": "warning",
         "brake": "brake",
         "제동": "brake",
+        "?쒕룞": "brake",
         "system": "system",
         "sys": "system",
         "시스템": "system",
+        "?쒖뒪??": "system",
     }
-    return mapping.get(text, text)
+    normalized = mapping.get(text, mapping.get(lower, lower))
+    if normalized in VALID_CATEGORIES:
+        return normalized
+    if text.startswith("寃쎄퀬"):
+        return "warning"
+    if text.startswith("?쒕룞"):
+        return "brake"
+    if text.startswith("?쒖뒪"):
+        return "system"
+    return lower
 
 
 
 def normalize_event_type(category: str, value: Any) -> str:
     text = normalize_text(value)
+    lower = text.lower()
+    upper = text.upper()
+
     if category == "warning":
         mapping = {
-            "1": "1차",
-            "1차경고": "1차",
-            "1차 경고": "1차",
-            "강화경고": "강화",
-            "강화 경고": "강화",
+            "1": EVENT_WARNING_PRIMARY,
+            EVENT_WARNING_PRIMARY: EVENT_WARNING_PRIMARY,
+            f"{EVENT_WARNING_PRIMARY}경고": EVENT_WARNING_PRIMARY,
+            f"{EVENT_WARNING_PRIMARY} 경고": EVENT_WARNING_PRIMARY,
+            "1?": EVENT_WARNING_PRIMARY,
+            "1??": EVENT_WARNING_PRIMARY,
+            "1李?": EVENT_WARNING_PRIMARY,
+            "1李④꼍怨?": EVENT_WARNING_PRIMARY,
+            "1李?寃쎄퀬": EVENT_WARNING_PRIMARY,
+
+            EVENT_WARNING_ENHANCED: EVENT_WARNING_ENHANCED,
+            f"{EVENT_WARNING_ENHANCED}경고": EVENT_WARNING_ENHANCED,
+            f"{EVENT_WARNING_ENHANCED} 경고": EVENT_WARNING_ENHANCED,
+            "??": EVENT_WARNING_ENHANCED,
+            "媛뺥솕": EVENT_WARNING_ENHANCED,
+            "媛뺥솕寃쎄퀬": EVENT_WARNING_ENHANCED,
+            "媛뺥솕 寃쎄퀬": EVENT_WARNING_ENHANCED,
+
             "rollaway": "Rollaway",
             "ROLLAWAY": "Rollaway",
         }
-        return mapping.get(text, text)
+        if text in mapping:
+            return mapping[text]
+        if lower in mapping:
+            return mapping[lower]
+        if text.startswith("1") and "?" in text:
+            return EVENT_WARNING_PRIMARY
+        if text in {"?", "??", "???", "????"}:
+            return EVENT_WARNING_ENHANCED
+        return text
+
     if category == "brake":
         mapping = {
-            "d": "D단",
-            "r": "R단",
+            "d": EVENT_BRAKE_D,
+            "r": EVENT_BRAKE_R,
+            EVENT_BRAKE_D: EVENT_BRAKE_D,
+            EVENT_BRAKE_R: EVENT_BRAKE_R,
+
+            "D??": EVENT_BRAKE_D,
+            "R??": EVENT_BRAKE_R,
+            "D?": EVENT_BRAKE_D,
+            "R?": EVENT_BRAKE_R,
+
             "rollaway": "Rollaway",
             "ROLLAWAY": "Rollaway",
-            "emergency": "긴급",
-            "긴급제동": "긴급",
-            "긴급 제동": "긴급",
+
+            "emergency": EVENT_BRAKE_EMERGENCY,
+            EVENT_BRAKE_EMERGENCY: EVENT_BRAKE_EMERGENCY,
+            f"{EVENT_BRAKE_EMERGENCY}제동": EVENT_BRAKE_EMERGENCY,
+            f"{EVENT_BRAKE_EMERGENCY} 제동": EVENT_BRAKE_EMERGENCY,
+            "??": EVENT_BRAKE_EMERGENCY,
+            "湲닿툒": EVENT_BRAKE_EMERGENCY,
+            "湲닿툒?쒕룞": EVENT_BRAKE_EMERGENCY,
+            "湲닿툒 ?쒕룞": EVENT_BRAKE_EMERGENCY,
         }
-        return mapping.get(text, text)
+        if text in mapping:
+            return mapping[text]
+        if lower in mapping:
+            return mapping[lower]
+        if upper.startswith("D") and "?" in text:
+            return EVENT_BRAKE_D
+        if upper.startswith("R") and "?" in text:
+            return EVENT_BRAKE_R
+        if text in {"?", "??", "???", "????"}:
+            return EVENT_BRAKE_EMERGENCY
+        return text
+
+    if category == "system":
+        mapping = {
+            EVENT_SYSTEM_RELEASE_DRIVER: EVENT_SYSTEM_RELEASE_DRIVER,
+            EVENT_SYSTEM_RELEASE_P: EVENT_SYSTEM_RELEASE_P,
+            EVENT_SYSTEM_LOG_SENT: EVENT_SYSTEM_LOG_SENT,
+
+            "?? ??(??? ??)": EVENT_SYSTEM_RELEASE_DRIVER,
+            "?쒕룞 ?댁젣(?댁쟾??蹂듦?)": EVENT_SYSTEM_RELEASE_DRIVER,
+            "?? ??(P?? ??)": EVENT_SYSTEM_RELEASE_P,
+            "?쒕룞 ?댁젣(P???꾪솚)": EVENT_SYSTEM_RELEASE_P,
+            "?? ?? ?? ??": EVENT_SYSTEM_LOG_SENT,
+            "?대깽??濡쒓렇 ?꾩넚 ?꾨즺": EVENT_SYSTEM_LOG_SENT,
+        }
+        if text in mapping:
+            return mapping[text]
+        if "복귀" in text:
+            return EVENT_SYSTEM_RELEASE_DRIVER
+        if "전환" in text and "P" in text.upper():
+            return EVENT_SYSTEM_RELEASE_P
+        if "로그" in text and "완료" in text:
+            return EVENT_SYSTEM_LOG_SENT
+        if text.startswith("?? ??("):
+            if "P" in text.upper():
+                return EVENT_SYSTEM_RELEASE_P
+            return EVENT_SYSTEM_RELEASE_DRIVER
+        return text or "상태"
+
     return text or "상태"
 
 
@@ -405,6 +514,28 @@ def insert_event(payload: Dict[str, Any]) -> int:
 
 
 
+def normalize_existing_event_rows() -> int:
+    with _db_lock:
+        with closing(get_db()) as conn:
+            rows = conn.execute("SELECT id, event_category, event_type FROM events").fetchall()
+            updates: list[tuple[str, str, int]] = []
+            for row in rows:
+                category = normalize_category(row["event_category"])
+                event_type = normalize_event_type(category, row["event_type"])
+                if category != row["event_category"] or event_type != row["event_type"]:
+                    updates.append((category, event_type, int(row["id"])))
+
+            if not updates:
+                return 0
+
+            conn.executemany(
+                "UPDATE events SET event_category = ?, event_type = ? WHERE id = ?",
+                updates,
+            )
+            conn.commit()
+            return len(updates)
+
+
 def query_events(limit: int = 50, category: str = "", keyword: str = ""):
     limit = max(1, min(limit, 500))
     sql = "SELECT * FROM events WHERE 1=1"
@@ -421,7 +552,13 @@ def query_events(limit: int = 50, category: str = "", keyword: str = ""):
 
     with closing(get_db()) as conn:
         rows = conn.execute(sql, params).fetchall()
-        return [dict(row) for row in rows]
+        items: list[Dict[str, Any]] = []
+        for row in rows:
+            item = dict(row)
+            item["event_category"] = normalize_category(item.get("event_category"))
+            item["event_type"] = normalize_event_type(item["event_category"], item.get("event_type"))
+            items.append(item)
+        return items
 
 
 
@@ -433,11 +570,19 @@ def get_stats() -> Dict[str, Any]:
         latest = conn.execute(
             "SELECT event_time, event_category, event_type FROM events ORDER BY event_time DESC, id DESC LIMIT 1"
         ).fetchone()
+
+    latest_item = dict(latest) if latest else None
+    if latest_item:
+        latest_item["event_category"] = normalize_category(latest_item.get("event_category"))
+        latest_item["event_type"] = normalize_event_type(
+            latest_item["event_category"], latest_item.get("event_type")
+        )
+
     return {
         "total": total,
         "warning_count": warning_count,
         "brake_count": brake_count,
-        "latest": dict(latest) if latest else None,
+        "latest": latest_item,
     }
 
 
@@ -543,6 +688,114 @@ def serial_worker() -> None:
             time.sleep(3)
 
 
+def resolve_public_web_host() -> str:
+    if PUBLIC_WEB_HOST:
+        return PUBLIC_WEB_HOST
+    if WEB_HOST in {"0.0.0.0", "::", ""}:
+        return "127.0.0.1"
+    return WEB_HOST
+
+
+def build_send_url_command(app_url: str) -> list[str]:
+    template = SEND_URL_COMMAND.strip()
+    if not template:
+        return []
+    tokens = shlex.split(template)
+    return [token.format(url=app_url) for token in tokens]
+
+
+def open_web_url(app_url: str) -> bool:
+    try:
+        opened = webbrowser.open(app_url, new=0, autoraise=False)
+        if opened:
+            print(f"[WEB] browser open requested: {app_url}")
+        else:
+            print(f"[WEB] browser handler unavailable: {app_url}")
+        return bool(opened)
+    except Exception as exc:
+        print(f"[WEB] browser open error: {exc}")
+        return False
+
+
+def run_send_url_module_send() -> bool:
+    candidate_paths = [
+        BASE_DIR / "send_url.py",
+        BASE_DIR.parent / "send_url.py",
+    ]
+
+    for path in candidate_paths:
+        if not path.exists():
+            continue
+        try:
+            spec = importlib.util.spec_from_file_location("send_url_runtime", path)
+            if spec is None or spec.loader is None:
+                continue
+
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            send_func = getattr(module, "send", None)
+            if not callable(send_func):
+                print(f"[SEND_URL] send() not found in {path}")
+                continue
+
+            send_func()
+            print(f"[SEND_URL] executed send_url.send() from {path}")
+            return True
+        except Exception as exc:
+            print(f"[SEND_URL] module call failed for {path}: {exc}")
+
+    return False
+
+
+def send_url_worker() -> None:
+    if not SEND_URL_ENABLED:
+        print("[SEND_URL] disabled")
+        return
+
+    probe_host = "127.0.0.1" if WEB_HOST in {"0.0.0.0", "::", ""} else WEB_HOST
+    deadline = time.time() + SEND_URL_TIMEOUT_SEC
+
+    while time.time() < deadline:
+        try:
+            with socket.create_connection((probe_host, WEB_PORT), timeout=1):
+                break
+        except OSError:
+            time.sleep(SEND_URL_POLL_INTERVAL_SEC)
+    else:
+        print("[SEND_URL] web server was not ready in time")
+        return
+
+    app_url = f"http://{resolve_public_web_host()}:{WEB_PORT}"
+    if not open_web_url(app_url):
+        print("[SEND_URL] browser did not open, skipping send command.")
+        return
+
+    if run_send_url_module_send():
+        return
+
+    command = build_send_url_command(app_url)
+    if not command:
+        print("[SEND_URL] MON_SEND_URL_COMMAND is empty")
+        return
+
+    try:
+        completed = subprocess.run(command, capture_output=True, text=True, check=False)
+        if completed.returncode == 0:
+            print(f"[SEND_URL] executed for {app_url}")
+            if completed.stdout.strip():
+                print(f"[SEND_URL][stdout] {completed.stdout.strip()}")
+        else:
+            print(f"[SEND_URL] failed (code={completed.returncode})")
+            if completed.stderr.strip():
+                print(f"[SEND_URL][stderr] {completed.stderr.strip()}")
+    except FileNotFoundError:
+        print(f"[SEND_URL] command not found: {command[0]}")
+        print(f"[SEND_URL] app url: {app_url}")
+        print("[SEND_URL] hint: set MON_SEND_URL_COMMAND to your real sender command.")
+    except Exception as exc:
+        print(f"[SEND_URL] error: {exc}")
+
+
 @app.route("/")
 def index():
     category = normalize_category(request.args.get("category", ""))
@@ -575,6 +828,7 @@ def health():
         "serial_enabled": SERIAL_ENABLED,
         "serial_port": SERIAL_PORT,
         "serial_baudrate": SERIAL_BAUDRATE,
+        "send_url_enabled": SEND_URL_ENABLED,
         "now": now_str(),
     })
 
@@ -651,6 +905,9 @@ def start_background_threads() -> None:
     if SERIAL_ENABLED:
         t = threading.Thread(target=serial_worker, daemon=True)
         t.start()
+    if SEND_URL_ENABLED:
+        t2 = threading.Thread(target=send_url_worker, daemon=True)
+        t2.start()
 
 
 if __name__ == "__main__":
@@ -658,6 +915,9 @@ if __name__ == "__main__":
     seeded_count = seed_sample_events_if_empty()
     if seeded_count:
         print(f"[SEED] inserted {seeded_count} sample events")
+    normalized_count = normalize_existing_event_rows()
+    if normalized_count:
+        print(f"[FIX] normalized {normalized_count} event rows")
     start_background_threads()
     print(f"[WEB] http://{WEB_HOST}:{WEB_PORT}")
     app.run(host=WEB_HOST, port=WEB_PORT, debug=False)
