@@ -5,3 +5,20 @@
 
 # 2. MAIN 폴더 안의 프로젝트 폴더는 통째로 허용 (빌드 파일 포함)
 !/MAIN/iLLD_TC375_ADS_FreeRTOS_Basic/
+
+# 3. [핵심] 빌드 결과물 및 임시 파일 철저히 무시
+**/TriCore\ Debug\ (TASKING)/**
+**/Debug/**
+**/.ads/**
+*.o
+*.d
+*.elf
+*.hex
+*.map
+*.src
+*.lst
+*.pre
+*.err
+*.launch
+*.tmp
+
