@@ -243,7 +243,7 @@
             <div class="actions">
                 <span class="status-pill">
                     <span id="streamDot" class="dot offline"></span>
-                    <span id="streamText">실시간 연결 대기</span>
+                    <span id="streamText">USB status checking...</span>
                 </span>
                 <button type="button" onclick="location.reload()">새로고침</button>
             </div>
@@ -336,57 +336,129 @@
 
     <div id="toastWrap" class="toast-wrap" aria-live="polite" aria-atomic="true"></div>
 
+    <div id="eventPopup" style="display:none; position:fixed; inset:0; background:rgba(15, 23, 42, 0.45); z-index:10000; align-items:center; justify-content:center; padding:16px;">
+        <div style="width:min(420px, 100%); background:#fff; border-radius:14px; border:1px solid #d7deea; box-shadow:0 18px 40px rgba(15, 23, 42, 0.28); padding:18px;">
+            <h3 style="margin:0 0 10px; font-size:18px;">새 이벤트 수신</h3>
+            <p id="eventPopupBody" style="margin:0 0 14px; color:#475467; line-height:1.5;"></p>
+            <div style="display:flex; justify-content:flex-end;">
+                <button id="eventPopupConfirm" type="button">확인</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         (function () {
             const streamDot = document.getElementById("streamDot");
             const streamText = document.getElementById("streamText");
             const toastWrap = document.getElementById("toastWrap");
+            const eventPopup = document.getElementById("eventPopup");
+            const eventPopupBody = document.getElementById("eventPopupBody");
+            const eventPopupConfirm = document.getElementById("eventPopupConfirm");
             const autoRefreshSec = Number(document.body.dataset.autoRefreshSec || 0);
             let reconnectTimer = null;
             let reloadScheduled = false;
 
             function setStreamState(online, text) {
+                if (!streamDot || !streamText) return;
                 streamDot.classList.toggle("online", online);
                 streamDot.classList.toggle("offline", !online);
                 streamText.textContent = text;
             }
 
+            function renderSerialStatus(status) {
+                const connected = Boolean(status && status.connected);
+                const usbConnected = Boolean(status && status.usb_connected);
+                const portOpen = Boolean(status && status.port_open);
+
+                let text = "USB disconnected";
+                if (connected) {
+                    text = "USB connected / port open";
+                } else if (usbConnected && !portOpen) {
+                    text = "USB connected / waiting port open";
+                } else if (usbConnected) {
+                    text = "USB connected";
+                }
+
+                setStreamState(connected, text);
+            }
+
+            async function refreshSerialStatus() {
+                try {
+                    const response = await fetch("/api/serial/status", { cache: "no-store" });
+                    if (!response.ok) {
+                        throw new Error("status request failed");
+                    }
+                    const payload = await response.json();
+                    renderSerialStatus(payload);
+                } catch (err) {
+                    setStreamState(false, "USB/port status check failed");
+                }
+            }
+
             function showToast(payload) {
+                if (!toastWrap) return;
                 const toast = document.createElement("div");
                 toast.className = "toast";
-                toast.innerHTML = `<strong>새 이벤트 수신</strong>
-                    <span>${payload.event_type || "알 수 없는 이벤트"}</span>
-                    <span>${payload.event_time || ""}</span>`;
+                const typeText = payload.event_type || "unknown";
+                const timeText = payload.event_time || "";
+                const colorText = payload.led_warning_color ? ` / LED ${payload.led_warning_color}` : "";
+                toast.innerHTML = `<strong>New Event</strong>
+                    <span>${typeText}${colorText}</span>
+                    <span>${timeText}</span>`;
                 toastWrap.prepend(toast);
                 requestAnimationFrame(() => toast.classList.add("show"));
                 setTimeout(() => {
                     toast.classList.remove("show");
                     setTimeout(() => toast.remove(), 220);
-                }, 2600);
+                }, 3000);
             }
 
-            function scheduleReload() {
+            function scheduleReloadAfterConfirm() {
                 if (reloadScheduled) return;
                 reloadScheduled = true;
-                setTimeout(() => window.location.reload(), 900);
+                window.location.reload();
+            }
+
+            function showEventPopup(payload) {
+                if (!eventPopup || !eventPopupBody) {
+                    return false;
+                }
+                const category = payload.event_category || "-";
+                const typeText = payload.event_type || "unknown";
+                const timeText = payload.event_time || "";
+                const colorText = payload.led_warning_color || "-";
+                eventPopupBody.textContent = `Category: ${category} / Type: ${typeText} / Time: ${timeText} / warning_color: ${colorText}`;
+                eventPopup.style.display = "flex";
+                return true;
+            }
+
+            if (eventPopupConfirm) {
+                eventPopupConfirm.addEventListener("click", function () {
+                    if (eventPopup) {
+                        eventPopup.style.display = "none";
+                    }
+                    scheduleReloadAfterConfirm();
+                });
             }
 
             function attachStream() {
                 if (!("EventSource" in window)) {
-                    setStreamState(false, "브라우저 SSE 미지원");
                     return;
                 }
 
                 const stream = new EventSource("/api/stream");
 
-                stream.addEventListener("hello", function () {
-                    setStreamState(true, "실시간 수신 연결됨");
+                stream.addEventListener("hello", function (event) {
+                    try {
+                        const payload = JSON.parse(event.data || "{}");
+                        renderSerialStatus(payload);
+                    } catch (err) {
+                        // ignore parse errors
+                    }
                 });
 
                 stream.addEventListener("ping", function () {
-                    if (!reloadScheduled) {
-                        setStreamState(true, "실시간 수신 연결됨");
-                    }
+                    refreshSerialStatus();
                 });
 
                 stream.addEventListener("new_event", function (event) {
@@ -397,22 +469,26 @@
                         payload = {};
                     }
                     showToast(payload);
-                    scheduleReload();
+                    const popupShown = showEventPopup(payload);
+                    if (!popupShown) {
+                        scheduleReloadAfterConfirm();
+                    }
                 });
 
                 stream.onerror = function () {
-                    setStreamState(false, "실시간 연결 재시도 중");
                     stream.close();
                     if (reconnectTimer) clearTimeout(reconnectTimer);
                     reconnectTimer = setTimeout(attachStream, 1800);
                 };
             }
 
+            refreshSerialStatus();
+            setInterval(refreshSerialStatus, 2000);
             attachStream();
 
             if (autoRefreshSec > 0) {
                 setInterval(function () {
-                    if (!reloadScheduled) {
+                    if (!reloadScheduled && (!eventPopup || eventPopup.style.display === "none")) {
                         window.location.reload();
                     }
                 }, autoRefreshSec * 1000);
