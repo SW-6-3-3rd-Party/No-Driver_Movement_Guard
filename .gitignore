@@ -1,15 +1,9 @@
-# 1. 다른 모듈(ACT, CLU, RPI) 무시하기 위해 전체 차단
-/*
-!/.gitignore
-!/MAIN/
-
-# 2. MAIN 폴더 안의 프로젝트 폴더는 통째로 허용 (빌드 파일 포함)
-!/MAIN/iLLD_TC375_ADS_FreeRTOS_Basic/
-
-# 3. [핵심] 빌드 결과물 및 임시 파일 철저히 무시
+# --- 빌드 결과물 및 임시 파일만 철저히 무시 ---
+# 위치와 상관없이 아래 이름의 폴더나 확장자는 무시합니다.
 **/TriCore\ Debug\ (TASKING)/**
 **/Debug/**
 **/.ads/**
+
 *.o
 *.d
 *.elf
@@ -22,3 +16,7 @@
 *.launch
 *.tmp
 
+# 개인 설정 파일
+.settings/
+.project
+.cproject
