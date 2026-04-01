@@ -16,12 +16,17 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 from zoneinfo import ZoneInfo
 
-from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask import Flask, Response, jsonify, redirect, render_template, request, stream_with_context, url_for
 
 try:
     import serial  # type: ignore
 except Exception:
     serial = None
+
+try:
+    from serial.tools import list_ports  # type: ignore
+except Exception:
+    list_ports = None
 
 try:
     import LED_driver  # type: ignore
@@ -56,6 +61,9 @@ _led_queue: "queue.Queue[str]" = queue.Queue(maxsize=64)
 _led_worker_started = False
 _led_worker_lock = threading.Lock()
 _serial_state_lock = threading.Lock()
+_stream_clients_lock = threading.Lock()
+_stream_clients: list["queue.Queue[str]"] = []
+_stream_ping_sec = 15.0
 _serial_state: Dict[str, Any] = {
     "connected": False,
     "retrying": SERIAL_ENABLED,
@@ -145,22 +153,126 @@ def get_serial_state() -> Dict[str, Any]:
         return dict(_serial_state)
 
 
+def is_usb_connected(port_name: str) -> bool:
+    port = str(port_name or "").strip()
+    if not port:
+        return False
+
+    # Try pyserial port discovery first.
+    if list_ports is not None:
+        try:
+            normalized = port.lower()
+            for info in list_ports.comports():
+                if str(getattr(info, "device", "")).strip().lower() == normalized:
+                    return True
+        except Exception:
+            pass
+
+    # For Linux device paths (/dev/ttyUSB0, etc), filesystem existence is a good signal.
+    if port.startswith("/dev/"):
+        try:
+            return Path(port).exists()
+        except Exception:
+            return False
+
+    return False
+
+
+def get_connection_flags() -> Dict[str, Any]:
+    state = get_serial_state()
+    port_open = bool(state.get("connected"))
+    usb_connected = is_usb_connected(SERIAL_PORT) or port_open
+    connected = bool(SERIAL_ENABLED and usb_connected and port_open)
+
+    if not SERIAL_ENABLED:
+        message = "serial disabled"
+    elif connected:
+        message = "usb connected / port open"
+    elif usb_connected:
+        message = "usb connected / port closed"
+    else:
+        message = "usb disconnected"
+
+    return {
+        "connected": connected,
+        "usb_connected": usb_connected,
+        "port_open": port_open,
+        "message": message,
+    }
+
+
+def action_to_warning_color(action: Optional[str]) -> Optional[str]:
+    if action == "control":
+        return "red"
+    if action == "warning":
+        return "orange"
+    if action in {"release", "system"}:
+        return "green"
+    return None
+
+
+def set_led_warning_color(color: Optional[str]) -> None:
+    if LED_driver is None or color is None:
+        return
+    setter = getattr(LED_driver, "set_warning_color", None)
+    if callable(setter):
+        try:
+            setter(color)
+            return
+        except Exception:
+            pass
+    try:
+        setattr(LED_driver, "warning_color", color)
+    except Exception:
+        pass
+
+
+def get_led_warning_color() -> Optional[str]:
+    if LED_driver is None:
+        return None
+    try:
+        value = getattr(LED_driver, "warning_color", None)
+    except Exception:
+        value = None
+    if value is None:
+        return None
+    text = str(value).strip().lower()
+    return text or None
+
+
+def make_sse_event(event_name: str, payload: Dict[str, Any]) -> str:
+    data = json.dumps(payload, ensure_ascii=False)
+    return f"event: {event_name}\ndata: {data}\n\n"
+
+
+def notify_stream_clients(event_name: str, payload: Dict[str, Any]) -> None:
+    message = make_sse_event(event_name, payload)
+    stale_clients: list["queue.Queue[str]"] = []
+    with _stream_clients_lock:
+        for client_queue in list(_stream_clients):
+            try:
+                client_queue.put_nowait(message)
+            except queue.Full:
+                stale_clients.append(client_queue)
+        for client_queue in stale_clients:
+            if client_queue in _stream_clients:
+                _stream_clients.remove(client_queue)
+
+
 def classify_led_action(cleaned: Dict[str, Any]) -> Optional[str]:
     category = str(cleaned.get("event_category") or "").lower()
-    event_type = str(cleaned.get("event_type") or "")
     source = str(cleaned.get("source") or "").lower()
 
-    # 샘플 데이터/시드에는 LED를 울리지 않음
+    # Keep sample data from driving hardware signals.
     if source.startswith("sample"):
         return None
 
     if category == "brake":
-        return "control"   # 제어
+        return "control"
     if category == "warning":
-        return "warning"   # 경고
+        return "warning"
     if category == "system":
-        if event_type in {EVENT_SYSTEM_RELEASE_DRIVER, EVENT_SYSTEM_RELEASE_P} or "해제" in event_type:
-            return "release"  # 해제
+        return "system"
     return None
 
 
@@ -168,15 +280,13 @@ def _call_led_driver(action: str) -> None:
     if LED_driver is None or not LED_SIGNAL_ENABLED:
         return
 
-    # 요청사항: 제어=warning_red, 경고=orange, 해제=grean
-    # 환경별 함수명 차이를 흡수하기 위해 순차 fallback
     candidate_names: list[str]
     if action == "control":
-        candidate_names = ["warning_red", "red", "on_red"]
+        candidate_names = ["warning_red", "on_red", "red"]
     elif action == "warning":
-        candidate_names = ["orange", "warning_orange", "on_orange"]
-    elif action == "release":
-        candidate_names = ["grean", "green", "warning_green", "on_green"]
+        candidate_names = ["warning_orange", "on_orange", "orange"]
+    elif action in {"release", "system"}:
+        candidate_names = ["warning_green", "on_green", "green", "grean"]
     else:
         return
 
@@ -184,6 +294,8 @@ def _call_led_driver(action: str) -> None:
         func = getattr(LED_driver, name, None)
         if callable(func):
             func()
+            current_color = get_led_warning_color() or action_to_warning_color(action) or "unknown"
+            print(f"[LED] warning_color={current_color} action={action}")
             return
 
     print(f"[LED] no callable for action={action} candidates={candidate_names}")
@@ -219,11 +331,14 @@ def trigger_led_signal(cleaned: Dict[str, Any]) -> None:
     if LED_driver is None or not LED_SIGNAL_ENABLED:
         return
 
+    warning_color = action_to_warning_color(action)
+    set_led_warning_color(warning_color)
+
     _ensure_led_worker_started()
     try:
         _led_queue.put_nowait(action)
     except queue.Full:
-        # 최신 상태를 더 우선시해 오래된 신호 1개를 비움
+        # Keep latest signal by dropping one stale queued action.
         try:
             _ = _led_queue.get_nowait()
             _led_queue.task_done()
@@ -650,6 +765,19 @@ def insert_event(payload: Dict[str, Any]) -> int:
 
     # LED 호출은 DB 잠금 밖에서 비동기로 처리
     trigger_led_signal(cleaned)
+
+    action = classify_led_action(cleaned)
+    led_warning_color = action_to_warning_color(action) or get_led_warning_color()
+    stream_payload: Dict[str, Any] = {
+        "id": event_id,
+        "event_time": cleaned.get("event_time"),
+        "event_category": cleaned.get("event_category"),
+        "event_type": cleaned.get("event_type"),
+        "source": cleaned.get("source"),
+        "led_warning_color": led_warning_color,
+        "received_at": cleaned.get("received_at"),
+    }
+    notify_stream_clients("new_event", stream_payload)
     return event_id
 
 
@@ -1171,18 +1299,20 @@ def index():
 @app.route("/health")
 def health():
     serial_state = get_serial_state()
-    serial_message = "connected" if serial_state.get("connected") else "reconnecting"
+    connection = get_connection_flags()
     return jsonify({
         "status": "ok",
-        "connected": bool(serial_state.get("connected")),
-        "message": serial_message,
+        "connected": bool(connection.get("connected")),
+        "usb_connected": bool(connection.get("usb_connected")),
+        "port_open": bool(connection.get("port_open")),
+        "message": connection.get("message"),
         "db_path": str(DB_PATH),
         "serial_enabled": SERIAL_ENABLED,
         "serial_port": SERIAL_PORT,
         "serial_baudrate": SERIAL_BAUDRATE,
         "serial_connected": bool(serial_state.get("connected")),
         "serial_retrying": bool(serial_state.get("retrying")),
-        "serial_status": serial_message,
+        "serial_status": connection.get("message"),
         "serial_last_error": serial_state.get("last_error"),
         "serial_last_error_at": serial_state.get("last_error_at"),
         "serial_last_connected_at": serial_state.get("last_connected_at"),
@@ -1203,14 +1333,17 @@ def health():
 @app.route("/api/serial/status")
 def api_serial_status():
     state = get_serial_state()
+    connection = get_connection_flags()
     return jsonify({
         "ok": True,
         "enabled": SERIAL_ENABLED,
         "port": SERIAL_PORT,
         "baudrate": SERIAL_BAUDRATE,
-        "connected": bool(state.get("connected")),
+        "connected": bool(connection.get("connected")),
+        "usb_connected": bool(connection.get("usb_connected")),
+        "port_open": bool(connection.get("port_open")),
         "retrying": bool(state.get("retrying")),
-        "message": "connected" if state.get("connected") else "reconnecting",
+        "message": connection.get("message"),
         "last_error": state.get("last_error"),
         "last_error_at": state.get("last_error_at"),
         "last_connected_at": state.get("last_connected_at"),
@@ -1223,6 +1356,45 @@ def api_serial_status():
         "dropped_count": state.get("dropped_count"),
         "now": now_str(),
     })
+
+
+@app.route("/api/stream")
+def api_stream():
+    client_queue: "queue.Queue[str]" = queue.Queue(maxsize=64)
+    with _stream_clients_lock:
+        _stream_clients.append(client_queue)
+
+    @stream_with_context
+    def event_stream():
+        hello_payload = {
+            "ok": True,
+            "time": now_str(),
+            **get_connection_flags(),
+        }
+        yield make_sse_event("hello", hello_payload)
+
+        last_ping = time.monotonic()
+        try:
+            while True:
+                wait_sec = max(0.2, _stream_ping_sec - (time.monotonic() - last_ping))
+                try:
+                    message = client_queue.get(timeout=wait_sec)
+                    yield message
+                    last_ping = time.monotonic()
+                except queue.Empty:
+                    yield make_sse_event("ping", {"time": now_str()})
+                    last_ping = time.monotonic()
+        finally:
+            with _stream_clients_lock:
+                if client_queue in _stream_clients:
+                    _stream_clients.remove(client_queue)
+
+    headers = {
+        "Cache-Control": "no-cache, no-transform",
+        "Connection": "keep-alive",
+        "X-Accel-Buffering": "no",
+    }
+    return Response(event_stream(), mimetype="text/event-stream", headers=headers)
 
 
 @app.route("/api/events", methods=["GET"])

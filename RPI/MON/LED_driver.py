@@ -9,6 +9,16 @@ _initialized = False
 _pwm_r = None
 _pwm_g = None
 _pwm_b = None
+warning_color = "off"
+
+
+def set_warning_color(color):
+    global warning_color
+    warning_color = str(color or "").strip().lower() or "off"
+
+
+def get_warning_color():
+    return warning_color
 
 
 def _init_rgb():
@@ -43,14 +53,17 @@ def _set_color(r, g, b):
 
 
 def on_red():
+    set_warning_color("red")
     _set_color(100, 0, 0)
 
 
 def on_orange():
+    set_warning_color("orange")
     _set_color(100, 20, 0)
 
 
 def on_green():
+    set_warning_color("green")
     _set_color(0, 100, 0)
 
 
@@ -66,6 +79,7 @@ def cleanup():
     if not _initialized:
         return
 
+    set_warning_color("off")
     off()
     _pwm_r.stop()
     _pwm_g.stop()
