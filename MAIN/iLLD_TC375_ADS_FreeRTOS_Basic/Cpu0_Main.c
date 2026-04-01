@@ -16,6 +16,7 @@
 
 /* App */
 #include "App/sensor_data.h"
+#include "App/tof_sensor.h"
 #include "App/ultrasonic_isr.h"
 
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
@@ -30,6 +31,7 @@ volatile uint8 g_debugLed = 0;
 /* ── 태스크 함수 ── */
 extern void Task_Sensor(void *param);
 extern void Task_Judge(void *param);
+extern void Task_ToF(void *param);
 
 /* ── LED 제어 함수 ── */
 void Debug_LED_Set(uint8 on)
@@ -85,10 +87,12 @@ void core0_main(void)
 
     GPIO_Init();
     Ultrasonic_Init();   /* ERU 인터럽트 + Trig/Echo 핀 설정 */
+    TofSensor_Init();
 
     xSensorMutex  = xSemaphoreCreateMutex();
     xCommandMutex = xSemaphoreCreateMutex();
 
+    xTaskCreate(Task_ToF,    "ToF",    2048, NULL, 2, NULL);
     xTaskCreate(Task_Sensor, "Sensor", 1024, NULL, 3, NULL);
     xTaskCreate(Task_Judge,  "Judge",  1024, NULL, 3, NULL);
 
