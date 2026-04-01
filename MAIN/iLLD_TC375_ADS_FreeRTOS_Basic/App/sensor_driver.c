@@ -11,6 +11,7 @@
  *   - 총 실행 시간: ~1ms 이내 (10ms 주기 정확히 유지)
  *********************************************************************************************************************/
 #include "App/sensor_data.h"
+#include "App/tof_sensor.h"
 #include "App/ultrasonic_isr.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -31,7 +32,6 @@ extern void Board_LED2_Set(uint8 on);
 #define MAX_DIST_MM          4000
 #define STM_FREQ             100000000u
 #define ULTRA_TIMEOUT_TICKS  5000000u  /* 50ms */
-#define TOF_NOT_READY_MM     ((uint16)999U)
 #define PRESSURE_MAX_ADC     ((uint32)4095U)
 #define PRESSURE_MAX_KG      ((uint32)150U)
 #define PRESENT_CONFIRM_CNT  ((uint8)3U)
@@ -416,7 +416,7 @@ void Task_Sensor(void *param)
 
         /* ── 3. 압력/ToF 취득 ── */
         uint16 pressure_adc = read_pressure_adc();
-        uint16 tof_mm_val = TOF_NOT_READY_MM;
+        uint16 tof_mm_val = TofSensor_GetDistanceMm();
 
         g_pressure_raw = pressure_adc;
 
