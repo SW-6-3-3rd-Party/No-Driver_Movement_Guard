@@ -37,6 +37,9 @@ volatile uint8 g_can_bus_off_debug = 0U;
 volatile uint32 g_can_last_rx_tick = 0U;
 volatile uint32 g_can_last_speed_x100 = 0U;
 volatile uint8 g_can_last_brake_state = BRAKE_CMD_RELEASE;
+volatile sint16 g_can_last_accel_x = 0;
+volatile sint16 g_can_last_accel_y = 0;
+volatile sint16 g_can_last_accel_z = 0;
 volatile uint32 g_can_tx100_count = 0U;
 volatile uint32 g_can_tx200_count = 0U;
 volatile uint32 g_can_rx300_count = 0U;
@@ -99,13 +102,17 @@ static uint32 can_pack_u32_le(uint8 byte0, uint8 byte1, uint8 byte2, uint8 byte3
 
 /* [BUG-4 수정] can_unpack_u32_le() 삭제: AURIX LE이므로 rxData[0] 직접 사용 */
 
-static void can_apply_act_feedback(uint32 speedX100, uint8 brakeState)
+static void can_apply_act_feedback(uint32 speedX100, uint8 brakeState,
+                                   sint16 accelX, sint16 accelY, sint16 accelZ)
 {
     if (xSemaphoreTake(xSensorMutex, pdMS_TO_TICKS(2)) == pdTRUE)
     {
         g_sensor.speed_kmh = ((float)speedX100) / 100.0f;
         g_sensor.act_brake_state = (BrakeCommand)can_normalize_brake_state(brakeState);
         g_sensor.act_feedback_alive = TRUE;
+        g_sensor.accel_x = accelX;
+        g_sensor.accel_y = accelY;
+        g_sensor.accel_z = accelZ;
         xSemaphoreGive(xSensorMutex);
     }
 }
@@ -117,6 +124,9 @@ static void can_apply_act_timeout(void)
         g_sensor.speed_kmh = 0.0f;
         g_sensor.act_brake_state = BRAKE_CMD_RELEASE;
         g_sensor.act_feedback_alive = FALSE;
+        g_sensor.accel_x = 0;
+        g_sensor.accel_y = 0;
+        g_sensor.accel_z = 0;
         xSemaphoreGive(xSensorMutex);
     }
 }
@@ -250,19 +260,28 @@ static void can_process_rx_feedback(TickType_t now)
         IfxCan_Can_readMessage(&g_canNode, &rxMessage, rxData);
 
         if ((rxMessage.messageId == CAN_ID_ACT_FEEDBACK) &&
-            (rxMessage.dataLengthCode >= IfxCan_DataLengthCode_5))
+            (rxMessage.dataLengthCode >= IfxCan_DataLengthCode_8))
         {
-            /* [BUG-4 수정] rxData[0] 직접 사용 (AURIX LE, can_unpack_u32_le 불필요) */
+            /* AURIX LE: rxData[0]=Byte0~3, rxData[1]=Byte4~7 */
             uint32 speedX100 = rxData[0];
             uint8 brakeState = (uint8)(rxData[1] & 0xFFU);
+            uint8 rawByte5 = (uint8)((rxData[1] >> 8) & 0xFFU);
+            uint8 rawByte6 = (uint8)((rxData[1] >> 16) & 0xFFU);
+            uint8 rawByte7 = (uint8)((rxData[1] >> 24) & 0xFFU);
+            sint16 accelX = (sint16)((sint8)rawByte5);
+            sint16 accelY = (sint16)((sint8)rawByte6);
+            sint16 accelZ = (sint16)((sint8)rawByte7);
 
             g_can_last_speed_x100 = speedX100;
             g_can_last_brake_state = can_normalize_brake_state(brakeState);
+            g_can_last_accel_x = accelX;
+            g_can_last_accel_y = accelY;
+            g_can_last_accel_z = accelZ;
             g_can_last_rx_tick = (uint32)now;
             g_can_act_feedback_timeout = FALSE;
             g_can_rx300_count++;
 
-            can_apply_act_feedback(speedX100, brakeState);
+            can_apply_act_feedback(speedX100, brakeState, accelX, accelY, accelZ);
         }
     }
 }
@@ -347,7 +366,7 @@ void Task_Can(void *param)
     /* [BUG-3 수정] 안전한 기본값으로 초기화 (mutex 없는 비보호 복사 제거) */
     SensorData sensorSnapshot = {
         DRIVER_ABSENT, GEAR_P, DOOR_CLOSE, 0.0f,
-        MOTION_STOPPED, BRAKE_CMD_RELEASE, FALSE
+        MOTION_STOPPED, BRAKE_CMD_RELEASE, FALSE, 0, 0, 0
     };
     ControlCommand commandSnapshot = { RISK_NORMAL, BRAKE_CMD_RELEASE };
 
@@ -376,6 +395,9 @@ void Task_Can(void *param)
             g_can_act_feedback_timeout = TRUE;
             g_can_last_speed_x100 = 0U;
             g_can_last_brake_state = BRAKE_CMD_RELEASE;
+            g_can_last_accel_x = 0;
+            g_can_last_accel_y = 0;
+            g_can_last_accel_z = 0;
             can_apply_act_timeout();
         }
 

@@ -7,6 +7,7 @@
 #include "task.h"
 
 #define VEHICLE_MOVING_THRESHOLD_KMH 0.5f
+#define VEHICLE_ACCEL_THRESHOLD      2
 
 static RiskLevel current_state = RISK_NORMAL;
 static TickType_t absent_start = 0;
@@ -19,12 +20,25 @@ static boolean is_auto_brake_state(RiskLevel state)
            (state == RISK_ROLLAWAY_BRAKE);
 }
 
-static MotionState derive_motion_from_speed(const SensorData *sensor)
+static MotionState derive_motion(const SensorData *sensor)
 {
-    if ((!sensor->act_feedback_alive) || (sensor->speed_kmh < VEHICLE_MOVING_THRESHOLD_KMH))
+    boolean moving_by_speed;
+    boolean moving_by_accel;
+
+    if (!sensor->act_feedback_alive)
         return MOTION_STOPPED;
 
-    return MOTION_MOVING;
+    moving_by_speed = (sensor->speed_kmh >= VEHICLE_MOVING_THRESHOLD_KMH);
+    moving_by_accel =
+        (sensor->accel_x >= VEHICLE_ACCEL_THRESHOLD) ||
+        (sensor->accel_x <= -VEHICLE_ACCEL_THRESHOLD) ||
+        (sensor->accel_y >= VEHICLE_ACCEL_THRESHOLD) ||
+        (sensor->accel_y <= -VEHICLE_ACCEL_THRESHOLD);
+
+    if (moving_by_speed || moving_by_accel)
+        return MOTION_MOVING;
+
+    return MOTION_STOPPED;
 }
 
 static boolean is_act_brake_engaged(const SensorData *sensor)
@@ -59,7 +73,7 @@ static RiskLevel evaluate(const SensorData *s, RiskLevel prev)
     boolean gear_r = (s->gear == GEAR_R);
     boolean gear_dr = gear_d || gear_r;
     boolean gear_n = (s->gear == GEAR_N);
-    boolean moving = (derive_motion_from_speed(s) == MOTION_MOVING);
+    boolean moving = (derive_motion(s) == MOTION_MOVING);
     TickType_t now = xTaskGetTickCount();
 
     /* 부재 타이머 관리 */
@@ -175,13 +189,16 @@ void Task_Judge(void *param)
             0.0f,
             MOTION_STOPPED,
             BRAKE_CMD_RELEASE,
-            FALSE
+            FALSE,
+            0,
+            0,
+            0
         };
 
         /* 센서 데이터 복사 */
         if (xSemaphoreTake(xSensorMutex, pdMS_TO_TICKS(5)) == pdTRUE)
         {
-            g_sensor.motion = derive_motion_from_speed(&g_sensor);
+            g_sensor.motion = derive_motion(&g_sensor);
             local = g_sensor;
             xSemaphoreGive(xSensorMutex);
         }

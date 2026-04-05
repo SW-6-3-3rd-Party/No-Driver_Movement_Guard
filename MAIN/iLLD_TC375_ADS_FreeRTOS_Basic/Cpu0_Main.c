@@ -23,7 +23,7 @@
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
 
 /* ── 전역 변수 정의 ── */
-SensorData       g_sensor   = { DRIVER_ABSENT, GEAR_P, DOOR_CLOSE, 0.0f, MOTION_STOPPED, BRAKE_CMD_RELEASE, FALSE };
+SensorData       g_sensor   = { DRIVER_ABSENT, GEAR_P, DOOR_CLOSE, 0.0f, MOTION_STOPPED, BRAKE_CMD_RELEASE, FALSE, 0, 0, 0 };
 ControlCommand   g_command  = { RISK_NORMAL, BRAKE_CMD_RELEASE };
 SemaphoreHandle_t xSensorMutex;
 SemaphoreHandle_t xCommandMutex;
