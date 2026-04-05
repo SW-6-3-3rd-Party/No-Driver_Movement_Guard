@@ -57,21 +57,20 @@
 #include "semphr.h"
 
 /* ── 상태 열거형 ── */
-typedef enum { DRIVER_SEATED, DRIVER_ABSENT, DRIVER_UNCERTAIN } DriverState;
-typedef enum { GEAR_P, GEAR_R, GEAR_N, GEAR_D, GEAR_ERROR }    GearState;
-typedef enum { DOOR_OPEN, DOOR_CLOSE }                          DoorState;
-typedef enum { MOTION_STOPPED, MOTION_MOVING }                  MotionState;
+typedef enum { DRIVER_ABSENT, DRIVER_SEATED } DriverState;
+typedef enum { GEAR_P = 0, GEAR_R = 1, GEAR_N = 2, GEAR_D = 3, GEAR_ERROR = 4 } GearState;
+typedef enum { DOOR_CLOSE, DOOR_OPEN } DoorState;
+typedef enum { MOTION_STOPPED, MOTION_MOVING } MotionState;
+typedef enum { BRAKE_CMD_RELEASE = 0, BRAKE_CMD_HOLD = 1, BRAKE_CMD_FORCE = 2 } BrakeCommand;
 
 typedef enum {
-    RISK_NORMAL,
-    RISK_WARN_LV1,
-    RISK_WARN_LV2,
-    RISK_D_BRAKE,
-    RISK_R_BRAKE,
-    RISK_ROLLAWAY_WARN,
-    RISK_ROLLAWAY_BRAKE,
-    RISK_BRAKE_HOLD,
-    RISK_RELEASE_WAIT
+    RISK_NORMAL = 0,
+    RISK_WARN_LV1 = 1,
+    RISK_WARN_LV2 = 2,
+    RISK_ROLLAWAY_WARN = 3,
+    RISK_D_BRAKE = 4,
+    RISK_R_BRAKE = 5,
+    RISK_ROLLAWAY_BRAKE = 6
 } RiskLevel;
 
 /* ── 센서 데이터 (Task_Sensor가 채움, Task_Judge가 읽음) ── */
@@ -79,19 +78,16 @@ typedef struct {
     DriverState driver;
     GearState   gear;
     DoorState   door;
-    float      speed_kmh;
-    MotionState motion;
+    float       speed_kmh;          /* ACT feedback speed */
+    MotionState motion;             /* Derived in MAIN from speed feedback */
+    BrakeCommand act_brake_state;   /* ACT feedback brake state */
+    boolean      act_feedback_alive;
 } SensorData;
 
 /* ── 제어 명령 (Task_Judge가 채움, Task_CAN_TX가 읽음) ── */
 typedef struct {
-    RiskLevel   risk_level;
-    uint8       brake_cmd;       /* 0=OFF, 1=ON, 2=HOLD */
-    uint8       motor_mode;      /* 0=STOP, 1=FWD, 2=REV, 3=NEUTRAL, 4=PARK */
-    uint8       buzzer_mode;     /* 0=OFF, 1=단속, 2=연속 */
-    uint8       led_hazard;      /* 0=OFF, 1=BLINK */
-    uint8       led_brake;       /* 0=OFF, 1=ON */
-    uint8       lcd_msg_code;    /* 메시지 코드 */
+    RiskLevel    risk_level;
+    BrakeCommand brake_cmd;       /* 0=RELEASE, 1=HOLD, 2=FORCE */
 } ControlCommand;
 
 /* ── 전역 변수 (extern 선언, 정의는 Cpu0_Main.c) ── */
@@ -99,5 +95,7 @@ extern SensorData       g_sensor;
 extern ControlCommand   g_command;
 extern SemaphoreHandle_t xSensorMutex;
 extern SemaphoreHandle_t xCommandMutex;
+extern volatile boolean g_gear_override_active;
+extern volatile GearState g_gear_override_state;
 
 #endif /* APP_SENSOR_DATA_H_ */

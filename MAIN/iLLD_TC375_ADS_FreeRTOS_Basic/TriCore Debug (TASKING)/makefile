@@ -30,6 +30,8 @@ RM := rm -rf
 -include Libraries/iLLD/TC37A/Tricore/Cpu/Trap/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Cpu/Std/subdir.mk
 -include Libraries/iLLD/TC37A/Tricore/Cpu/Irq/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Can/Std/subdir.mk
+-include Libraries/iLLD/TC37A/Tricore/Can/Can/subdir.mk
 -include Libraries/Infra/Ssw/TC37A/Tricore/subdir.mk
 -include Libraries/Infra/Platform/Tricore/Compilers/subdir.mk
 -include Configurations/subdir.mk

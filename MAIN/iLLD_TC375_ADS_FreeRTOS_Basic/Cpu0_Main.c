@@ -15,6 +15,7 @@
 #include "semphr.h"
 
 /* App */
+#include "App/can_handler.h"
 #include "App/sensor_data.h"
 #include "App/tof_sensor.h"
 #include "App/ultrasonic_isr.h"
@@ -22,8 +23,8 @@
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
 
 /* ── 전역 변수 정의 ── */
-SensorData       g_sensor   = { DRIVER_ABSENT, GEAR_P, DOOR_CLOSE, 0.0f, MOTION_STOPPED };
-ControlCommand   g_command  = { RISK_NORMAL, 0, 0, 0, 0, 0, 0 };
+SensorData       g_sensor   = { DRIVER_ABSENT, GEAR_P, DOOR_CLOSE, 0.0f, MOTION_STOPPED, BRAKE_CMD_RELEASE, FALSE };
+ControlCommand   g_command  = { RISK_NORMAL, BRAKE_CMD_RELEASE };
 SemaphoreHandle_t xSensorMutex;
 SemaphoreHandle_t xCommandMutex;
 volatile uint8 g_debugLed = 0;
@@ -32,6 +33,7 @@ volatile uint8 g_debugLed = 0;
 extern void Task_Sensor(void *param);
 extern void Task_Judge(void *param);
 extern void Task_ToF(void *param);
+extern void Task_Can(void *param);
 
 /* ── LED 제어 함수 ── */
 void Debug_LED_Set(uint8 on)
@@ -88,6 +90,7 @@ void core0_main(void)
     GPIO_Init();
     Ultrasonic_Init();   /* ERU 인터럽트 + Trig/Echo 핀 설정 */
     TofSensor_Init();
+    CanApp_Init();
 
     xSensorMutex  = xSemaphoreCreateMutex();
     xCommandMutex = xSemaphoreCreateMutex();
@@ -95,6 +98,7 @@ void core0_main(void)
     xTaskCreate(Task_ToF,    "ToF",    2048, NULL, 2, NULL);
     xTaskCreate(Task_Sensor, "Sensor", 1024, NULL, 3, NULL);
     xTaskCreate(Task_Judge,  "Judge",  1024, NULL, 3, NULL);
+    xTaskCreate(Task_Can,    "CAN",    2048, NULL, 3, NULL);
 
     vTaskStartScheduler();
 

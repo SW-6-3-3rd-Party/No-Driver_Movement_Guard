@@ -35,6 +35,8 @@ Configurations \
 . \
 Libraries/Infra/Platform/Tricore/Compilers \
 Libraries/Infra/Ssw/TC37A/Tricore \
+Libraries/iLLD/TC37A/Tricore/Can/Can \
+Libraries/iLLD/TC37A/Tricore/Can/Std \
 Libraries/iLLD/TC37A/Tricore/Cpu/Irq \
 Libraries/iLLD/TC37A/Tricore/Cpu/Std \
 Libraries/iLLD/TC37A/Tricore/Cpu/Trap \

@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\cc8336a --dep-file=VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Configurations -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2012 -o VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.src ../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c"
+	.compiler_invocation	"ctc -f C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\cc35324a --dep-file=VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Configurations -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2012 -o VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.src ../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c"
 	.compiler_name		"ctc"
 	;source	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c'
 
@@ -4154,7 +4154,7 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug
 	.sect	'.debug_info'
 .L365:
-	.word	5194
+	.word	5149
 	.half	3
 	.word	.L366
 	.byte	4
@@ -4162,36 +4162,36 @@ __VL53L0X_get_pal_range_status_function_end:
 	.byte	1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L367
 .L556:
 	.byte	2
 	.byte	'int',0,4,5,3
 	.byte	'__abs',0
-	.word	284
+	.word	239
 	.byte	1,1,1,1,4
-	.word	284
+	.word	239
 	.byte	0,2
 	.byte	'char',0,1,6
 .L550:
 	.byte	5
-	.word	312
+	.word	267
 	.byte	6
-	.word	320
+	.word	275
 	.byte	7
-	.word	312
+	.word	267
 	.byte	5
-	.word	330
+	.word	285
 	.byte	6
-	.word	335
+	.word	290
 	.byte	8
 	.byte	'strcpy',0,1,39,17
-	.word	320
+	.word	275
 	.byte	1,1,1,1,9,1,39,33
-	.word	325
+	.word	280
 	.byte	9,1,39,56
-	.word	340
+	.word	295
 	.byte	0
 .L498:
 	.byte	2
@@ -4207,627 +4207,627 @@ __VL53L0X_get_pal_range_status_function_end:
 	.byte	'unsigned short int',0,2,7
 .L554:
 	.byte	10,6
-	.word	389
+	.word	344
 	.byte	11,5,0,10,24
-	.word	406
+	.word	361
 	.byte	11,5,0,10,28
-	.word	406
+	.word	361
 	.byte	11,6,0
 .L804:
 	.byte	12,3,240,1,9,56,13
 	.byte	'ambRate_mcps',0
-	.word	462
+	.word	417
 	.byte	28,2,35,0,13
 	.byte	'dmax_mm',0
-	.word	462
+	.word	417
 	.byte	28,2,35,28,0
 .L722:
 	.byte	12,3,249,1,9,120,13
 	.byte	'DeviceMode',0
-	.word	389
+	.word	344
 	.byte	1,2,35,0,13
 	.byte	'HistogramMode',0
-	.word	389
+	.word	344
 	.byte	1,2,35,1,13
 	.byte	'MeasurementTimingBudgetMicroSeconds',0
-	.word	406
+	.word	361
 	.byte	4,2,35,2,13
 	.byte	'InterMeasurementPeriodMilliSeconds',0
-	.word	406
+	.word	361
 	.byte	4,2,35,6,13
 	.byte	'XTalkCompensationEnable',0
-	.word	389
+	.word	344
 	.byte	1,2,35,10,13
 	.byte	'XTalkCompensationRangeMilliMeter',0
-	.word	422
+	.word	377
 	.byte	2,2,35,12,13
 	.byte	'XTalkCompensationRateMegaCps',0
-	.word	406
+	.word	361
 	.byte	4,2,35,14,13
 	.byte	'RangeOffsetMicroMeters',0
-	.word	284
+	.word	239
 	.byte	4,2,35,18,13
 	.byte	'LimitChecksEnable',0
-	.word	444
+	.word	399
 	.byte	6,2,35,22,13
 	.byte	'LimitChecksStatus',0
-	.word	444
+	.word	399
 	.byte	6,2,35,28,13
 	.byte	'LimitChecksValue',0
-	.word	453
+	.word	408
 	.byte	24,2,35,34,13
 	.byte	'dmax_lut',0
-	.word	471
+	.word	426
 	.byte	56,2,35,60,13
 	.byte	'WrapAroundCheckEnable',0
-	.word	389
+	.word	344
 	.byte	1,2,35,116,0,12,3,194,2,9,28,13
 	.byte	'TimeStamp',0
-	.word	406
+	.word	361
 	.byte	4,2,35,0,13
 	.byte	'MeasurementTimeUsec',0
-	.word	406
+	.word	361
 	.byte	4,2,35,4,13
 	.byte	'RangeMilliMeter',0
-	.word	422
+	.word	377
 	.byte	2,2,35,8,13
 	.byte	'RangeDMaxMilliMeter',0
-	.word	422
+	.word	377
 	.byte	2,2,35,10,13
 	.byte	'SignalRateRtnMegaCps',0
-	.word	406
+	.word	361
 	.byte	4,2,35,12,13
 	.byte	'AmbientRateRtnMegaCps',0
-	.word	406
+	.word	361
 	.byte	4,2,35,16,13
 	.byte	'EffectiveSpadRtnCount',0
-	.word	422
+	.word	377
 	.byte	2,2,35,20,13
 	.byte	'ZoneId',0
-	.word	389
+	.word	344
 	.byte	1,2,35,22,13
 	.byte	'RangeFractionalPart',0
-	.word	389
+	.word	344
 	.byte	1,2,35,23,13
 	.byte	'RangeStatus',0
-	.word	389
+	.word	344
 	.byte	1,2,35,24,0,10,96
-	.word	406
+	.word	361
 	.byte	11,23,0,12,3,248,2,9,100,13
 	.byte	'HistogramData',0
-	.word	1197
+	.word	1152
 	.byte	96,2,35,0,13
 	.byte	'FirstBin',0
-	.word	389
+	.word	344
 	.byte	1,2,35,96,13
 	.byte	'BufferSize',0
-	.word	389
+	.word	344
 	.byte	1,2,35,97,13
 	.byte	'NumberOfBins',0
-	.word	389
+	.word	344
 	.byte	1,2,35,98,13
 	.byte	'ErrorStatus',0
-	.word	389
+	.word	344
 	.byte	1,2,35,99,0,10,32
-	.word	312
+	.word	267
 	.byte	11,31,0,12,3,151,3,9,76,13
 	.byte	'OscFrequencyMHz',0
-	.word	406
+	.word	361
 	.byte	4,2,35,0,13
 	.byte	'LastEncodedTimeout',0
-	.word	422
+	.word	377
 	.byte	2,2,35,4,13
 	.byte	'Pin0GpioFunctionality',0
-	.word	389
+	.word	344
 	.byte	1,2,35,6,13
 	.byte	'FinalRangeTimeoutMicroSecs',0
-	.word	406
+	.word	361
 	.byte	4,2,35,8,13
 	.byte	'FinalRangeVcselPulsePeriod',0
-	.word	389
+	.word	344
 	.byte	1,2,35,12,13
 	.byte	'PreRangeTimeoutMicroSecs',0
-	.word	406
+	.word	361
 	.byte	4,2,35,14,13
 	.byte	'PreRangeVcselPulsePeriod',0
-	.word	389
+	.word	344
 	.byte	1,2,35,18,13
 	.byte	'SigmaEstRefArray',0
-	.word	422
+	.word	377
 	.byte	2,2,35,20,13
 	.byte	'SigmaEstEffPulseWidth',0
-	.word	422
+	.word	377
 	.byte	2,2,35,22,13
 	.byte	'SigmaEstEffAmbWidth',0
-	.word	422
+	.word	377
 	.byte	2,2,35,24,13
 	.byte	'ReadDataFromDeviceDone',0
-	.word	389
+	.word	344
 	.byte	1,2,35,26,13
 	.byte	'ModuleId',0
-	.word	389
+	.word	344
 	.byte	1,2,35,27,13
 	.byte	'Revision',0
-	.word	389
+	.word	344
 	.byte	1,2,35,28,13
 	.byte	'ProductId',0
-	.word	1317
+	.word	1272
 	.byte	32,2,35,29,13
 	.byte	'ReferenceSpadCount',0
-	.word	389
+	.word	344
 	.byte	1,2,35,61,13
 	.byte	'ReferenceSpadType',0
-	.word	389
+	.word	344
 	.byte	1,2,35,62,13
 	.byte	'RefSpadsInitialised',0
-	.word	389
+	.word	344
 	.byte	1,2,35,63,13
 	.byte	'PartUIDUpper',0
-	.word	406
+	.word	361
 	.byte	4,2,35,64,13
 	.byte	'PartUIDLower',0
-	.word	406
+	.word	361
 	.byte	4,2,35,68,13
 	.byte	'SignalRateMeasFixed400mm',0
-	.word	406
+	.word	361
 	.byte	4,2,35,72,0,12,3,144,3,9,12,13
 	.byte	'RefSpadEnables',0
-	.word	444
+	.word	399
 	.byte	6,2,35,0,13
 	.byte	'RefGoodSpadMap',0
-	.word	444
+	.word	399
 	.byte	6,2,35,6,0
 .L500:
 	.byte	5
-	.word	389
+	.word	344
 	.byte	12,3,205,3,9,252,2,13
 	.byte	'Part2PartOffsetNVMMicroMeter',0
-	.word	284
+	.word	239
 	.byte	4,2,35,0,13
 	.byte	'Part2PartOffsetAdjustmentNVMMicroMeter',0
-	.word	284
+	.word	239
 	.byte	4,2,35,4,13
 	.byte	'CurrentParameters',0
-	.word	517
+	.word	472
 	.byte	120,2,35,8,13
 	.byte	'LastRangeMeasure',0
-	.word	930
+	.word	885
 	.byte	28,3,35,128,1,13
 	.byte	'LastHistogramMeasure',0
-	.word	1206
+	.word	1161
 	.byte	100,3,35,156,1,13
 	.byte	'DeviceSpecificParameters',0
-	.word	1326
+	.word	1281
 	.byte	76,3,35,128,2,13
 	.byte	'SpadData',0
-	.word	1892
+	.word	1847
 	.byte	12,3,35,204,2,13
 	.byte	'SequenceConfig',0
-	.word	389
+	.word	344
 	.byte	1,3,35,216,2,13
 	.byte	'RangeFractionalEnable',0
-	.word	389
+	.word	344
 	.byte	1,3,35,217,2,13
 	.byte	'PalState',0
-	.word	389
+	.word	344
 	.byte	1,3,35,218,2,13
 	.byte	'PowerMode',0
-	.word	389
+	.word	344
 	.byte	1,3,35,219,2,13
 	.byte	'SigmaEstRefArray',0
-	.word	422
+	.word	377
 	.byte	2,3,35,220,2,13
 	.byte	'SigmaEstEffPulseWidth',0
-	.word	422
+	.word	377
 	.byte	2,3,35,222,2,13
 	.byte	'SigmaEstEffAmbWidth',0
-	.word	422
+	.word	377
 	.byte	2,3,35,224,2,13
 	.byte	'StopVariable',0
-	.word	389
+	.word	344
 	.byte	1,3,35,226,2,13
 	.byte	'targetRefRate',0
-	.word	422
+	.word	377
 	.byte	2,3,35,228,2,13
 	.byte	'SigmaEstimate',0
-	.word	406
+	.word	361
 	.byte	4,3,35,230,2,13
 	.byte	'SignalEstimate',0
-	.word	406
+	.word	361
 	.byte	4,3,35,234,2,13
 	.byte	'LastSignalRefMcps',0
-	.word	406
+	.word	361
 	.byte	4,3,35,238,2,13
 	.byte	'pTuningSettingsPointer',0
-	.word	1947
+	.word	1902
 	.byte	4,3,35,244,2,13
 	.byte	'UseInternalTuningSettings',0
-	.word	389
+	.word	344
 	.byte	1,3,35,248,2,13
 	.byte	'LinearityCorrectiveGain',0
-	.word	422
+	.word	377
 	.byte	2,3,35,250,2,0,12,2,58,9,128,3,13
 	.byte	'Data',0
-	.word	1952
+	.word	1907
 	.byte	252,2,2,35,0,13
 	.byte	'I2cDevAddr',0
-	.word	389
+	.word	344
 	.byte	1,3,35,252,2,13
 	.byte	'comms_type',0
-	.word	389
+	.word	344
 	.byte	1,3,35,253,2,13
 	.byte	'comms_speed_khz',0
-	.word	422
+	.word	377
 	.byte	2,3,35,254,2,0,5
-	.word	2597
+	.word	2552
 .L511:
 	.byte	14
 	.byte	'VL53L0X_DEV',0,2,73,24
-	.word	2687
+	.word	2642
 	.byte	8
 	.byte	'VL53L0X_WriteMulti',0,2,128,1,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,2,128,1,46
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'index',0,2,128,1,59
-	.word	389
+	.word	344
 	.byte	15
 	.byte	'pdata',0,2,128,1,75
-	.word	1947
+	.word	1902
 	.byte	15
 	.byte	'count',0,2,128,1,91
-	.word	406
+	.word	361
 	.byte	0,5
-	.word	2597
+	.word	2552
 	.byte	8
 	.byte	'VL53L0X_WrByte',0,2,149,1,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,2,149,1,42
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'index',0,2,149,1,55
-	.word	389
+	.word	344
 	.byte	15
 	.byte	'data',0,2,149,1,70
-	.word	389
+	.word	344
 	.byte	0,8
 	.byte	'VL53L0X_WrWord',0,2,159,1,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,2,159,1,42
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'index',0,2,159,1,55
-	.word	389
+	.word	344
 	.byte	15
 	.byte	'data',0,2,159,1,71
-	.word	422
+	.word	377
 	.byte	0,8
 	.byte	'VL53L0X_RdByte',0,2,179,1,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,2,179,1,42
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'index',0,2,179,1,55
-	.word	389
+	.word	344
 	.byte	15
 	.byte	'data',0,2,179,1,71
-	.word	1947
+	.word	1902
 	.byte	0,5
-	.word	422
+	.word	377
 	.byte	8
 	.byte	'VL53L0X_RdWord',0,2,189,1,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,2,189,1,42
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'index',0,2,189,1,55
-	.word	389
+	.word	344
 	.byte	15
 	.byte	'data',0,2,189,1,72
-	.word	3021
+	.word	2976
 	.byte	0
 .L586:
 	.byte	5
-	.word	406
+	.word	361
 	.byte	8
 	.byte	'VL53L0X_RdDWord',0,2,199,1,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,2,199,1,43
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'index',0,2,199,1,56
-	.word	389
+	.word	344
 	.byte	15
 	.byte	'data',0,2,199,1,73
-	.word	3097
+	.word	3052
 	.byte	0,8
 	.byte	'VL53L0X_PollingDelay',0,2,230,1,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,2,230,1,48
-	.word	2692
+	.word	2647
 	.byte	0,5
-	.word	517
+	.word	472
 	.byte	8
 	.byte	'VL53L0X_GetDeviceParameters',0,4,140,4,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,140,4,67
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'pDeviceParameters',0,4,141,4,30
-	.word	3222
+	.word	3177
 	.byte	0,8
 	.byte	'VL53L0X_SetMeasurementTimingBudgetMicroSeconds',0,4,168,5,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,169,5,14
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'MeasurementTimingBudgetMicroSeconds',0,4,169,5,28
-	.word	406
+	.word	361
 	.byte	0,8
 	.byte	'VL53L0X_GetVcselPulsePeriod',0,4,209,5,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,209,5,67
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'VcselPeriodType',0,4,210,5,22
-	.word	389
+	.word	344
 	.byte	15
 	.byte	'pVCSELPulsePeriod',0,4,210,5,48
-	.word	1947
+	.word	1902
 	.byte	0
 .L597:
 	.byte	12,3,165,4,9,6,13
 	.byte	'TccOn',0
-	.word	389
+	.word	344
 	.byte	1,2,35,0,13
 	.byte	'MsrcOn',0
-	.word	389
+	.word	344
 	.byte	1,2,35,1,13
 	.byte	'DssOn',0
-	.word	389
+	.word	344
 	.byte	1,2,35,2,13
 	.byte	'PreRangeOn',0
-	.word	389
+	.word	344
 	.byte	1,2,35,3,13
 	.byte	'FinalRangeOn',0
-	.word	389
+	.word	344
 	.byte	1,2,35,4,0,5
-	.word	3535
+	.word	3490
 	.byte	8
 	.byte	'VL53L0X_GetSequenceStepEnables',0,4,156,6,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,156,6,70
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'pSchedulerSequenceSteps',0,4,157,6,36
-	.word	3630
+	.word	3585
 	.byte	0,8
 	.byte	'VL53L0X_GetXTalkCompensationEnable',0,4,166,7,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,166,7,74
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'pXTalkCompensationEnable',0,4,167,7,11
-	.word	1947
+	.word	1902
 	.byte	0,8
 	.byte	'VL53L0X_GetLimitCheckEnable',0,4,222,8,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,222,8,67
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'LimitCheckId',0,4,223,8,11
-	.word	422
+	.word	377
 	.byte	15
 	.byte	'pLimitCheckEnable',0,4,223,8,34
-	.word	1947
+	.word	1902
 	.byte	0
 .L661:
 	.byte	5
-	.word	406
+	.word	361
 	.byte	8
 	.byte	'VL53L0X_GetLimitCheckValue',0,4,139,9,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,139,9,66
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'LimitCheckId',0,4,140,9,11
-	.word	422
+	.word	377
 	.byte	15
 	.byte	'pLimitCheckValue',0,4,140,9,41
-	.word	3926
+	.word	3881
 	.byte	0,8
 	.byte	'VL53L0X_GetMeasurementDataReady',0,4,144,11,27
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,4,144,11,71
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'pMeasurementDataReady',0,4,145,11,11
-	.word	1947
+	.word	1902
 	.byte	0
 .L543:
 	.byte	2
 	.byte	'short int',0,2,5
 .L548:
 	.byte	10,19
-	.word	312
+	.word	267
 	.byte	11,18,0
 .L654:
 	.byte	10,4
-	.word	389
+	.word	344
 	.byte	11,3,0
 .L659:
 	.byte	5
-	.word	930
+	.word	885
 .L663:
 	.byte	7
-	.word	406
+	.word	361
 .L665:
 	.byte	7
-	.word	406
+	.word	361
 .L667:
 	.byte	7
-	.word	406
+	.word	361
 .L669:
 	.byte	7
-	.word	406
+	.word	361
 .L671:
 	.byte	7
-	.word	406
+	.word	361
 .L673:
 	.byte	7
-	.word	406
+	.word	361
 .L675:
 	.byte	7
-	.word	406
+	.word	361
 .L677:
 	.byte	7
-	.word	406
+	.word	361
 .L679:
 	.byte	7
-	.word	406
+	.word	361
 .L681:
 	.byte	7
-	.word	406
+	.word	361
 .L683:
 	.byte	7
-	.word	406
+	.word	361
 	.byte	7
-	.word	389
+	.word	344
 	.byte	7
-	.word	389
+	.word	344
 	.byte	8
 	.byte	'VL53L0X_perform_phase_calibration',0,5,65,15
-	.word	381
+	.word	336
 	.byte	1,1,1,1,15
 	.byte	'Dev',0,5,65,61
-	.word	2692
+	.word	2647
 	.byte	15
 	.byte	'pPhaseCal',0,5,66,11
-	.word	1947
+	.word	1902
 	.byte	15
 	.byte	'get_data_enable',0,5,66,36
-	.word	4214
+	.word	4169
 	.byte	15
 	.byte	'restore_config',0,5,67,16
-	.word	4219
+	.word	4174
 	.byte	0
 .L792:
 	.byte	2
 	.byte	'unsigned long long int',0,8,7
 .L808:
 	.byte	5
-	.word	284
+	.word	239
 	.byte	14
 	.byte	'__wchar_t',0,6,1,1
-	.word	4123
+	.word	4078
 	.byte	14
 	.byte	'__size_t',0,6,1,1
-	.word	406
+	.word	361
 	.byte	14
 	.byte	'__ptrdiff_t',0,6,1,1
-	.word	284
+	.word	239
 	.byte	16,1,5
-	.word	4434
+	.word	4389
 	.byte	14
 	.byte	'__codeptr',0,6,1,1
-	.word	4436
+	.word	4391
 	.byte	14
 	.byte	'__intptr_t',0,6,1,1
-	.word	284
+	.word	239
 	.byte	14
 	.byte	'__uintptr_t',0,6,1,1
-	.word	406
+	.word	361
 	.byte	14
 	.byte	'int8_t',0,7,241,1,41
-	.word	381
+	.word	336
 	.byte	14
 	.byte	'uint8_t',0,7,242,1,41
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'uint16_t',0,7,246,1,41
-	.word	422
+	.word	377
 	.byte	14
 	.byte	'int32_t',0,7,253,1,41
-	.word	284
+	.word	239
 	.byte	14
 	.byte	'uint32_t',0,7,254,1,41
-	.word	406
+	.word	361
 	.byte	14
 	.byte	'FixPoint1616_t',0,8,61,18
-	.word	406
+	.word	361
 	.byte	14
 	.byte	'VL53L0X_DeviceError',0,9,55,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'VL53L0X_GpioFunctionality',0,9,101,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'VL53L0X_Error',0,3,131,1,16
-	.word	381
+	.word	336
 	.byte	14
 	.byte	'VL53L0X_DeviceModes',0,3,184,1,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'VL53L0X_HistogramModes',0,3,202,1,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'VL53L0X_PowerModes',0,3,221,1,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'VL53L0X_DMaxLUT_t',0,3,245,1,3
-	.word	471
+	.word	426
 	.byte	14
 	.byte	'VL53L0X_DeviceParameters_t',0,3,161,2,3
-	.word	517
+	.word	472
 	.byte	14
 	.byte	'VL53L0X_State',0,3,170,2,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'VL53L0X_RangingMeasurementData_t',0,3,239,2,3
-	.word	930
+	.word	885
 	.byte	14
 	.byte	'VL53L0X_HistogramMeasurementData_t',0,3,136,3,3
-	.word	1206
+	.word	1161
 	.byte	14
 	.byte	'VL53L0X_SpadData_t',0,3,149,3,3
-	.word	1892
+	.word	1847
 	.byte	14
 	.byte	'VL53L0X_DeviceSpecificParameters_t',0,3,195,3,3
-	.word	1326
+	.word	1281
 	.byte	14
 	.byte	'VL53L0X_DevData_t',0,3,128,4,3
-	.word	1952
+	.word	1907
 	.byte	14
 	.byte	'VL53L0X_VcselPeriod',0,3,150,4,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'VL53L0X_SchedulerSequenceSteps_t',0,3,171,4,3
-	.word	3535
+	.word	3490
 	.byte	14
 	.byte	'VL53L0X_SequenceStepId',0,3,180,4,17
-	.word	389
+	.word	344
 	.byte	14
 	.byte	'_iob_flag_t',0,10,82,25
-	.word	422
+	.word	377
 	.byte	14
 	.byte	'VL53L0X_Dev_t',0,2,66,3
-	.word	2597
+	.word	2552
 	.byte	0
 	.sdecl	'.debug_abbrev',debug
 	.sect	'.debug_abbrev'
@@ -4847,8 +4847,8 @@ __VL53L0X_get_pal_range_status_function_end:
 .L1494:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\Infineon\\AURIX-Studio-1.10.32\\tools\\Compilers\\Tasking_1.1r8\\ctc\\include\\',0
-	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc',0
-	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\Vehicle_Anti-rollaway_Protection_System\\\\MAIN\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc',0
+	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc',0
+	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc',0
 	.byte	0
 	.byte	'string.h',0,1,0,0
 	.byte	'vl53l0x_platform.h',0,2,0,0
@@ -4865,13 +4865,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_reverse_bytes')
 	.sect	'.debug_info'
 .L368:
-	.word	481
+	.word	436
 	.half	3
 	.word	.L369
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L371,.L370
 	.byte	2
@@ -4967,13 +4967,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_measurement_poll_for_completion')
 	.sect	'.debug_info'
 .L373:
-	.word	443
+	.word	398
 	.half	3
 	.word	.L374
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L376,.L375
 	.byte	2
@@ -5064,13 +5064,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_encode_vcsel_period')
 	.sect	'.debug_info'
 .L378:
-	.word	412
+	.word	367
 	.half	3
 	.word	.L379
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L381,.L380
 	.byte	2
@@ -5125,13 +5125,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_decode_vcsel_period')
 	.sect	'.debug_info'
 .L383:
-	.word	412
+	.word	367
 	.half	3
 	.word	.L384
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L386,.L385
 	.byte	2
@@ -5186,13 +5186,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_isqrt')
 	.sect	'.debug_info'
 .L388:
-	.word	388
+	.word	343
 	.half	3
 	.word	.L389
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L391,.L390
 	.byte	2
@@ -5278,13 +5278,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_quadrature_sum')
 	.sect	'.debug_info'
 .L393:
-	.word	395
+	.word	350
 	.half	3
 	.word	.L394
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L396,.L395
 	.byte	2
@@ -5354,13 +5354,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_get_info_from_device')
 	.sect	'.debug_info'
 .L398:
-	.word	965
+	.word	920
 	.half	3
 	.word	.L399
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L401,.L400
 	.byte	2
@@ -6155,13 +6155,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_set_vcsel_pulse_period')
 	.sect	'.debug_info'
 .L403:
-	.word	825
+	.word	780
 	.half	3
 	.word	.L404
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L406,.L405
 	.byte	2
@@ -6610,13 +6610,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_get_vcsel_pulse_period')
 	.sect	'.debug_info'
 .L408:
-	.word	487
+	.word	442
 	.half	3
 	.word	.L409
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L411,.L410
 	.byte	2
@@ -6706,13 +6706,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_decode_timeout')
 	.sect	'.debug_info'
 .L413:
-	.word	409
+	.word	364
 	.half	3
 	.word	.L414
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L416,.L415
 	.byte	2
@@ -6775,13 +6775,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('get_sequence_step_timeout')
 	.sect	'.debug_info'
 .L418:
-	.word	763
+	.word	718
 	.half	3
 	.word	.L419
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L421,.L420
 	.byte	2
@@ -7001,13 +7001,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('set_sequence_step_timeout')
 	.sect	'.debug_info'
 .L423:
-	.word	734
+	.word	689
 	.half	3
 	.word	.L424
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L426,.L425
 	.byte	2
@@ -7228,13 +7228,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_set_measurement_timing_budget_micro_seconds')
 	.sect	'.debug_info'
 .L428:
-	.word	929
+	.word	884
 	.half	3
 	.word	.L429
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L431,.L430
 	.byte	2
@@ -7452,13 +7452,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_get_measurement_timing_budget_micro_seconds')
 	.sect	'.debug_info'
 .L433:
-	.word	901
+	.word	856
 	.half	3
 	.word	.L434
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L436,.L435
 	.byte	2
@@ -7661,13 +7661,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_load_tuning_settings')
 	.sect	'.debug_info'
 .L438:
-	.word	612
+	.word	567
 	.half	3
 	.word	.L439
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L441,.L440
 	.byte	2
@@ -7898,13 +7898,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_calc_sigma_estimate')
 	.sect	'.debug_info'
 .L443:
-	.word	1741
+	.word	1696
 	.half	3
 	.word	.L444
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L446,.L445
 	.byte	2
@@ -8395,13 +8395,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_calc_dmax')
 	.sect	'.debug_info'
 .L448:
-	.word	618
+	.word	573
 	.half	3
 	.word	.L449
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L451,.L450
 	.byte	2
@@ -8577,13 +8577,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_get_total_xtalk_rate')
 	.sect	'.debug_info'
 .L453:
-	.word	557
+	.word	512
 	.half	3
 	.word	.L454
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L456,.L455
 	.byte	2
@@ -8675,13 +8675,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_get_total_signal_rate')
 	.sect	'.debug_info'
 .L458:
-	.word	497
+	.word	452
 	.half	3
 	.word	.L459
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L461,.L460
 	.byte	2
@@ -8757,13 +8757,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_get_pal_range_status')
 	.sect	'.debug_info'
 .L463:
-	.word	1133
+	.word	1088
 	.half	3
 	.word	.L464
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L466,.L465
 	.byte	2
@@ -9213,13 +9213,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_calc_timeout_mclks')
 	.sect	'.debug_info'
 .L468:
-	.word	524
+	.word	479
 	.half	3
 	.word	.L469
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L471,.L470
 	.byte	2
@@ -9302,13 +9302,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_encode_timeout')
 	.sect	'.debug_info'
 .L473:
-	.word	451
+	.word	406
 	.half	3
 	.word	.L474
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L476,.L475
 	.byte	2
@@ -9389,13 +9389,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_device_read_strobe')
 	.sect	'.debug_info'
 .L478:
-	.word	429
+	.word	384
 	.half	3
 	.word	.L479
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L481,.L480
 	.byte	2
@@ -9498,13 +9498,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_calc_macro_period_ps')
 	.sect	'.debug_info'
 .L483:
-	.word	491
+	.word	446
 	.half	3
 	.word	.L484
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L486,.L485
 	.byte	2
@@ -9572,13 +9572,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('VL53L0X_calc_timeout_us')
 	.sect	'.debug_info'
 .L488:
-	.word	528
+	.word	483
 	.half	3
 	.word	.L489
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L491,.L490
 	.byte	2
@@ -9659,13 +9659,13 @@ __VL53L0X_get_pal_range_status_function_end:
 	.sdecl	'.debug_info',debug,cluster('get_dmax_lut_points')
 	.sect	'.debug_info'
 .L493:
-	.word	531
+	.word	486
 	.half	3
 	.word	.L494
 	.byte	4,1
 	.byte	'../VL53L0X_1.0.4/Api/core/src/vl53l0x_api_core.c',0
 	.byte	'TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler',0
-	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\Vehicle_Anti-rollaway_Protection_System\\MAIN\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
+	.byte	'C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\TriCore Debug (TASKING)\\',0
 	.byte	12,1
 	.word	.L496,.L495
 	.byte	2

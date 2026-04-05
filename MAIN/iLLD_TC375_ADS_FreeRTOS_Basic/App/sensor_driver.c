@@ -28,6 +28,7 @@ extern void Board_LED2_Set(uint8 on);
  *  센서 융합 설정
  * ══════════════════════════════════════ */
 #define RAW_FILTER_SIZE      3u
+#define PRESSURE_SENSOR_COUNT 3u
 #define MIN_DIST_MM          20
 #define MAX_DIST_MM          4000
 #define STM_FREQ             100000000u
@@ -36,8 +37,8 @@ extern void Board_LED2_Set(uint8 on);
 #define PRESSURE_MAX_KG      ((uint32)150U)
 #define PRESENT_CONFIRM_CNT  ((uint8)3U)
 #define ABSENT_CONFIRM_CNT   ((uint8)3U)
-#define WS_PRESENT_TH_X10    ((uint16)30U)
 #define WS_ABSENT_TH_X10     ((uint16)10U)
+#define PRESSURE_ADC_GROUP_ID IfxEvadc_GroupId_8 /* TC37A pin map: P40.6/7/8 -> EVADC G8 CH4/5/6 */
 
 /* 초음파 비블로킹 상태 머신 */
 typedef enum {
@@ -46,12 +47,6 @@ typedef enum {
     US_COOLDOWN     /* 다음 측정 전 대기 (에코 잔향 소멸) */
 } UltraSensorPhase;
 
-typedef enum {
-    DRV_PRESENT,
-    DRV_ABSENT,
-    DRV_UNCERTAIN
-} DriverJudge;
-
 static UltraSensorPhase ultra_phase = US_TRIGGER;
 static uint32 ultra_trigger_tick = 0;
 static int latest_distance_mm = 0;
@@ -59,7 +54,20 @@ static int latest_distance_mm = 0;
 /* ══════════════════════════════════════
  *  디바운싱 버퍼
  * ══════════════════════════════════════ */
-static GearState gear_buf[3]  = {GEAR_P, GEAR_P, GEAR_P};
+/* 기어: 개별 버튼 디바운스 + press-release 래치 */
+static boolean gear_p_buf[3] = {0, 0, 0};
+static boolean gear_r_buf[3] = {0, 0, 0};
+static boolean gear_n_buf[3] = {0, 0, 0};
+static boolean gear_d_buf[3] = {0, 0, 0};
+static boolean gear_p_stable = FALSE;
+static boolean gear_r_stable = FALSE;
+static boolean gear_n_stable = FALSE;
+static boolean gear_d_stable = FALSE;
+static boolean gear_p_armed = FALSE;
+static boolean gear_r_armed = FALSE;
+static boolean gear_n_armed = FALSE;
+static boolean gear_d_armed = FALSE;
+
 static boolean door_sw_buf[3] = {0, 0, 0};
 static uint8 db_idx = 0;
 static uint16 ultra_buf[RAW_FILTER_SIZE] = {0, 0, 0};
@@ -74,8 +82,11 @@ static DriverState stable_driver_state = DRIVER_ABSENT;
  *  디버깅용 전역 변수
  * ══════════════════════════════════════ */
 volatile int        g_ultra_mm       = 0;
-volatile uint16     g_pressure_adc   = 0;
-volatile uint16     g_pressure_raw   = 0;
+volatile uint16     g_pressure_adc   = 0; /* 3 FSR average ADC */
+volatile uint16     g_pressure_raw   = 0; /* 3 FSR average ADC */
+volatile uint16     g_pressure_adc_1 = 0;
+volatile uint16     g_pressure_adc_2 = 0;
+volatile uint16     g_pressure_adc_3 = 0;
 volatile uint16     g_tof_mm         = 0;
 volatile GearState  g_gear_debug     = GEAR_P;
 volatile DoorState  g_door_debug     = DOOR_CLOSE;
@@ -112,74 +123,87 @@ static uint32 timer_now(void)
  * ══════════════════════════════════════ */
 static IfxEvadc_Adc g_evadc;
 static IfxEvadc_Adc_Group g_adc_group;
-static IfxEvadc_Adc_Channel g_adc_channel;
+static IfxEvadc_Adc_Channel g_adc_channels[PRESSURE_SENSOR_COUNT];
+static uint16 g_pressure_last_raw[PRESSURE_SENSOR_COUNT] = {0U, 0U, 0U};
+static const IfxEvadc_ChannelId g_pressure_channel_ids[PRESSURE_SENSOR_COUNT] = {
+    IfxEvadc_ChannelId_4,
+    IfxEvadc_ChannelId_5,
+    IfxEvadc_ChannelId_6
+};
+static const IfxEvadc_ChannelResult g_pressure_result_regs[PRESSURE_SENSOR_COUNT] = {
+    IfxEvadc_ChannelResult_4,
+    IfxEvadc_ChannelResult_5,
+    IfxEvadc_ChannelResult_6
+};
 
 static void init_pressure_sensor(void)
 {
     IfxEvadc_Adc_Config adc_config;
     IfxEvadc_Adc_GroupConfig group_config;
     IfxEvadc_Adc_ChannelConfig channel_config;
+    uint32 index;
 
     IfxEvadc_Adc_initModuleConfig(&adc_config, &MODULE_EVADC);
     IfxEvadc_Adc_initModule(&g_evadc, &adc_config);
 
     IfxEvadc_Adc_initGroupConfig(&group_config, &g_evadc);
-    group_config.groupId = IfxEvadc_GroupId_8;
-    group_config.master = IfxEvadc_GroupId_8;
+    group_config.groupId = PRESSURE_ADC_GROUP_ID;
+    group_config.master = PRESSURE_ADC_GROUP_ID;
     group_config.arbiter.requestSlotQueue0Enabled = TRUE;
     group_config.queueRequest[0].triggerConfig.gatingMode = IfxEvadc_GatingMode_always;
     IfxEvadc_Adc_initGroup(&g_adc_group, &group_config);
 
-    IfxEvadc_Adc_initChannelConfig(&channel_config, &g_adc_group);
-    channel_config.channelId = IfxEvadc_ChannelId_6;
-    channel_config.resultRegister = IfxEvadc_ChannelResult_6;
-    IfxEvadc_Adc_initChannel(&g_adc_channel, &channel_config);
+    IfxPort_setPinModeInput(&MODULE_P40, 6, IfxPort_InputMode_noPullDevice);
+    IfxPort_setPinModeInput(&MODULE_P40, 7, IfxPort_InputMode_noPullDevice);
+    IfxPort_setPinModeInput(&MODULE_P40, 8, IfxPort_InputMode_noPullDevice);
 
-    IfxEvadc_Adc_addToQueue(&g_adc_channel, IfxEvadc_RequestSource_queue0, IFXEVADC_QUEUE_REFILL);
+    for (index = 0U; index < PRESSURE_SENSOR_COUNT; index++)
+    {
+        IfxEvadc_Adc_initChannelConfig(&channel_config, &g_adc_group);
+        channel_config.channelId = g_pressure_channel_ids[index];
+        channel_config.resultRegister = g_pressure_result_regs[index];
+        IfxEvadc_Adc_initChannel(&g_adc_channels[index], &channel_config);
+        IfxEvadc_Adc_addToQueue(&g_adc_channels[index], IfxEvadc_RequestSource_queue0, IFXEVADC_QUEUE_REFILL);
+    }
+
     IfxEvadc_Adc_startQueue(&g_adc_group, IfxEvadc_RequestSource_queue0);
 }
 
-static uint16 read_pressure_adc(void)
+static uint16 read_pressure_adc_average(void)
 {
-    Ifx_EVADC_G_RES result;
-    result = IfxEvadc_Adc_getResult(&g_adc_channel);
+    uint32 sum = 0U;
+    uint32 index;
 
-    if (result.B.VF)
-        return (uint16)result.B.RESULT;
+    for (index = 0U; index < PRESSURE_SENSOR_COUNT; index++)
+    {
+        Ifx_EVADC_G_RES result = IfxEvadc_Adc_getResult(&g_adc_channels[index]);
 
-    return g_pressure_raw;
+        if (result.B.VF)
+            g_pressure_last_raw[index] = (uint16)result.B.RESULT;
+
+        sum += g_pressure_last_raw[index];
+    }
+
+    return (uint16)((sum + (PRESSURE_SENSOR_COUNT / 2U)) / PRESSURE_SENSOR_COUNT);
 }
 
 
 
 /* ══════════════════════════════════════
- *  기어 읽기
+ *  기어 읽기 (디버그 변수 갱신용)
  * ══════════════════════════════════════ */
-static GearState read_gear_raw(void)
+static void read_gear_raw(void)
 {
     g_raw_p02_3 = IfxPort_getPinState(&MODULE_P02, 3);
     g_raw_p02_5 = IfxPort_getPinState(&MODULE_P02, 5);
     g_raw_p02_4 = IfxPort_getPinState(&MODULE_P02, 4);
     g_raw_p02_6 = IfxPort_getPinState(&MODULE_P02, 6);
 
-    boolean p = g_raw_p02_3;
-    boolean r = g_raw_p02_5;
-    boolean n = g_raw_p02_4;
-    boolean d = g_raw_p02_6;
-
-    g_pin_gear_p = p;
-    g_pin_gear_r = r;
-    g_pin_gear_n = n;
-    g_pin_gear_d = d;
-    g_gear_count = p + r + n + d;
-
-    int count = p + r + n + d;
-    if (count != 1) return GEAR_ERROR;
-    if (p) return GEAR_P;
-    if (r) return GEAR_R;
-    if (n) return GEAR_N;
-    if (d) return GEAR_D;
-    return GEAR_ERROR;
+    g_pin_gear_p = g_raw_p02_3;
+    g_pin_gear_r = g_raw_p02_5;
+    g_pin_gear_n = g_raw_p02_4;
+    g_pin_gear_d = g_raw_p02_6;
+    g_gear_count = g_raw_p02_3 + g_raw_p02_5 + g_raw_p02_4 + g_raw_p02_6;
 }
 
 /* ══════════════════════════════════════
@@ -262,21 +286,12 @@ static uint16 calc_ws_x10(uint8 ru, uint8 rt, uint8 rp)
     return (uint16)((3u * ru) + (3u * rt) + (4u * rp));
 }
 
-static DriverJudge judge_raw(uint8 ru, uint8 rt, uint8 rp, uint16 ws_x10)
+static DriverState judge_raw(uint16 ws_x10)
 {
-    if ((rp >= 3u) && (ru <= 1u) && (rt <= 1u))
-        return DRV_UNCERTAIN;
+    if (ws_x10 <= WS_ABSENT_TH_X10)
+        return DRIVER_ABSENT;
 
-    if ((rp <= 1u) && ((ru >= 3u) || (rt >= 3u)))
-        return DRV_UNCERTAIN;
-
-    if ((rp >= 3u) && ((ru >= 3u) || (rt >= 3u)) && (ws_x10 >= WS_PRESENT_TH_X10))
-        return DRV_PRESENT;
-
-    if ((rp <= 1u) && (ru <= 1u) && (rt <= 1u) && (ws_x10 <= WS_ABSENT_TH_X10))
-        return DRV_ABSENT;
-
-    return DRV_UNCERTAIN;
+    return DRIVER_SEATED;
 }
 
 /* ══════════════════════════════════════
@@ -328,26 +343,21 @@ static void ultrasonic_update(void)
 static DriverState judge_driver_final(uint8 ru, uint8 rt, uint8 rp)
 {
     uint16 ws_x10 = calc_ws_x10(ru, rt, rp);
-    DriverJudge raw = judge_raw(ru, rt, rp, ws_x10);
+    DriverState raw = judge_raw(ws_x10);
 
     g_ws_x10 = ws_x10;
 
-    if (raw == DRV_PRESENT)
+    if (raw == DRIVER_SEATED)
     {
         if (present_count < 255u)
             present_count++;
         absent_count = 0;
     }
-    else if (raw == DRV_ABSENT)
+    else
     {
         if (absent_count < 255u)
             absent_count++;
         present_count = 0;
-    }
-    else
-    {
-        present_count = 0;
-        absent_count = 0;
     }
 
     if (present_count >= PRESENT_CONFIRM_CNT)
@@ -355,10 +365,7 @@ static DriverState judge_driver_final(uint8 ru, uint8 rt, uint8 rp)
     else if (absent_count >= ABSENT_CONFIRM_CNT)
         stable_driver_state = DRIVER_ABSENT;
 
-    if ((raw == DRV_ABSENT) && (stable_driver_state == DRIVER_ABSENT))
-        return DRIVER_ABSENT;
-
-    return DRIVER_SEATED;
+    return stable_driver_state;
 }
 
 /* ══════════════════════════════════════
@@ -371,6 +378,7 @@ void Task_Sensor(void *param)
 {
     TickType_t xLastWake = xTaskGetTickCount();
     static GearState gear_ok = GEAR_P;
+    static GearState last_physical_gear = GEAR_P;
     static DoorState door_ok = DOOR_CLOSE;
     static boolean door_sw_stable = FALSE;
     static boolean door_press_armed = FALSE;
@@ -379,16 +387,82 @@ void Task_Sensor(void *param)
 
     while (1)
     {
-        /* ── 1. 기어/도어 디바운싱 (~수 us) ── */
-        gear_buf[db_idx] = read_gear_raw();
+        /* ── 1. 기어: 개별 버튼 디바운스 + press-release 래치 ── */
+        read_gear_raw();
+
+        gear_p_buf[db_idx] = g_raw_p02_3;
+        gear_r_buf[db_idx] = g_raw_p02_5;
+        gear_n_buf[db_idx] = g_raw_p02_4;
+        gear_d_buf[db_idx] = g_raw_p02_6;
+
+        /* P 버튼 */
+        if (gear_p_buf[0] == gear_p_buf[1] && gear_p_buf[1] == gear_p_buf[2])
+        {
+            boolean p_new = gear_p_buf[0];
+            if (p_new && !gear_p_stable)
+                gear_p_armed = TRUE;
+            else if (!p_new && gear_p_armed)
+            {
+                gear_ok = GEAR_P;
+                gear_p_armed = FALSE;
+            }
+            gear_p_stable = p_new;
+        }
+
+        /* R 버튼 */
+        if (gear_r_buf[0] == gear_r_buf[1] && gear_r_buf[1] == gear_r_buf[2])
+        {
+            boolean r_new = gear_r_buf[0];
+            if (r_new && !gear_r_stable)
+                gear_r_armed = TRUE;
+            else if (!r_new && gear_r_armed)
+            {
+                gear_ok = GEAR_R;
+                gear_r_armed = FALSE;
+            }
+            gear_r_stable = r_new;
+        }
+
+        /* N 버튼 */
+        if (gear_n_buf[0] == gear_n_buf[1] && gear_n_buf[1] == gear_n_buf[2])
+        {
+            boolean n_new = gear_n_buf[0];
+            if (n_new && !gear_n_stable)
+                gear_n_armed = TRUE;
+            else if (!n_new && gear_n_armed)
+            {
+                gear_ok = GEAR_N;
+                gear_n_armed = FALSE;
+            }
+            gear_n_stable = n_new;
+        }
+
+        /* D 버튼 */
+        if (gear_d_buf[0] == gear_d_buf[1] && gear_d_buf[1] == gear_d_buf[2])
+        {
+            boolean d_new = gear_d_buf[0];
+            if (d_new && !gear_d_stable)
+                gear_d_armed = TRUE;
+            else if (!d_new && gear_d_armed)
+            {
+                gear_ok = GEAR_D;
+                gear_d_armed = FALSE;
+            }
+            gear_d_stable = d_new;
+        }
+
+        /* ── 도어 디바운싱 ── */
         door_sw_buf[db_idx] = read_door_switch_raw();
         db_idx = (db_idx + 1) % 3;
 
-        GearState gear_new = GEAR_ERROR;
-        if (gear_buf[0] == gear_buf[1] && gear_buf[1] == gear_buf[2])
-            gear_new = gear_buf[0];
-        if (gear_new != GEAR_ERROR)
-            gear_ok = gear_new;
+        /* gear override 해제: 물리 기어 변경 감지 */
+        if (gear_ok != GEAR_ERROR)
+        {
+            if ((g_gear_override_active == TRUE) && (gear_ok != last_physical_gear))
+                g_gear_override_active = FALSE;
+
+            last_physical_gear = gear_ok;
+        }
 
         if (door_sw_buf[0] == door_sw_buf[1] && door_sw_buf[1] == door_sw_buf[2])
         {
@@ -415,15 +489,15 @@ void Task_Sensor(void *param)
         int ultra_mm = latest_distance_mm;
 
         /* ── 3. 압력/ToF 취득 ── */
-        uint16 pressure_adc = read_pressure_adc();
+        uint16 pressure_adc_avg = read_pressure_adc_average();
         uint16 tof_mm_val = TofSensor_GetDistanceMm();
 
-        g_pressure_raw = pressure_adc;
+        g_pressure_raw = pressure_adc_avg;
 
         /* ── 4. 단위 변환 + 3샘플 중앙값 필터 ── */
         uint16 ultra_cm = ultra_mm_to_cm(ultra_mm);
         uint16 tof_cm = tof_mm_to_cm(tof_mm_val);
-        uint16 press_kg = pressure_adc_to_kg(pressure_adc);
+        uint16 press_kg = pressure_adc_to_kg(pressure_adc_avg);
 
         ultra_buf[sensor_filt_idx] = ultra_cm;
         tof_buf[sensor_filt_idx] = tof_cm;
@@ -442,7 +516,10 @@ void Task_Sensor(void *param)
 
         /* ── 6. 디버깅 변수 갱신 ── */
         g_ultra_mm     = ultra_mm;
-        g_pressure_adc = pressure_adc;
+        g_pressure_adc = pressure_adc_avg;
+        g_pressure_adc_1 = g_pressure_last_raw[0];
+        g_pressure_adc_2 = g_pressure_last_raw[1];
+        g_pressure_adc_3 = g_pressure_last_raw[2];
         g_tof_mm       = tof_mm_val;
         g_ultra_cm     = ultra_filt;
         g_tof_cm       = tof_filt;
@@ -461,31 +538,18 @@ void Task_Sensor(void *param)
         else
             Debug_LED_Set(0);
 
-        /*if (gear_ok == GEAR_P)
-                    Debug_LED_Set(1);
-                else
-                    Debug_LED_Set(0);
-        if (gear_ok == GEAR_N)
-                    Debug_LED_Set(1);
-                else
-                    Debug_LED_Set(0);
-        if (gear_ok == GEAR_R)
-                    Debug_LED_Set(1);
-                else
-                    Debug_LED_Set(0);
-        if (gear_ok == GEAR_D)
-                    Debug_LED_Set(1);
-                 else
-                    Debug_LED_Set(0);*/
-
-
         /* ── 8. 공유 데이터 갱신 ── */
         if (xSemaphoreTake(xSensorMutex, pdMS_TO_TICKS(5)) == pdTRUE)
         {
+            GearState reportedGear = gear_ok;
+
+            if (g_gear_override_active == TRUE)
+                reportedGear = g_gear_override_state;
+
             g_sensor.driver = driver;
             g_sensor.door   = door_ok;
-            if (gear_ok != GEAR_ERROR)
-                g_sensor.gear = gear_ok;
+            if (reportedGear != GEAR_ERROR)
+                g_sensor.gear = reportedGear;
             xSemaphoreGive(xSensorMutex);
         }
 

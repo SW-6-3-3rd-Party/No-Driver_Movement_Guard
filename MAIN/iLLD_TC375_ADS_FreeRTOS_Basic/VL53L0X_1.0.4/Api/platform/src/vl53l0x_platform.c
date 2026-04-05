@@ -41,9 +41,20 @@ static IfxI2c_I2c         g_i2cHandle;
 static IfxI2c_I2c_Device  g_i2cDevice;
 
 /* I2C 전송 버퍼 (레지스터 인덱스 + 데이터) */
-#define I2C_BUFFER_SIZE  64
+#define I2C_BUFFER_SIZE            64
+#define VL53L0X_I2C_MAX_RETRIES    3u
+#define VL53L0X_I2C_RETRY_DELAY_MS 1u
 static uint8 g_i2cTxBuffer[I2C_BUFFER_SIZE];
 static uint8 g_i2cRxBuffer[I2C_BUFFER_SIZE];
+
+volatile sint32 g_vl53l0x_i2c_last_status = 0;
+volatile sint32 g_vl53l0x_i2c_last_bus_status = 0;
+volatile uint32 g_vl53l0x_i2c_recover_count = 0u;
+
+static void delay_ms(uint32 ms);
+static void VL53L0X_I2C_UpdateDebug(IfxI2c_I2c_Status status);
+static IfxI2c_I2c_Status VL53L0X_I2C_WriteWithRetry(volatile uint8 *data, uint32 count);
+static IfxI2c_I2c_Status VL53L0X_I2C_ReadWithRetry(volatile uint8 *data, uint32 count);
 
 /* ─────────────────────────────────────────────
  *  I2C 초기화 (TC275 iLLD)
@@ -87,6 +98,25 @@ void VL53L0X_I2C_Init(void)
     deviceConfig.deviceAddress = 0x29 << 1;  /* iLLD는 8비트 주소 사용 */
 
     IfxI2c_I2c_initDevice(&g_i2cDevice, &deviceConfig);
+    VL53L0X_I2C_UpdateDebug(IfxI2c_I2c_Status_ok);
+}
+
+void VL53L0X_I2C_Recover(void)
+{
+    IfxI2c_resetModule(&MODULE_I2C0);
+    delay_ms(2u);
+    VL53L0X_I2C_Init();
+    g_vl53l0x_i2c_recover_count++;
+}
+
+int VL53L0X_I2C_GetLastStatus(void)
+{
+    return (int)g_vl53l0x_i2c_last_status;
+}
+
+int VL53L0X_I2C_GetLastBusStatus(void)
+{
+    return (int)g_vl53l0x_i2c_last_bus_status;
 }
 
 
@@ -102,6 +132,58 @@ static void delay_ms(uint32 ms)
 {
     uint32 tick = ms * 100000u;
     IfxStm_wait(tick);
+}
+
+static void VL53L0X_I2C_UpdateDebug(IfxI2c_I2c_Status status)
+{
+    g_vl53l0x_i2c_last_status = (sint32)status;
+    g_vl53l0x_i2c_last_bus_status = (sint32)g_i2cHandle.busStatus;
+}
+
+static IfxI2c_I2c_Status VL53L0X_I2C_WriteWithRetry(volatile uint8 *data, uint32 count)
+{
+    IfxI2c_I2c_Status status = IfxI2c_I2c_Status_error;
+    uint32 attempt;
+
+    for (attempt = 0u; attempt < VL53L0X_I2C_MAX_RETRIES; ++attempt)
+    {
+        status = IfxI2c_I2c_write(&g_i2cDevice, data, count);
+        VL53L0X_I2C_UpdateDebug(status);
+
+        if (status == IfxI2c_I2c_Status_ok)
+            return status;
+
+        if ((status != IfxI2c_I2c_Status_nak) &&
+            (status != IfxI2c_I2c_Status_busNotFree))
+            return status;
+
+        delay_ms(VL53L0X_I2C_RETRY_DELAY_MS);
+    }
+
+    return status;
+}
+
+static IfxI2c_I2c_Status VL53L0X_I2C_ReadWithRetry(volatile uint8 *data, uint32 count)
+{
+    IfxI2c_I2c_Status status = IfxI2c_I2c_Status_error;
+    uint32 attempt;
+
+    for (attempt = 0u; attempt < VL53L0X_I2C_MAX_RETRIES; ++attempt)
+    {
+        status = IfxI2c_I2c_read(&g_i2cDevice, data, count);
+        VL53L0X_I2C_UpdateDebug(status);
+
+        if (status == IfxI2c_I2c_Status_ok)
+            return status;
+
+        if ((status != IfxI2c_I2c_Status_nak) &&
+            (status != IfxI2c_I2c_Status_busNotFree))
+            return status;
+
+        delay_ms(VL53L0X_I2C_RETRY_DELAY_MS);
+    }
+
+    return status;
 }
 
 
@@ -127,7 +209,7 @@ VL53L0X_Error VL53L0X_WriteMulti(VL53L0X_DEV Dev, uint8_t index,
     memcpy(&g_i2cTxBuffer[1], pdata, count);
 
     /* I2C 전송 */
-    if (IfxI2c_I2c_write(&g_i2cDevice, g_i2cTxBuffer, count + 1)
+    if (VL53L0X_I2C_WriteWithRetry(g_i2cTxBuffer, count + 1u)
         == IfxI2c_I2c_Status_ok)
     {
         status = VL53L0X_ERROR_NONE;
@@ -151,14 +233,14 @@ VL53L0X_Error VL53L0X_ReadMulti(VL53L0X_DEV Dev, uint8_t index,
     /* 먼저 레지스터 인덱스 전송 */
     g_i2cTxBuffer[0] = index;
 
-    if (IfxI2c_I2c_write(&g_i2cDevice, g_i2cTxBuffer, 1)
+    if (VL53L0X_I2C_WriteWithRetry(g_i2cTxBuffer, 1u)
         != IfxI2c_I2c_Status_ok)
     {
         return VL53L0X_ERROR_CONTROL_INTERFACE;
     }
 
     /* 데이터 읽기 */
-    if (IfxI2c_I2c_read(&g_i2cDevice, pdata, count)
+    if (VL53L0X_I2C_ReadWithRetry(pdata, count)
         == IfxI2c_I2c_Status_ok)
     {
         status = VL53L0X_ERROR_NONE;
