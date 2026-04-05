@@ -387,6 +387,8 @@ void Task_Sensor(void *param)
 
     while (1)
     {
+        GearState reportedGear;
+
         /* ── 1. 기어: 개별 버튼 디바운스 + press-release 래치 ── */
         read_gear_raw();
 
@@ -513,6 +515,10 @@ void Task_Sensor(void *param)
         uint8 rt = score_tof(tof_filt);
         uint8 rp = score_pressure(press_filt);
         DriverState driver = judge_driver_final(ru, rt, rp);
+        reportedGear = gear_ok;
+
+        if (g_gear_override_active == TRUE)
+            reportedGear = g_gear_override_state;
 
         /* ── 6. 디버깅 변수 갱신 ── */
         g_ultra_mm     = ultra_mm;
@@ -528,7 +534,7 @@ void Task_Sensor(void *param)
         g_score_tof    = rt;
         g_score_press  = rp;
         g_pressure_present_debug = (rp >= 3u) ? TRUE : FALSE;
-        g_gear_debug   = gear_ok;
+        g_gear_debug   = reportedGear;
         g_door_debug   = door_ok;
         g_driver_debug = driver;
 
@@ -541,11 +547,6 @@ void Task_Sensor(void *param)
         /* ── 8. 공유 데이터 갱신 ── */
         if (xSemaphoreTake(xSensorMutex, pdMS_TO_TICKS(5)) == pdTRUE)
         {
-            GearState reportedGear = gear_ok;
-
-            if (g_gear_override_active == TRUE)
-                reportedGear = g_gear_override_state;
-
             g_sensor.driver = driver;
             g_sensor.door   = door_ok;
             if (reportedGear != GEAR_ERROR)

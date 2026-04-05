@@ -27,6 +27,7 @@
 static IfxCan_Can g_canModule;
 static IfxCan_Can_Node g_canNode;
 static boolean g_canReady = FALSE;
+static boolean g_auto_park_pending_on_release = FALSE;
 
 volatile boolean g_gear_override_active = FALSE;
 volatile GearState g_gear_override_state = GEAR_P;
@@ -120,8 +121,7 @@ static void can_apply_act_timeout(void)
     }
 }
 
-/* [BUG-1 수정] act_brake_state 강제 설정 제거 - ACT 피드백이 갱신하도록 위임
- * [BUG-2 수정] g_gear_override_state 설정 후 active 플래그 설정 (순서 교정) */
+/* 자동제동 해제 시점에만 P단 override를 적용한다. */
 static void can_apply_auto_park(void)
 {
     g_gear_override_state = GEAR_P;
@@ -155,16 +155,22 @@ static void can_send_main_act_ctrl(const SensorData *sensor, const ControlComman
 {
     IfxCan_Message message;
     uint32 txData[2] = {0U, 0U};
-    boolean autoParkCommand = can_is_auto_brake_risk(command->risk_level);
+    boolean autoBrakeRisk = can_is_auto_brake_risk(command->risk_level);
+    boolean applyAutoParkOnRelease = FALSE;
     GearState txGearState = sensor->gear;
     uint8 brakeCmd = (uint8)command->brake_cmd;
     uint8 gear;
 
-    /* [BUG-1 수정] 자동제동 시 FORCE + GEAR_P 전송 (기존: RELEASE + GEAR_P) */
-    if (autoParkCommand == TRUE)
+    /* 자동제동 중에는 현재 기어를 유지하고, 해제되는 첫 RELEASE 프레임에서만 P단을 전송한다. */
+    if (autoBrakeRisk == TRUE)
+    {
+        g_auto_park_pending_on_release = TRUE;
+    }
+    else if ((g_auto_park_pending_on_release == TRUE) &&
+             (brakeCmd == (uint8)BRAKE_CMD_RELEASE))
     {
         txGearState = GEAR_P;
-        brakeCmd = (uint8)BRAKE_CMD_FORCE;
+        applyAutoParkOnRelease = TRUE;
     }
     else if (g_gear_override_active == TRUE)
     {
@@ -185,8 +191,11 @@ static void can_send_main_act_ctrl(const SensorData *sensor, const ControlComman
 
     if (can_send_message(&message, txData) == IfxCan_Status_ok)
     {
-        if (autoParkCommand == TRUE)
+        if (applyAutoParkOnRelease == TRUE)
+        {
             can_apply_auto_park();
+            g_auto_park_pending_on_release = FALSE;
+        }
 
         g_can_tx100_count++;
     }

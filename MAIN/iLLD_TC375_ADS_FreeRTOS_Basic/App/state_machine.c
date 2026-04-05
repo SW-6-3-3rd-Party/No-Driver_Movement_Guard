@@ -81,10 +81,9 @@ static RiskLevel evaluate(const SensorData *s, RiskLevel prev)
     if (door_open_start > 0)
         door_open_ms = (now - door_open_start) * portTICK_PERIOD_MS;
 
-    /* [BUG-1 수정] SAF-01: P단 → 즉시 NORMAL
+    /* SAF-01: P단 → 즉시 NORMAL
      * 단, 자동제동 상태(D_BRAKE/R_BRAKE/ROLLAWAY_BRAKE)에서는
-     * gear override로 P가 된 것이므로 이 조건으로 탈출 불가.
-     * 복귀 조건은 착석+도어닫힘(SAF-02)만 허용. */
+     * 이 조건으로 탈출하지 않고 SAF-02만 복귀 경로로 사용한다. */
     if (gear_p && !is_auto_brake_state(prev))
         return RISK_NORMAL;
 
