@@ -1,4 +1,4 @@
-#include "IfxGtm_cfg_TC37x.h"
+//#include "IfxGtm_cfg_TC37x.h"
 #include <Gtm/Tom/Pwm/IfxGtm_Tom_Pwm.h>
 
 
@@ -6,6 +6,8 @@
 #include "IfxPort.h"
 #include "IfxStm.h"
 #include "Bsp.h"
+#include "IfxGtm_Tom_Pwm.h"
+//#include "IfxGtm_Atom_Pwm.h"
 
 
 
@@ -142,7 +144,11 @@ void motorsRunDuty(uint8 forward, uint8 dutyM1, uint8 dutyM2, uint32 runTimeMs)
 
     ///////////////////////////////////
     servoHold(SERVO_GTM_RELEASE, 500U);
-    IfxGtm_Tom_Pwm_start(&motor_handle, TRUE);
+    IfxGtm_Tom_Ch_setCompareOneShadow(
+                &(gtm->TOM[0]),
+                        motor_config.tomChannel,
+                        8000
+                    );
     ///////////////////////////////////
 
 
