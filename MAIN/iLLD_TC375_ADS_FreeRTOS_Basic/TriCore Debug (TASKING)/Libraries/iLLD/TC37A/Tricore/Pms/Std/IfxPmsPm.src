@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\cc7932a --dep-file=Libraries/iLLD/TC37A/Tricore/Pms/Std/IfxPmsPm.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Configurations -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2012 -o Libraries/iLLD/TC37A/Tricore/Pms/Std/IfxPmsPm.src ../Libraries/iLLD/TC37A/Tricore/Pms/Std/IfxPmsPm.c"
+	.compiler_invocation	"ctc -f C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\cc11352a --dep-file=Libraries/iLLD/TC37A/Tricore/Pms/Std/IfxPmsPm.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Configurations -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2012 -o Libraries/iLLD/TC37A/Tricore/Pms/Std/IfxPmsPm.src ../Libraries/iLLD/TC37A/Tricore/Pms/Std/IfxPmsPm.c"
 	.compiler_name		"ctc"
 	;source	'../Libraries/iLLD/TC37A/Tricore/Pms/Std/IfxPmsPm.c'
 
@@ -30634,14 +30634,6 @@ __IfxPmsPm_handleStandbyRam_function_end:
 	.word	0,0
 .L480:
 	.word	0,0
-.L490:
-	.word	-1,.L231,.L734-.L231,.L735-.L231
-	.half	1
-	.byte	95
-	.word	.L735-.L231,.L736-.L231
-	.half	1
-	.byte	83
-	.word	0,0
 .L477:
 	.word	-1,.L231,.L725-.L231,.L726-.L231
 	.half	5
@@ -30650,6 +30642,14 @@ __IfxPmsPm_handleStandbyRam_function_end:
 	.half	1
 	.byte	82
 	.word	0,0
+.L490:
+	.word	-1,.L231,.L734-.L231,.L735-.L231
+	.half	1
+	.byte	95
+	.word	.L735-.L231,.L736-.L231
+	.half	1
+	.byte	83
+	.word	0,0
 .L482:
 	.word	0,0
 .L489:
@@ -30657,13 +30657,13 @@ __IfxPmsPm_handleStandbyRam_function_end:
 	.half	1
 	.byte	82
 	.word	0,0
-.L484:
-	.word	-1,.L231,.L728-.L231,.L729-.L231
+.L473:
+	.word	-1,.L231,.L721-.L231,.L722-.L231
 	.half	1
 	.byte	95
 	.word	0,0
-.L473:
-	.word	-1,.L231,.L721-.L231,.L722-.L231
+.L484:
+	.word	-1,.L231,.L728-.L231,.L729-.L231
 	.half	1
 	.byte	95
 	.word	0,0
@@ -30683,13 +30683,13 @@ __IfxPmsPm_handleStandbyRam_function_end:
 	.half	1
 	.byte	81
 	.word	0,0
-.L478:
-	.word	-1,.L231,.L723-.L231,.L724-.L231
+.L491:
+	.word	-1,.L231,.L732-.L231,.L733-.L231
 	.half	1
 	.byte	98
 	.word	0,0
-.L491:
-	.word	-1,.L231,.L732-.L231,.L733-.L231
+.L478:
+	.word	-1,.L231,.L723-.L231,.L724-.L231
 	.half	1
 	.byte	98
 	.word	0,0
@@ -30727,11 +30727,6 @@ __IfxPmsPm_handleStandbyRam_function_end:
 	.half	1
 	.byte	88
 	.word	0,0
-.L397:
-	.word	-1,.L223,.L684-.L223,.L685-.L223
-	.half	1
-	.byte	95
-	.word	0,0
 .L377:
 	.word	-1,.L223,.L676-.L223,.L677-.L223
 	.half	5
@@ -30739,6 +30734,11 @@ __IfxPmsPm_handleStandbyRam_function_end:
 	.word	.L677-.L223,.L678-.L223
 	.half	1
 	.byte	82
+	.word	0,0
+.L397:
+	.word	-1,.L223,.L684-.L223,.L685-.L223
+	.half	1
+	.byte	95
 	.word	0,0
 .L388:
 	.word	0,0
@@ -30788,15 +30788,15 @@ __IfxPmsPm_handleStandbyRam_function_end:
 	.half	1
 	.byte	100
 	.word	0,0
-.L407:
-	.word	-1,.L223,.L691-.L223,.L90-.L223
-	.half	1
-	.byte	111
-	.word	0,0
 .L398:
 	.word	-1,.L223,.L682-.L223,.L683-.L223
 	.half	1
 	.byte	98
+	.word	0,0
+.L407:
+	.word	-1,.L223,.L691-.L223,.L90-.L223
+	.half	1
+	.byte	111
 	.word	0,0
 .L379:
 	.word	-1,.L223,.L674-.L223,.L675-.L223

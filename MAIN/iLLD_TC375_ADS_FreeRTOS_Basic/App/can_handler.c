@@ -6,6 +6,7 @@
 #include "App/sensor_data.h"
 #include "Can/Can/IfxCan_Can.h"
 #include "FreeRTOS.h"
+#include "Stm/Std/IfxStm.h"
 #include "task.h"
 
 #define CAN_NODE_ID_MAIN              IfxCan_NodeId_0
@@ -25,6 +26,12 @@
 #define CAN_SEND_RETRY_COUNT          5U
 #define CAN_SEND_RETRY_DELAY_MS       1U
 #define CAN_BUSOFF_RECOVERY_DELAY_MS  50U
+#define CAN_TX_STALL_TIMEOUT_MS       100U
+#define CAN_STM_TICKS_PER_MS          100000U
+#define CAN_TRANSCEIVER_RESET_MS      1U
+#define CAN_RECOVERY_REASON_NONE      0U
+#define CAN_RECOVERY_REASON_BUSOFF    1U
+#define CAN_RECOVERY_REASON_TX_STALL  2U
 
 static IfxCan_Can g_canModule;
 static IfxCan_Can_Node g_canNode;
@@ -47,12 +54,56 @@ volatile uint32 g_can_tx100_count = 0U;
 volatile uint32 g_can_tx200_count = 0U;
 volatile uint32 g_can_rx300_count = 0U;
 volatile uint32 g_can_tx_error_count = 0U;
+volatile uint32 g_can_tx_busy_count = 0U;
+volatile uint32 g_can_tx_stall_recovery_count = 0U;
 volatile uint8 g_can_last_tx100_brake_cmd = BRAKE_CMD_RELEASE;
 volatile uint8 g_can_last_tx100_gear = GEAR_P;
 volatile uint8 g_can_last_tx200_risk = RISK_NORMAL;
 volatile uint8 g_can_last_tx200_driver_present = 0U;
 volatile uint8 g_can_last_tx200_door = 0U;
 volatile uint8 g_can_last_tx200_gear = GEAR_P;
+volatile uint8 g_can_last_tx100_status = (uint8)IfxCan_Status_ok;
+volatile uint8 g_can_last_tx200_status = (uint8)IfxCan_Status_ok;
+volatile uint8 g_can_last_error_code_debug = 0U;
+volatile uint8 g_can_last_data_error_code_debug = 0U;
+volatile uint8 g_can_warning_status_debug = 0U;
+volatile uint8 g_can_error_passive_debug = 0U;
+volatile uint8 g_can_activity_debug = 0U;
+volatile uint8 g_can_last_recovery_reason = CAN_RECOVERY_REASON_NONE;
+volatile uint32 g_can_tx_pending_mask_debug = 0U;
+
+static uint32 can_get_tx_pending_mask(void)
+{
+    uint32 mask = 0U;
+
+    if (IfxCan_Can_isTxBufferRequestPending(&g_canNode, (IfxCan_TxBufferId)CAN_TX_BUFFER_MAIN_ACT_CTRL) == TRUE)
+        mask |= (1U << CAN_TX_BUFFER_MAIN_ACT_CTRL);
+
+    if (IfxCan_Can_isTxBufferRequestPending(&g_canNode, (IfxCan_TxBufferId)CAN_TX_BUFFER_MAIN_CLU_STATUS) == TRUE)
+        mask |= (1U << CAN_TX_BUFFER_MAIN_CLU_STATUS);
+
+    return mask;
+}
+
+static void can_update_debug_status(void)
+{
+    g_can_bus_off_debug = (uint8)IfxCan_Node_getBusOffStatus(g_canNode.node);
+    g_can_last_error_code_debug = (uint8)IfxCan_Node_getLastErroCodeStatus(g_canNode.node);
+    g_can_last_data_error_code_debug = (uint8)IfxCan_Node_getDataPhaseLastErrorCode(g_canNode.node);
+    g_can_warning_status_debug = (uint8)IfxCan_Node_getWarningStatus(g_canNode.node);
+    g_can_error_passive_debug = (uint8)IfxCan_Node_isErrorPassive(g_canNode.node);
+    g_can_activity_debug = (uint8)IfxCan_Node_getActivityStatus(g_canNode.node);
+    g_can_tx_pending_mask_debug = can_get_tx_pending_mask();
+}
+
+static void can_reset_transceiver(void)
+{
+    /* STB High -> standby, Low -> normal mode */
+    IfxPort_setPinHigh(&MODULE_P20, 6);
+    IfxStm_wait(CAN_STM_TICKS_PER_MS * CAN_TRANSCEIVER_RESET_MS);
+    IfxPort_setPinLow(&MODULE_P20, 6);
+    IfxStm_wait(CAN_STM_TICKS_PER_MS * CAN_TRANSCEIVER_RESET_MS);
+}
 
 static uint8 can_encode_gear(GearState gear)
 {
@@ -199,19 +250,27 @@ static void can_send_main_act_ctrl(const SensorData *sensor, const ControlComman
 
     txData[0] = can_pack_u32_le(brakeCmd, gear, 0U, 0U);
 
-    if (can_send_message(&message, txData) == IfxCan_Status_ok)
     {
-        g_can_last_tx100_brake_cmd = brakeCmd;
-        g_can_last_tx100_gear = gear;
+        IfxCan_Status status = can_send_message(&message, txData);
+        g_can_last_tx100_status = (uint8)status;
 
-        if (shiftToParkOnRelease == TRUE)
-            can_apply_gear_override(GEAR_P);
+        if (status == IfxCan_Status_ok)
+        {
+            g_can_last_tx100_brake_cmd = brakeCmd;
+            g_can_last_tx100_gear = gear;
 
-        g_can_tx100_count++;
-    }
-    else
-    {
-        g_can_tx_error_count++;
+            if (shiftToParkOnRelease == TRUE)
+                can_apply_gear_override(GEAR_P);
+
+            g_can_tx100_count++;
+        }
+        else
+        {
+            if (status == IfxCan_Status_notSentBusy)
+                g_can_tx_busy_count++;
+
+            g_can_tx_error_count++;
+        }
     }
 }
 
@@ -242,10 +301,22 @@ static void can_send_main_clu_status(const SensorData *sensor, const ControlComm
     g_can_last_tx200_door = doorState;
     g_can_last_tx200_gear = gear;
 
-    if (can_send_message(&message, txData) == IfxCan_Status_ok)
-        g_can_tx200_count++;
-    else
-        g_can_tx_error_count++;
+    {
+        IfxCan_Status status = can_send_message(&message, txData);
+        g_can_last_tx200_status = (uint8)status;
+
+        if (status == IfxCan_Status_ok)
+        {
+            g_can_tx200_count++;
+        }
+        else
+        {
+            if (status == IfxCan_Status_notSentBusy)
+                g_can_tx_busy_count++;
+
+            g_can_tx_error_count++;
+        }
+    }
 }
 
 static void can_process_rx_feedback(TickType_t now)
@@ -302,10 +373,17 @@ static void can_setup_filter(void)
     IfxCan_Can_setStandardFilter(&g_canNode, &filter);
 }
 
-static boolean can_recover_busoff(void)
+static boolean can_recover_node(uint8 reason)
 {
     g_canReady = FALSE;
-    g_can_busoff_recovery_count++;
+    g_can_last_recovery_reason = reason;
+
+    if (reason == CAN_RECOVERY_REASON_BUSOFF)
+        g_can_busoff_recovery_count++;
+    else if (reason == CAN_RECOVERY_REASON_TX_STALL)
+        g_can_tx_stall_recovery_count++;
+
+    can_reset_transceiver();
 
     if (IfxCan_Can_initNode(&g_canNode, &g_savedNodeConfig) == TRUE)
     {
@@ -322,9 +400,11 @@ static boolean can_recover_busoff(void)
         }
 
         g_canReady = TRUE;
+        can_update_debug_status();
         return TRUE;
     }
 
+    can_update_debug_status();
     return FALSE;
 }
 
@@ -380,6 +460,7 @@ void CanApp_Init(void)
         }
 
         g_canReady = TRUE;
+        can_update_debug_status();
     }
     else
     {
@@ -393,6 +474,8 @@ void Task_Can(void *param)
     TickType_t lastTx100 = xLastWake;
     TickType_t lastTx200 = xLastWake;
     TickType_t lastRx300 = xLastWake;
+    TickType_t txPendingSince = 0;
+    uint32 lastPendingMask = 0U;
 
     /* [BUG-3 수정] 안전한 기본값으로 초기화 (mutex 없는 비보호 복사 제거) */
     SensorData sensorSnapshot = {
@@ -413,14 +496,40 @@ void Task_Can(void *param)
             continue;
         }
 
+        /* Bus-Off/에러 상태를 항상 갱신해 둔다. */
+        can_update_debug_status();
+
         /* Bus-Off 감지 및 자동 복구 */
-        g_can_bus_off_debug = (uint8)IfxCan_Node_getBusOffStatus(g_canNode.node);
         if (g_can_bus_off_debug != 0U)
         {
             vTaskDelay(pdMS_TO_TICKS(CAN_BUSOFF_RECOVERY_DELAY_MS));
-            can_recover_busoff();
+            can_recover_node(CAN_RECOVERY_REASON_BUSOFF);
             vTaskDelayUntil(&xLastWake, pdMS_TO_TICKS(CAN_TASK_PERIOD_MS));
             continue;
+        }
+
+        /* Bus-Off 직전 단계라도 Tx request가 오래 pending이면 송신이 영구 정지된 것처럼 보일 수 있다. */
+        if (g_can_tx_pending_mask_debug != 0U)
+        {
+            if ((txPendingSince == 0) || (g_can_tx_pending_mask_debug != lastPendingMask))
+            {
+                txPendingSince = now;
+                lastPendingMask = g_can_tx_pending_mask_debug;
+            }
+            else if ((now - txPendingSince) >= pdMS_TO_TICKS(CAN_TX_STALL_TIMEOUT_MS))
+            {
+                can_recover_node(CAN_RECOVERY_REASON_TX_STALL);
+                txPendingSince = 0;
+                lastPendingMask = 0U;
+                vTaskDelayUntil(&xLastWake, pdMS_TO_TICKS(CAN_TASK_PERIOD_MS));
+                continue;
+            }
+        }
+        else
+        {
+            txPendingSince = 0;
+            lastPendingMask = 0U;
+            g_can_tx_busy_count = 0U;
         }
 
         can_process_rx_feedback(now);

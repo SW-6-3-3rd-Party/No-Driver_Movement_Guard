@@ -120,3 +120,11 @@ can_handler.o :	"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_Free
 "C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\iLLD\\TC37A\\Tricore\Src\Std\IfxSrc.h" :
 can_handler.o :	"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxSrc_cfg.h"
 "C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxSrc_cfg.h" :
+can_handler.o :	"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\iLLD\\TC37A\\Tricore\Stm\Std\IfxStm.h"
+"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\iLLD\\TC37A\\Tricore\Stm\Std\IfxStm.h" :
+can_handler.o :	"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxStm_cfg.h"
+"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\iLLD\\TC37A\\Tricore\_Impl\IfxStm_cfg.h" :
+can_handler.o :	"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\Infra\\Sfr\\TC37A\\_Reg\IfxCbs_reg.h"
+"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\Infra\\Sfr\\TC37A\\_Reg\IfxCbs_reg.h" :
+can_handler.o :	"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\Infra\\Sfr\\TC37A\\_Reg\IfxCbs_regdef.h"
+"C:\\Users\\gkqls\\AURIX-v1.10.32-workspace\\iLLD_TC375_ADS_FreeRTOS_Basic\\Libraries\\Infra\\Sfr\\TC37A\\_Reg\IfxCbs_regdef.h" :

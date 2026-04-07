@@ -380,13 +380,14 @@ void Task_Sensor(void *param)
 {
     TickType_t xLastWake = xTaskGetTickCount();
     static GearState gear_ok = GEAR_P;
-    static GearState last_physical_gear = GEAR_P;
     static DoorState door_ok = DOOR_OPEN;
 
     init_pressure_sensor();
 
     while (1)
     {
+        boolean gear_selection_event = FALSE;
+
         /* ── 1. 기어: 개별 버튼 디바운스 + press-release 래치 ── */
         read_gear_raw();
 
@@ -405,6 +406,7 @@ void Task_Sensor(void *param)
             {
                 gear_ok = GEAR_P;
                 gear_p_armed = FALSE;
+                gear_selection_event = TRUE;
             }
             gear_p_stable = p_new;
         }
@@ -419,6 +421,7 @@ void Task_Sensor(void *param)
             {
                 gear_ok = GEAR_R;
                 gear_r_armed = FALSE;
+                gear_selection_event = TRUE;
             }
             gear_r_stable = r_new;
         }
@@ -433,6 +436,7 @@ void Task_Sensor(void *param)
             {
                 gear_ok = GEAR_N;
                 gear_n_armed = FALSE;
+                gear_selection_event = TRUE;
             }
             gear_n_stable = n_new;
         }
@@ -447,6 +451,7 @@ void Task_Sensor(void *param)
             {
                 gear_ok = GEAR_D;
                 gear_d_armed = FALSE;
+                gear_selection_event = TRUE;
             }
             gear_d_stable = d_new;
         }
@@ -455,14 +460,9 @@ void Task_Sensor(void *param)
         door_sw_buf[db_idx] = read_door_switch_raw();
         db_idx = (db_idx + 1) % 3;
 
-        /* gear override 해제: 물리 기어 변경 감지 */
-        if (gear_ok != GEAR_ERROR)
-        {
-            if ((g_gear_override_active == TRUE) && (gear_ok != last_physical_gear))
-                g_gear_override_active = FALSE;
-
-            last_physical_gear = gear_ok;
-        }
+        /* 자동 P override는 사용자의 다음 기어 선택 입력이 완료되면 해제한다. */
+        if ((g_gear_override_active == TRUE) && (gear_selection_event == TRUE))
+            g_gear_override_active = FALSE;
 
         if (door_sw_buf[0] == door_sw_buf[1] && door_sw_buf[1] == door_sw_buf[2])
         {

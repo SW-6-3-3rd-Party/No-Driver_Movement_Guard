@@ -1,6 +1,6 @@
 	; Module start
 	.compiler_version	"TASKING VX-toolset for AURIX Development Studio (non-commercial): C compiler v1.1r8 Build 22011964"
-	.compiler_invocation	"ctc -f C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\cc17780a --dep-file=App/state_machine.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Configurations -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2012 -o App/state_machine.src ../App/state_machine.c"
+	.compiler_invocation	"ctc -f C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\cc22620a --dep-file=App/state_machine.d -c99 --fp-model=3cflnrSTz -D__CPU__=tc37x -D__CPU_TC37X__ --core=tc1.6.2 --fp-model=+float -D__CPU__=tc37x -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\core\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\VL53L0X_1.0.4\\\\Api\\\\platform\\\\inc -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Configurations -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Platform\\\\Tricore\\\\Compilers -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Sfr\\\\TC37A\\\\_Reg -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Infra\\\\Ssw\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\Service\\\\CpuGeneric\\\\_Utilities -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Irq -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Cpu\\\\Trap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Gtm\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Mtu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Pms\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Io -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Port\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Scu\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\Src\\\\Std -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_Impl -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\Libraries\\\\iLLD\\\\TC37A\\\\Tricore\\\\_PinMap -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\include -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking -IC:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3 -g2 -w544 -w557 -t4 --language=+volatile -N0 -O0 -Y0 -Z0 --compact-max-size=200 --misrac-version=2012 -o App/state_machine.src ../App/state_machine.c"
 	.compiler_name		"ctc"
 	;source	'../App/state_machine.c'
 
@@ -15,20 +15,20 @@ $TC162
 .L97:
 vPortSetCCPN:	.type	func
 	disable
-.L288:
-	mfcr	d15,#65068
-.L289:
-	insert	d0,d15,#0,#0,#8
 .L290:
-	and	d15,d4,#255
+	mfcr	d15,#65068
 .L291:
-	or	d0,d15
+	insert	d0,d15,#0,#0,#8
 .L292:
+	and	d15,d4,#255
+.L293:
+	or	d0,d15
+.L294:
 	mtcr	#65068,d0
 	isync
-.L293:
+.L295:
 	enable
-.L294:
+.L296:
 	ret
 .L174:
 	
@@ -45,12 +45,12 @@ __vPortSetCCPN_function_end:
 .L99:
 vPortSetICR:	.type	func
 	disable
-.L299:
+.L301:
 	mtcr	#65068,d4
 	isync
-.L300:
+.L302:
 	enable
-.L301:
+.L303:
 	ret
 .L177:
 	
@@ -67,20 +67,20 @@ __vPortSetICR_function_end:
 .L101:
 xPortSetCCPN:	.type	func
 	disable
-.L306:
+.L308:
 	mfcr	d2,#65068
 .L229:
 	insert	d0,d2,#0,#0,#8
-.L307:
-	and	d15,d4,#255
-.L308:
-	or	d0,d15
 .L309:
+	and	d15,d4,#255
+.L310:
+	or	d0,d15
+.L311:
 	mtcr	#65068,d0
 	isync
-.L310:
+.L312:
 	enable
-.L311:
+.L313:
 	j	.L2
 .L2:
 	ret
@@ -99,11 +99,11 @@ __xPortSetCCPN_function_end:
 .L103:
 is_auto_brake_state:	.type	func
 	mov	d2,#0
-.L316:
-	jeq	d4,#4,.L3
-.L317:
-	jeq	d4,#5,.L4
 .L318:
+	jeq	d4,#4,.L3
+.L319:
+	jeq	d4,#5,.L4
+.L320:
 	jne	d4,#6,.L5
 .L4:
 .L3:
@@ -127,53 +127,61 @@ __is_auto_brake_state_function_end:
 .L105:
 derive_motion:	.type	func
 	ld.bu	d15,[a4]16
-.L323:
-	jne	d15,#0,.L7
-.L324:
-	mov	d2,#0
 .L325:
+	jne	d15,#0,.L7
+.L326:
+	mov	d2,#0
+.L327:
 	j	.L8
 .L7:
 	ld.w	d15,[a4]4
-.L326:
-	movh	d0,#16256
-.L327:
+.L328:
+	movh	d0,#16384
+.L329:
 	cmp.f	d15,d15,d0
 	and	d15,#6
 	ne	d0,d15,#0
 .L230:
 	mov	d1,#0
 .L231:
-	ld.h	d15,[a4]8
-.L328:
-	jge	d15,#2,.L9
-.L329:
-	ld.h	d15,[a4]8
+	ld.h	d2,[a4]8
 .L330:
-	jlt	d15,#-1,.L10
+	mov	d15,#20
 .L331:
-	ld.h	d15,[a4]10
+	jge	d2,d15,.L9
 .L332:
-	jge	d15,#2,.L11
+	ld.h	d15,[a4]8
 .L333:
-	ld.h	d15,[a4]10
+	mov	d2,#-20
 .L334:
-	jge	d15,#-1,.L12
+	jge	d2,d15,.L10
+.L335:
+	ld.h	d2,[a4]10
+.L336:
+	mov	d15,#20
+.L337:
+	jge	d2,d15,.L11
+.L338:
+	ld.h	d15,[a4]10
+.L339:
+	mov	d2,#-20
+.L340:
+	jlt	d2,d15,.L12
 .L11:
 .L10:
 .L9:
 	mov	d1,#1
 .L12:
 	jne	d0,#0,.L13
-.L335:
+.L341:
 	jeq	d1,#0,.L14
 .L13:
 	mov	d2,#1
-.L336:
+.L342:
 	j	.L15
 .L14:
 	mov	d2,#0
-.L337:
+.L343:
 	j	.L16
 .L16:
 .L15:
@@ -194,21 +202,21 @@ __derive_motion_function_end:
 .L107:
 is_act_brake_engaged:	.type	func
 	ld.bu	d15,[a4]16
-.L342:
+.L348:
 	jne	d15,#0,.L17
-.L343:
+.L349:
 	mov	d2,#0
-.L344:
+.L350:
 	j	.L18
 .L17:
 	mov	d2,#0
-.L345:
+.L351:
 	ld.bu	d15,[a4]15
-.L346:
+.L352:
 	jeq	d15,#1,.L19
-.L347:
+.L353:
 	ld.bu	d15,[a4]15
-.L348:
+.L354:
 	jne	d15,#2,.L20
 .L19:
 	mov	d2,#1
@@ -236,9 +244,9 @@ select_brake_cmd:	.type	func
 	call	is_auto_brake_state
 .L232:
 	jne	d2,#0,.L22
-.L353:
+.L359:
 	mov	d2,#0
-.L354:
+.L360:
 	j	.L23
 .L22:
 	mov.aa	a4,a15
@@ -246,13 +254,13 @@ select_brake_cmd:	.type	func
 	call	is_act_brake_engaged
 .L235:
 	jne	d2,#0,.L24
-.L355:
+.L361:
 	mov	d2,#2
-.L356:
+.L362:
 	j	.L25
 .L24:
 	mov	d2,#1
-.L357:
+.L363:
 	j	.L26
 .L26:
 .L25:
@@ -277,49 +285,49 @@ evaluate:	.type	func
 	mov	d9,d4
 .L238:
 	ld.bu	d0,[a4]
-.L362:
+.L368:
 	eq	d15,d0,#1
 .L239:
 	st.w	[a10]16,d15
 .L241:
 	ld.bu	d0,[a4]
-.L363:
+.L369:
 	eq	d15,d0,#0
 .L240:
-	st.w	[a10]4,d15
+	st.w	[a10]8,d15
 .L243:
 	ld.bu	d15,[a4]2
 .L242:
 	eq	d12,d15,#1
 .L244:
 	ld.bu	d15,[a4]2
-.L364:
+.L370:
 	eq	d13,d15,#0
 .L245:
 	ld.bu	d15,[a4]1
-.L365:
+.L371:
 	eq	d15,d15,#0
 .L246:
-	st.w	[a10]8,d15
+	st.w	[a10]4,d15
 .L248:
 	ld.bu	d15,[a4]1
 .L247:
 	eq	d8,d15,#3
 .L249:
 	ld.bu	d15,[a4]1
-.L366:
+.L372:
 	eq	d10,d15,#1
 .L250:
 	mov	d11,#0
 .L251:
 	jne	d8,#0,.L27
-.L367:
+.L373:
 	jeq	d10,#0,.L28
 .L27:
 	mov	d11,#1
 .L28:
 	ld.bu	d15,[a4]1
-.L368:
+.L374:
 	eq	d14,d15,#2
 .L252:
 	call	derive_motion
@@ -331,28 +339,28 @@ evaluate:	.type	func
 	call	xTaskGetTickCount
 .L256:
 	jeq	d12,#0,.L29
-.L369:
+.L375:
 	movh.a	a15,#@his(door_open_start)
 	lea	a15,[a15]@los(door_open_start)
 	ld.w	d15,[a15]
 .L254:
 	jne	d15,#0,.L30
-.L370:
+.L376:
 	movh.a	a15,#@his(door_open_start)
 	lea	a15,[a15]@los(door_open_start)
-.L371:
+.L377:
 	st.w	[a15],d2
-.L372:
+.L378:
 	j	.L31
 .L30:
 .L29:
 	jne	d12,#0,.L32
-.L373:
+.L379:
 	movh.a	a15,#@his(door_open_start)
 	lea	a15,[a15]@los(door_open_start)
-.L374:
+.L380:
 	mov	d15,#0
-.L375:
+.L381:
 	st.w	[a15],d15
 .L32:
 .L31:
@@ -365,207 +373,214 @@ evaluate:	.type	func
 	ld.w	d15,[a15]
 .L259:
 	jlt.u	d15,#1,.L33
-.L376:
+.L382:
 	movh.a	a15,#@his(door_open_start)
 	lea	a15,[a15]@los(door_open_start)
 	ld.w	d15,[a15]
-.L377:
+.L383:
 	sub	d2,d15
 .L257:
 	mul	d15,d2,#1
 .L261:
 	st.w	[a10],d15
 .L33:
-	ld.w	d15,[a10]8
+	ld.w	d15,[a10]4
 .L262:
 	jeq	d15,#0,.L34
-.L378:
+.L384:
 	mov	d4,d9
 .L264:
 	call	is_auto_brake_state
 .L265:
 	jne	d2,#0,.L35
-.L379:
+.L385:
 	mov	d2,#0
-.L380:
+.L386:
 	j	.L36
 .L35:
 .L34:
 	ld.w	d15,[a10]16
 .L263:
 	jeq	d15,#0,.L37
-.L381:
+.L387:
 	jeq	d13,#0,.L38
-.L382:
+.L388:
 	mov	d2,#0
-.L383:
+.L389:
 	j	.L39
 .L38:
 .L37:
 	jeq	d8,#0,.L40
-.L384:
-	ld.w	d15,[a10]4
+.L390:
+	ld.w	d15,[a10]8
 .L266:
 	jeq	d15,#0,.L41
-.L385:
+.L391:
 	mov	d2,#4
-.L386:
+.L392:
 	j	.L42
 .L41:
 .L40:
 	jeq	d10,#0,.L43
-.L387:
-	ld.w	d15,[a10]4
+.L393:
+	ld.w	d15,[a10]8
 .L267:
 	jeq	d15,#0,.L44
-.L388:
+.L394:
 	mov	d2,#5
-.L389:
+.L395:
 	j	.L45
 .L44:
 .L43:
 	jeq	d14,#0,.L46
-.L390:
+.L396:
 	ld.w	d15,[a10]12
 .L268:
 	jeq	d15,#0,.L47
-.L391:
-	ld.w	d15,[a10]4
+.L397:
+	ld.w	d15,[a10]8
 .L269:
 	jeq	d15,#0,.L48
-.L392:
+.L398:
 	mov	d2,#6
-.L393:
+.L399:
 	j	.L49
 .L48:
 .L47:
 .L46:
 	jeq	d14,#0,.L50
-.L394:
-	jeq	d12,#0,.L51
-.L395:
+.L400:
+	mov	d4,d9
+.L270:
+	call	is_auto_brake_state
+.L271:
+	eq	d15,d2,#0
+.L401:
+	and	d15,d12
+	jeq	d15,#0,.L51
+.L402:
 	mov	d2,#3
-.L396:
+.L403:
 	j	.L52
 .L51:
 .L50:
 	mov	d15,#0
 	jeq	d15,d9,.L53
-.L397:
+.L404:
 	mov	d15,#1
 	jeq	d15,d9,.L54
-.L398:
+.L405:
 	mov	d15,#2
 	jeq	d15,d9,.L55
-.L399:
+.L406:
 	mov	d15,#3
 	jeq	d15,d9,.L56
-.L400:
+.L407:
 	mov	d15,#4
 	jeq	d15,d9,.L57
-.L401:
+.L408:
 	mov	d15,#5
 	jeq	d15,d9,.L58
-.L402:
+.L409:
 	mov	d15,#6
 	jeq	d15,d9,.L59
 	j	.L60
 .L53:
 	jeq	d11,#0,.L61
-.L403:
+.L410:
 	jeq	d12,#0,.L62
-.L404:
+.L411:
 	mov	d2,#1
-.L405:
+.L412:
 	j	.L63
 .L62:
 .L61:
 	mov	d2,#0
-.L406:
+.L413:
 	j	.L64
 .L54:
 	jeq	d13,#0,.L65
-.L407:
+.L414:
 	mov	d2,#0
-.L408:
+.L415:
 	j	.L66
 .L65:
 	jne	d11,#0,.L67
-.L409:
+.L416:
 	jne	d14,#0,.L68
-.L410:
+.L417:
 	mov	d2,#0
-.L411:
+.L418:
 	j	.L69
 .L68:
 .L67:
-	mov	d0,#2000
-.L412:
+	mov	d0,#10000
+.L419:
 	ld.w	d15,[a10]
-.L270:
+.L272:
 	jlt.u	d15,d0,.L70
-.L413:
+.L420:
 	mov	d2,#2
-.L414:
+.L421:
 	j	.L71
 .L70:
 	mov	d2,#1
-.L415:
+.L422:
 	j	.L72
 .L55:
 	jeq	d13,#0,.L73
-.L416:
+.L423:
 	mov	d2,#0
-.L417:
+.L424:
 	j	.L74
 .L73:
 	mov	d2,#2
-.L418:
+.L425:
 	j	.L75
 .L57:
 	mov	d2,#4
-.L419:
+.L426:
 	j	.L76
 .L58:
 	mov	d2,#5
-.L420:
+.L427:
 	j	.L77
 .L56:
 	jeq	d13,#0,.L78
-.L421:
+.L428:
 	mov	d2,#0
-.L422:
+.L429:
 	j	.L79
 .L78:
 	jeq	d11,#0,.L80
-.L423:
+.L430:
 	mov	d2,#1
-.L424:
+.L431:
 	j	.L81
 .L80:
 	ld.w	d15,[a10]12
-.L271:
+.L273:
 	jeq	d15,#0,.L82
-.L425:
-	ld.w	d15,[a10]4
-.L272:
+.L432:
+	ld.w	d15,[a10]8
+.L274:
 	jeq	d15,#0,.L83
-.L426:
+.L433:
 	mov	d2,#6
-.L427:
+.L434:
 	j	.L84
 .L83:
 .L82:
 	mov	d2,#3
-.L428:
+.L435:
 	j	.L85
 .L59:
 	mov	d2,#6
-.L429:
+.L436:
 	j	.L86
 .L60:
 	mov	d2,#0
-.L430:
+.L437:
 	j	.L87
 .L87:
 .L86:
@@ -605,13 +620,13 @@ __evaluate_function_end:
 .L113:
 make_command:	.type	func
 	mov.aa	a15,a5
-.L274:
+.L276:
 	st.b	[a15],d4
-.L435:
+.L442:
 	call	select_brake_cmd
-.L273:
+.L275:
 	st.b	[a15]1,d2
-.L436:
+.L443:
 	ret
 .L215:
 	
@@ -629,13 +644,13 @@ __make_command_function_end:
 .L115:
 Task_Judge:	.type	func
 	sub.a	a10,#32
-.L275:
-	mov.aa	a15,a4
-.L278:
-	call	xTaskGetTickCount
 .L277:
+	mov.aa	a15,a4
+.L280:
+	call	xTaskGetTickCount
+.L279:
 	st.w	[a10],d2
-.L441:
+.L448:
 	jz.a	a15,.L88
 .L88:
 	j	.L89
@@ -643,42 +658,42 @@ Task_Judge:	.type	func
 	movh.a	a15,#@his(.1.ini)
 	lea	a15,[a15]@los(.1.ini)
 	lea	a15,[a15]0
-.L442:
+.L449:
 	lea	a2,[a10]4
 	mov.a	a4,#4
 .L91:
 	ld.w	d15,[a15+]
 	st.w	[a2+],d15
 	loop	a4,.L91
-.L443:
+.L450:
 	movh.a	a15,#@his(xSensorMutex)
 	lea	a15,[a15]@los(xSensorMutex)
 	ld.a	a4,[a15]
 	mov	d4,#5
 	call	xQueueSemaphoreTake
-.L444:
+.L451:
 	jne	d2,#1,.L92
-.L445:
+.L452:
 	movh.a	a15,#@his(g_sensor)
 	lea	a15,[a15]@los(g_sensor)
-.L446:
+.L453:
 	movh.a	a4,#@his(g_sensor)
 	lea	a4,[a4]@los(g_sensor)
 	call	derive_motion
-.L447:
+.L454:
 	st.b	[a15]14,d2
-.L448:
+.L455:
 	movh.a	a15,#@his(g_sensor)
 	lea	a15,[a15]@los(g_sensor)
 	lea	a15,[a15]0
-.L449:
+.L456:
 	lea	a2,[a10]4
 	mov.a	a4,#4
 .L93:
 	ld.w	d15,[a15+]
 	st.w	[a2+],d15
 	loop	a4,.L93
-.L450:
+.L457:
 	movh.a	a15,#@his(xSensorMutex)
 	lea	a15,[a15]@los(xSensorMutex)
 	ld.a	a4,[a15]
@@ -689,40 +704,40 @@ Task_Judge:	.type	func
 .L92:
 	movh.a	a15,#@his(current_state)
 	lea	a15,[a15]@los(current_state)
-.L451:
+.L458:
 	lea	a4,[a10]4
-.L452:
+.L459:
 	movh.a	a2,#@his(current_state)
 	lea	a2,[a2]@los(current_state)
 	ld.bu	d4,[a2]
 	call	evaluate
-.L453:
+.L460:
 	st.b	[a15],d2
 .L226:
 	movh.a	a15,#@his(current_state)
 	lea	a15,[a15]@los(current_state)
 	ld.bu	d4,[a15]
-.L454:
+.L461:
 	lea	a4,[a10]4
-.L455:
+.L462:
 	lea	a5,[a10]24
 	call	make_command
-.L456:
+.L463:
 	movh.a	a15,#@his(xCommandMutex)
 	lea	a15,[a15]@los(xCommandMutex)
 	ld.a	a4,[a15]
 	mov	d4,#5
 	call	xQueueSemaphoreTake
-.L457:
+.L464:
 	jne	d2,#1,.L94
-.L458:
+.L465:
 	movh.a	a15,#@his(g_command)
 	lea	a15,[a15]@los(g_command)
-.L459:
+.L466:
 	ld.hu	d15,[a10]24
-.L460:
+.L467:
 	st.h	[a15],d15
-.L461:
+.L468:
 	movh.a	a15,#@his(xCommandMutex)
 	lea	a15,[a15]@los(xCommandMutex)
 	ld.a	a4,[a15]
@@ -737,7 +752,7 @@ Task_Judge:	.type	func
 	call	xTaskDelayUntil
 .L89:
 	j	.L90
-.L276:
+.L278:
 	ret
 .L220:
 	
@@ -1143,11 +1158,11 @@ door_open_start:	.type	object
 	.byte	'StaticStreamBuffer_t',0,11,149,11,3
 	.word	2394
 	.byte	8
-	.word	.L279-.L117
+	.word	.L281-.L117
 	.byte	5
 	.word	1309
 	.byte	8
-	.word	.L279-.L117
+	.word	.L281-.L117
 	.byte	24
 	.byte	'xMINI_LIST_ITEM',0,12,157,1,12,12,19
 	.byte	'xItemValue',0
@@ -1170,7 +1185,7 @@ door_open_start:	.type	object
 	.word	2522
 	.byte	12,2,35,8,0,8
 	.word	2601
-.L279:
+.L281:
 	.byte	24
 	.byte	'xLIST_ITEM',0,12,144,1,8,20,19
 	.byte	'xItemValue',0
@@ -1278,11 +1293,11 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug
 	.sect	'.debug_line'
 .L119:
-	.word	.L281-.L280
-.L280:
-	.half	3
 	.word	.L283-.L282
 .L282:
+	.half	3
+	.word	.L285-.L284
+.L284:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\include',0
 	.byte	'C:\\Infineon\\AURIX-Studio-1.10.32\\tools\\Compilers\\Tasking_1.1r8\\ctc\\include\\',0
@@ -1303,8 +1318,8 @@ door_open_start:	.type	object
 	.byte	'FreeRTOS.h',0,1,0,0
 	.byte	'list.h',0,1,0,0
 	.byte	'semphr.h',0,1,0,0,0
+.L285:
 .L283:
-.L281:
 	.sdecl	'.debug_info',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_info'
 .L120:
@@ -1336,36 +1351,36 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_line'
 .L122:
-	.word	.L285-.L284
-.L284:
-	.half	3
 	.word	.L287-.L286
 .L286:
+	.half	3
+	.word	.L289-.L288
+.L288:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	0
 	.byte	'portmacro.h',0,1,0,0,0
-.L287:
+.L289:
 	.byte	5,14,7,0,5,2
 	.word	.L97
 	.byte	3,161,1,1,5,34,9
-	.half	.L288-.L97
+	.half	.L290-.L97
 	.byte	3,1,1,5,50,9
-	.half	.L289-.L288
-	.byte	1,5,87,9
-	.half	.L290-.L289
-	.byte	1,5,76,9
 	.half	.L291-.L290
-	.byte	1,5,11,9
+	.byte	1,5,87,9
 	.half	.L292-.L291
-	.byte	1,5,13,9
+	.byte	1,5,76,9
 	.half	.L293-.L292
-	.byte	3,1,1,5,1,9
+	.byte	1,5,11,9
 	.half	.L294-.L293
+	.byte	1,5,13,9
+	.half	.L295-.L294
+	.byte	3,1,1,5,1,9
+	.half	.L296-.L295
 	.byte	3,1,1,7,9
-	.half	.L124-.L294
+	.half	.L124-.L296
 	.byte	0,1,1
-.L285:
+.L287:
 	.sdecl	'.debug_ranges',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_ranges'
 .L123:
@@ -1401,28 +1416,28 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('vPortSetICR')
 	.sect	'.debug_line'
 .L127:
-	.word	.L296-.L295
-.L295:
-	.half	3
 	.word	.L298-.L297
 .L297:
+	.half	3
+	.word	.L300-.L299
+.L299:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	0
 	.byte	'portmacro.h',0,1,0,0,0
-.L298:
+.L300:
 	.byte	5,14,7,0,5,2
 	.word	.L99
 	.byte	3,168,1,1,5,11,9
-	.half	.L299-.L99
+	.half	.L301-.L99
 	.byte	3,1,1,5,13,9
-	.half	.L300-.L299
+	.half	.L302-.L301
 	.byte	3,1,1,5,1,9
-	.half	.L301-.L300
+	.half	.L303-.L302
 	.byte	3,1,1,7,9
-	.half	.L129-.L301
+	.half	.L129-.L303
 	.byte	0,1,1
-.L296:
+.L298:
 	.sdecl	'.debug_ranges',debug,cluster('vPortSetICR')
 	.sect	'.debug_ranges'
 .L128:
@@ -1464,38 +1479,38 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_line'
 .L132:
-	.word	.L303-.L302
-.L302:
-	.half	3
 	.word	.L305-.L304
 .L304:
+	.half	3
+	.word	.L307-.L306
+.L306:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1
 	.byte	'C:\\\\Users\\\\gkqls\\\\AURIX-v1.10.32-workspace\\\\iLLD_TC375_ADS_FreeRTOS_Basic\\\\OS\\\\FreeRTOS\\\\portable\\\\Tasking\\\\TC3',0
 	.byte	0
 	.byte	'portmacro.h',0,1,0,0,0
-.L305:
+.L307:
 	.byte	5,14,7,0,5,2
 	.word	.L101
 	.byte	3,177,1,1,5,18,9
-	.half	.L306-.L101
+	.half	.L308-.L101
 	.byte	3,1,1,5,33,9
-	.half	.L229-.L306
+	.half	.L229-.L308
 	.byte	3,1,1,5,70,9
-	.half	.L307-.L229
+	.half	.L309-.L229
 	.byte	1,5,59,9
-	.half	.L308-.L307
-	.byte	1,5,11,9
-	.half	.L309-.L308
-	.byte	1,5,13,9
 	.half	.L310-.L309
-	.byte	3,1,1,5,5,9
+	.byte	1,5,11,9
 	.half	.L311-.L310
+	.byte	1,5,13,9
+	.half	.L312-.L311
+	.byte	3,1,1,5,5,9
+	.half	.L313-.L312
 	.byte	3,1,1,5,1,9
-	.half	.L2-.L311
+	.half	.L2-.L313
 	.byte	3,1,1,7,9
 	.half	.L134-.L2
 	.byte	0,1,1
-.L303:
+.L305:
 	.sdecl	'.debug_ranges',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_ranges'
 .L133:
@@ -1515,12 +1530,12 @@ door_open_start:	.type	object
 	.byte	2
 	.word	.L116
 	.byte	3
-	.byte	'is_auto_brake_state',0,1,15,16
+	.byte	'is_auto_brake_state',0,1,16,16
 	.word	.L175
 	.byte	1,1
 	.word	.L103,.L184,.L102
 	.byte	4
-	.byte	'state',0,1,15,46
+	.byte	'state',0,1,16,46
 	.word	.L185,.L186
 	.byte	5
 	.word	.L103,.L184
@@ -1533,24 +1548,24 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('is_auto_brake_state')
 	.sect	'.debug_line'
 .L137:
-	.word	.L313-.L312
-.L312:
-	.half	3
 	.word	.L315-.L314
 .L314:
+	.half	3
+	.word	.L317-.L316
+.L316:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../App/state_machine.c',0,0,0,0,0
-.L315:
+.L317:
 	.byte	5,36,7,0,5,2
 	.word	.L103
-	.byte	3,17,1,5,12,9
-	.half	.L316-.L103
+	.byte	3,18,1,5,12,9
+	.half	.L318-.L103
 	.byte	3,127,1,5,19,7,9
-	.half	.L317-.L316
+	.half	.L319-.L318
 	.byte	3,1,1,7,9
-	.half	.L318-.L317
+	.half	.L320-.L319
 	.byte	3,1,1,5,36,7,9
-	.half	.L3-.L318
+	.half	.L3-.L320
 	.byte	3,127,1,5,5,9
 	.half	.L5-.L3
 	.byte	3,127,1,5,1,9
@@ -1558,7 +1573,7 @@ door_open_start:	.type	object
 	.byte	3,3,1,7,9
 	.half	.L139-.L6
 	.byte	0,1,1
-.L313:
+.L315:
 	.sdecl	'.debug_ranges',debug,cluster('is_auto_brake_state')
 	.sect	'.debug_ranges'
 .L138:
@@ -1578,20 +1593,20 @@ door_open_start:	.type	object
 	.byte	2
 	.word	.L116
 	.byte	3
-	.byte	'derive_motion',0,1,22,20
+	.byte	'derive_motion',0,1,23,20
 	.word	.L187
 	.byte	1,1
 	.word	.L105,.L188,.L104
 	.byte	4
-	.byte	'sensor',0,1,22,52
+	.byte	'sensor',0,1,23,52
 	.word	.L189,.L190
 	.byte	5
 	.word	.L105,.L188
 	.byte	6
-	.byte	'moving_by_speed',0,1,24,13
+	.byte	'moving_by_speed',0,1,25,13
 	.word	.L175,.L191
 	.byte	6
-	.byte	'moving_by_accel',0,1,25,13
+	.byte	'moving_by_accel',0,1,26,13
 	.word	.L175,.L192
 	.byte	0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('derive_motion')
@@ -1603,66 +1618,74 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('derive_motion')
 	.sect	'.debug_line'
 .L142:
-	.word	.L320-.L319
-.L319:
-	.half	3
 	.word	.L322-.L321
 .L321:
+	.half	3
+	.word	.L324-.L323
+.L323:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../App/state_machine.c',0,0,0,0,0
-.L322:
+.L324:
 	.byte	5,16,7,0,5,2
 	.word	.L105
-	.byte	3,26,1,5,10,9
-	.half	.L323-.L105
+	.byte	3,27,1,5,10,9
+	.half	.L325-.L105
 	.byte	1,5,16,7,9
-	.half	.L324-.L323
+	.half	.L326-.L325
 	.byte	3,1,1,5,9,9
-	.half	.L325-.L324
-	.byte	1,5,30,9
-	.half	.L7-.L325
-	.byte	3,2,1,5,45,9
-	.half	.L326-.L7
-	.byte	1,5,42,9
 	.half	.L327-.L326
+	.byte	1,5,30,9
+	.half	.L7-.L327
+	.byte	3,2,1,5,45,9
+	.half	.L328-.L7
+	.byte	1,5,42,9
+	.half	.L329-.L328
 	.byte	1,5,68,9
-	.half	.L230-.L327
+	.half	.L230-.L329
 	.byte	3,3,1,5,30,9
 	.half	.L231-.L230
-	.byte	3,126,1,5,23,9
-	.half	.L328-.L231
-	.byte	1,5,30,7,9
-	.half	.L329-.L328
-	.byte	3,1,1,5,40,9
-	.half	.L330-.L329
-	.byte	1,5,30,7,9
+	.byte	3,126,1,5,43,9
+	.half	.L330-.L231
+	.byte	1,5,23,9
 	.half	.L331-.L330
-	.byte	3,1,1,5,40,9
-	.half	.L332-.L331
 	.byte	1,5,30,7,9
+	.half	.L332-.L331
+	.byte	3,1,1,5,43,9
 	.half	.L333-.L332
-	.byte	3,1,1,5,40,9
+	.byte	1,5,40,9
 	.half	.L334-.L333
+	.byte	1,5,30,7,9
+	.half	.L335-.L334
+	.byte	3,1,1,5,43,9
+	.half	.L336-.L335
+	.byte	1,5,40,9
+	.half	.L337-.L336
+	.byte	1,5,30,7,9
+	.half	.L338-.L337
+	.byte	3,1,1,5,43,9
+	.half	.L339-.L338
+	.byte	1,5,40,9
+	.half	.L340-.L339
 	.byte	1,5,68,7,9
-	.half	.L9-.L334
+	.half	.L9-.L340
 	.byte	3,127,1,5,9,9
 	.half	.L12-.L9
 	.byte	3,3,1,5,28,7,9
-	.half	.L335-.L12
+	.half	.L341-.L12
 	.byte	1,5,16,7,9
-	.half	.L13-.L335
+	.half	.L13-.L341
 	.byte	3,1,1,5,9,9
-	.half	.L336-.L13
+	.half	.L342-.L13
 	.byte	1,5,12,9
-	.half	.L14-.L336
+	.half	.L14-.L342
 	.byte	3,2,1,5,5,9
-	.half	.L337-.L14
+	.half	.L343-.L14
 	.byte	1,5,1,9
-	.half	.L8-.L337
+	.half	.L8-.L343
 	.byte	3,1,1,7,9
 	.half	.L144-.L8
 	.byte	0,1,1
-.L320:
+.L322:
 	.sdecl	'.debug_ranges',debug,cluster('derive_motion')
 	.sect	'.debug_ranges'
 .L143:
@@ -1682,12 +1705,12 @@ door_open_start:	.type	object
 	.byte	2
 	.word	.L116
 	.byte	3
-	.byte	'is_act_brake_engaged',0,1,42,16
+	.byte	'is_act_brake_engaged',0,1,43,16
 	.word	.L175
 	.byte	1,1
 	.word	.L107,.L193,.L106
 	.byte	4
-	.byte	'sensor',0,1,42,55
+	.byte	'sensor',0,1,43,55
 	.word	.L189,.L194
 	.byte	5
 	.word	.L107,.L193
@@ -1700,34 +1723,34 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('is_act_brake_engaged')
 	.sect	'.debug_line'
 .L147:
-	.word	.L339-.L338
-.L338:
+	.word	.L345-.L344
+.L344:
 	.half	3
-	.word	.L341-.L340
-.L340:
+	.word	.L347-.L346
+.L346:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../App/state_machine.c',0,0,0,0,0
-.L341:
+.L347:
 	.byte	5,16,7,0,5,2
 	.word	.L107
-	.byte	3,43,1,5,10,9
-	.half	.L342-.L107
+	.byte	3,44,1,5,10,9
+	.half	.L348-.L107
 	.byte	1,5,16,7,9
-	.half	.L343-.L342
+	.half	.L349-.L348
 	.byte	3,1,1,5,9,9
-	.half	.L344-.L343
+	.half	.L350-.L349
 	.byte	1,5,56,9
-	.half	.L17-.L344
+	.half	.L17-.L350
 	.byte	3,2,1,5,19,9
-	.half	.L345-.L17
+	.half	.L351-.L17
 	.byte	1,5,12,9
-	.half	.L346-.L345
+	.half	.L352-.L351
 	.byte	1,5,19,7,9
-	.half	.L347-.L346
+	.half	.L353-.L352
 	.byte	3,1,1,5,37,9
-	.half	.L348-.L347
+	.half	.L354-.L353
 	.byte	1,5,56,7,9
-	.half	.L19-.L348
+	.half	.L19-.L354
 	.byte	3,127,1,5,5,9
 	.half	.L20-.L19
 	.byte	1,5,1,9
@@ -1735,7 +1758,7 @@ door_open_start:	.type	object
 	.byte	3,2,1,7,9
 	.half	.L149-.L18
 	.byte	0,1,1
-.L339:
+.L345:
 	.sdecl	'.debug_ranges',debug,cluster('is_act_brake_engaged')
 	.sect	'.debug_ranges'
 .L148:
@@ -1755,15 +1778,15 @@ door_open_start:	.type	object
 	.byte	2
 	.word	.L116
 	.byte	3
-	.byte	'select_brake_cmd',0,1,51,21
+	.byte	'select_brake_cmd',0,1,52,21
 	.word	.L195
 	.byte	1,1
 	.word	.L109,.L196,.L108
 	.byte	4
-	.byte	'state',0,1,51,48
+	.byte	'state',0,1,52,48
 	.word	.L185,.L197
 	.byte	4
-	.byte	'sensor',0,1,51,73
+	.byte	'sensor',0,1,52,73
 	.word	.L189,.L198
 	.byte	5
 	.word	.L109,.L196
@@ -1776,42 +1799,42 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('select_brake_cmd')
 	.sect	'.debug_line'
 .L152:
-	.word	.L350-.L349
-.L349:
+	.word	.L356-.L355
+.L355:
 	.half	3
-	.word	.L352-.L351
-.L351:
+	.word	.L358-.L357
+.L357:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../App/state_machine.c',0,0,0,0,0
-.L352:
+.L358:
 	.byte	5,21,7,0,5,2
 	.word	.L109
-	.byte	3,50,1,5,30,9
+	.byte	3,51,1,5,30,9
 	.half	.L233-.L109
 	.byte	3,2,1,5,10,9
 	.half	.L232-.L233
 	.byte	1,5,16,7,9
-	.half	.L353-.L232
+	.half	.L359-.L232
 	.byte	3,1,1,5,9,9
-	.half	.L354-.L353
+	.half	.L360-.L359
 	.byte	1,5,31,9
-	.half	.L22-.L354
+	.half	.L22-.L360
 	.byte	3,2,1,5,10,9
 	.half	.L235-.L22
 	.byte	1,5,16,7,9
-	.half	.L355-.L235
+	.half	.L361-.L235
 	.byte	3,1,1,5,9,9
-	.half	.L356-.L355
+	.half	.L362-.L361
 	.byte	1,5,12,9
-	.half	.L24-.L356
+	.half	.L24-.L362
 	.byte	3,2,1,5,5,9
-	.half	.L357-.L24
+	.half	.L363-.L24
 	.byte	1,5,1,9
-	.half	.L23-.L357
+	.half	.L23-.L363
 	.byte	3,1,1,7,9
 	.half	.L154-.L23
 	.byte	0,1,1
-.L350:
+.L356:
 	.sdecl	'.debug_ranges',debug,cluster('select_brake_cmd')
 	.sect	'.debug_ranges'
 .L153:
@@ -1831,55 +1854,55 @@ door_open_start:	.type	object
 	.byte	2
 	.word	.L116
 	.byte	3
-	.byte	'evaluate',0,1,63,18
+	.byte	'evaluate',0,1,64,18
 	.word	.L185
 	.byte	1,1
 	.word	.L111,.L199,.L110
 	.byte	4
-	.byte	's',0,1,63,45
+	.byte	's',0,1,64,45
 	.word	.L189,.L200
 	.byte	4
-	.byte	'prev',0,1,63,58
+	.byte	'prev',0,1,64,58
 	.word	.L185,.L201
 	.byte	5
 	.word	.L111,.L199
 	.byte	6
-	.byte	'seated',0,1,65,13
+	.byte	'seated',0,1,66,13
 	.word	.L175,.L202
 	.byte	6
-	.byte	'absent',0,1,66,13
+	.byte	'absent',0,1,67,13
 	.word	.L175,.L203
 	.byte	6
-	.byte	'door_open',0,1,67,13
+	.byte	'door_open',0,1,68,13
 	.word	.L175,.L204
 	.byte	6
-	.byte	'door_close',0,1,68,13
+	.byte	'door_close',0,1,69,13
 	.word	.L175,.L205
 	.byte	6
-	.byte	'gear_p',0,1,69,13
+	.byte	'gear_p',0,1,70,13
 	.word	.L175,.L206
 	.byte	6
-	.byte	'gear_d',0,1,70,13
+	.byte	'gear_d',0,1,71,13
 	.word	.L175,.L207
 	.byte	6
-	.byte	'gear_r',0,1,71,13
+	.byte	'gear_r',0,1,72,13
 	.word	.L175,.L208
 	.byte	6
-	.byte	'gear_dr',0,1,72,13
+	.byte	'gear_dr',0,1,73,13
 	.word	.L175,.L209
 	.byte	6
-	.byte	'gear_n',0,1,73,13
+	.byte	'gear_n',0,1,74,13
 	.word	.L175,.L210
 	.byte	6
-	.byte	'moving',0,1,74,13
+	.byte	'moving',0,1,75,13
 	.word	.L175,.L211
 	.byte	6
-	.byte	'now',0,1,75,16
+	.byte	'now',0,1,76,16
 	.word	.L182,.L212
 	.byte	5
 	.word	.L31,.L199
 	.byte	6
-	.byte	'door_open_ms',0,1,82,12
+	.byte	'door_open_ms',0,1,83,12
 	.word	.L213,.L214
 	.byte	0,0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('evaluate')
@@ -1891,58 +1914,58 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('evaluate')
 	.sect	'.debug_line'
 .L157:
-	.word	.L359-.L358
-.L358:
+	.word	.L365-.L364
+.L364:
 	.half	3
-	.word	.L361-.L360
-.L360:
+	.word	.L367-.L366
+.L366:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../App/state_machine.c',0,0,0,0,0
-.L361:
+.L367:
 	.byte	5,18,7,0,5,2
 	.word	.L111
-	.byte	3,62,1,5,24,9
+	.byte	3,63,1,5,24,9
 	.half	.L238-.L111
 	.byte	3,2,1,5,33,9
-	.half	.L362-.L238
+	.half	.L368-.L238
 	.byte	1,5,24,9
-	.half	.L241-.L362
+	.half	.L241-.L368
 	.byte	3,1,1,5,33,9
-	.half	.L363-.L241
+	.half	.L369-.L241
 	.byte	1,5,27,9
-	.half	.L243-.L363
+	.half	.L243-.L369
 	.byte	3,1,1,5,34,9
 	.half	.L242-.L243
 	.byte	1,5,28,9
 	.half	.L244-.L242
 	.byte	3,1,1,5,35,9
-	.half	.L364-.L244
+	.half	.L370-.L244
 	.byte	1,5,24,9
-	.half	.L245-.L364
+	.half	.L245-.L370
 	.byte	3,1,1,5,31,9
-	.half	.L365-.L245
+	.half	.L371-.L245
 	.byte	1,5,24,9
-	.half	.L248-.L365
+	.half	.L248-.L371
 	.byte	3,1,1,5,31,9
 	.half	.L247-.L248
 	.byte	1,5,24,9
 	.half	.L249-.L247
 	.byte	3,1,1,5,31,9
-	.half	.L366-.L249
+	.half	.L372-.L249
 	.byte	1,5,30,9
-	.half	.L250-.L366
+	.half	.L250-.L372
 	.byte	3,1,1,5,23,9
 	.half	.L251-.L250
 	.byte	1,5,33,7,9
-	.half	.L367-.L251
+	.half	.L373-.L251
 	.byte	1,5,30,7,9
-	.half	.L27-.L367
+	.half	.L27-.L373
 	.byte	1,5,24,9
 	.half	.L28-.L27
 	.byte	3,1,1,5,31,9
-	.half	.L368-.L28
+	.half	.L374-.L28
 	.byte	1,5,37,9
-	.half	.L252-.L368
+	.half	.L252-.L374
 	.byte	3,1,1,5,40,9
 	.half	.L237-.L252
 	.byte	1,5,39,9
@@ -1950,195 +1973,199 @@ door_open_start:	.type	object
 	.byte	3,1,1,5,9,9
 	.half	.L256-.L255
 	.byte	3,2,1,5,22,7,9
-	.half	.L369-.L256
+	.half	.L375-.L256
 	.byte	1,5,38,9
-	.half	.L254-.L369
+	.half	.L254-.L375
 	.byte	1,5,9,7,9
-	.half	.L370-.L254
+	.half	.L376-.L254
 	.byte	3,1,1,5,25,9
-	.half	.L371-.L370
+	.half	.L377-.L376
 	.byte	1,5,30,9
-	.half	.L372-.L371
+	.half	.L378-.L377
 	.byte	1,5,15,9
-	.half	.L29-.L372
+	.half	.L29-.L378
 	.byte	3,1,1,5,9,7,9
-	.half	.L373-.L29
+	.half	.L379-.L29
 	.byte	3,1,1,5,27,9
-	.half	.L374-.L373
+	.half	.L380-.L379
 	.byte	1,5,25,9
-	.half	.L375-.L374
+	.half	.L381-.L380
 	.byte	1,9
-	.half	.L31-.L375
+	.half	.L31-.L381
 	.byte	3,2,1,5,9,9
 	.half	.L260-.L31
 	.byte	3,1,1,5,5,9
 	.half	.L259-.L260
 	.byte	1,5,31,7,9
-	.half	.L376-.L259
+	.half	.L382-.L259
 	.byte	3,1,1,5,29,9
-	.half	.L377-.L376
+	.half	.L383-.L382
 	.byte	1,5,48,9
-	.half	.L257-.L377
+	.half	.L257-.L383
 	.byte	1,5,9,9
 	.half	.L33-.L257
 	.byte	3,6,1,5,40,9
-	.half	.L378-.L33
+	.half	.L384-.L33
 	.byte	1,5,20,9
-	.half	.L265-.L378
+	.half	.L265-.L384
 	.byte	1,5,16,7,9
-	.half	.L379-.L265
-	.byte	3,1,1,5,9,9
-	.half	.L380-.L379
-	.byte	1,9
-	.half	.L34-.L380
-	.byte	3,3,1,5,19,9
-	.half	.L381-.L34
-	.byte	1,5,16,7,9
-	.half	.L382-.L381
-	.byte	3,1,1,5,9,9
-	.half	.L383-.L382
-	.byte	1,9
-	.half	.L37-.L383
-	.byte	3,3,1,5,19,7,9
-	.half	.L384-.L37
-	.byte	1,5,16,9
-	.half	.L385-.L384
+	.half	.L385-.L265
 	.byte	3,1,1,5,9,9
 	.half	.L386-.L385
 	.byte	1,9
-	.half	.L40-.L386
-	.byte	3,1,1,5,19,7,9
-	.half	.L387-.L40
-	.byte	1,5,16,9
+	.half	.L34-.L386
+	.byte	3,3,1,5,19,9
+	.half	.L387-.L34
+	.byte	1,5,16,7,9
 	.half	.L388-.L387
 	.byte	3,1,1,5,9,9
 	.half	.L389-.L388
 	.byte	1,9
-	.half	.L43-.L389
+	.half	.L37-.L389
 	.byte	3,3,1,5,19,7,9
-	.half	.L390-.L43
-	.byte	1,5,29,9
+	.half	.L390-.L37
+	.byte	1,5,16,9
 	.half	.L391-.L390
-	.byte	1,5,16,9
+	.byte	3,1,1,5,9,9
 	.half	.L392-.L391
-	.byte	3,1,1,5,9,9
-	.half	.L393-.L392
 	.byte	1,9
-	.half	.L46-.L393
-	.byte	3,3,1,5,19,7,9
-	.half	.L394-.L46
-	.byte	1,5,16,7,9
+	.half	.L40-.L392
+	.byte	3,1,1,5,19,7,9
+	.half	.L393-.L40
+	.byte	1,5,16,9
+	.half	.L394-.L393
+	.byte	3,1,1,5,9,9
 	.half	.L395-.L394
-	.byte	3,1,1,5,9,9
-	.half	.L396-.L395
-	.byte	1,5,10,9
-	.half	.L50-.L396
-	.byte	3,4,1,9
-	.half	.L397-.L50
-	.byte	3,5,1,9
-	.half	.L398-.L397
-	.byte	3,9,1,9
-	.half	.L399-.L398
-	.byte	3,11,1,9
-	.half	.L400-.L399
-	.byte	3,122,1,9
-	.half	.L401-.L400
-	.byte	3,3,1,9
-	.half	.L402-.L401
-	.byte	3,12,1,5,13,9
-	.half	.L53-.L402
-	.byte	3,95,1,5,24,7,9
-	.half	.L403-.L53
-	.byte	1,5,20,7,9
-	.half	.L404-.L403
-	.byte	3,1,1,5,13,9
-	.half	.L405-.L404
-	.byte	1,5,16,9
-	.half	.L61-.L405
-	.byte	3,1,1,5,9,9
-	.half	.L406-.L61
 	.byte	1,9
-	.half	.L54-.L406
-	.byte	3,3,1,5,20,7,9
-	.half	.L407-.L54
-	.byte	3,1,1,5,13,9
-	.half	.L408-.L407
-	.byte	1,5,15,9
-	.half	.L65-.L408
-	.byte	3,1,1,5,29,7,9
-	.half	.L409-.L65
-	.byte	1,5,20,7,9
-	.half	.L410-.L409
-	.byte	3,1,1,5,13,9
-	.half	.L411-.L410
+	.half	.L43-.L395
+	.byte	3,3,1,5,19,7,9
+	.half	.L396-.L43
 	.byte	1,5,29,9
-	.half	.L67-.L411
-	.byte	3,1,1,5,9,9
-	.half	.L412-.L67
-	.byte	1,5,20,9
-	.half	.L413-.L412
-	.byte	3,1,1,5,13,9
-	.half	.L414-.L413
+	.half	.L397-.L396
 	.byte	1,5,16,9
-	.half	.L70-.L414
+	.half	.L398-.L397
 	.byte	3,1,1,5,9,9
-	.half	.L415-.L70
+	.half	.L399-.L398
 	.byte	1,9
-	.half	.L55-.L415
-	.byte	3,3,1,5,20,7,9
-	.half	.L416-.L55
+	.half	.L46-.L399
+	.byte	3,3,1,5,52,7,9
+	.half	.L400-.L46
+	.byte	1,5,31,9
+	.half	.L271-.L400
+	.byte	1,5,29,9
+	.half	.L401-.L271
+	.byte	1,5,16,9
+	.half	.L402-.L401
+	.byte	3,1,1,5,9,9
+	.half	.L403-.L402
+	.byte	1,5,10,9
+	.half	.L50-.L403
+	.byte	3,4,1,9
+	.half	.L404-.L50
+	.byte	3,5,1,9
+	.half	.L405-.L404
+	.byte	3,9,1,9
+	.half	.L406-.L405
+	.byte	3,11,1,9
+	.half	.L407-.L406
+	.byte	3,122,1,9
+	.half	.L408-.L407
+	.byte	3,3,1,9
+	.half	.L409-.L408
+	.byte	3,12,1,5,13,9
+	.half	.L53-.L409
+	.byte	3,95,1,5,24,7,9
+	.half	.L410-.L53
+	.byte	1,5,20,7,9
+	.half	.L411-.L410
 	.byte	3,1,1,5,13,9
+	.half	.L412-.L411
+	.byte	1,5,16,9
+	.half	.L61-.L412
+	.byte	3,1,1,5,9,9
+	.half	.L413-.L61
+	.byte	1,9
+	.half	.L54-.L413
+	.byte	3,3,1,5,20,7,9
+	.half	.L414-.L54
+	.byte	3,1,1,5,13,9
+	.half	.L415-.L414
+	.byte	1,5,15,9
+	.half	.L65-.L415
+	.byte	3,1,1,5,29,7,9
+	.half	.L416-.L65
+	.byte	1,5,20,7,9
 	.half	.L417-.L416
-	.byte	1,5,16,9
-	.half	.L73-.L417
-	.byte	3,1,1,5,9,9
-	.half	.L418-.L73
-	.byte	1,5,16,9
-	.half	.L57-.L418
-	.byte	3,3,1,5,9,9
-	.half	.L419-.L57
-	.byte	1,5,16,9
-	.half	.L58-.L419
-	.byte	3,3,1,5,9,9
-	.half	.L420-.L58
-	.byte	1,9
-	.half	.L56-.L420
-	.byte	3,3,1,5,20,7,9
-	.half	.L421-.L56
 	.byte	3,1,1,5,13,9
-	.half	.L422-.L421
-	.byte	1,5,9,9
-	.half	.L78-.L422
-	.byte	3,1,1,5,20,7,9
-	.half	.L423-.L78
+	.half	.L418-.L417
+	.byte	1,5,29,9
+	.half	.L67-.L418
+	.byte	3,1,1,5,9,9
+	.half	.L419-.L67
+	.byte	1,5,20,9
+	.half	.L420-.L419
+	.byte	3,1,1,5,13,9
+	.half	.L421-.L420
+	.byte	1,5,16,9
+	.half	.L70-.L421
+	.byte	3,1,1,5,9,9
+	.half	.L422-.L70
+	.byte	1,9
+	.half	.L55-.L422
+	.byte	3,3,1,5,20,7,9
+	.half	.L423-.L55
 	.byte	3,1,1,5,13,9
 	.half	.L424-.L423
-	.byte	1,9
-	.half	.L80-.L424
-	.byte	3,1,1,5,23,9
-	.half	.L425-.L80
-	.byte	1,5,20,9
-	.half	.L426-.L425
-	.byte	3,1,1,5,13,9
-	.half	.L427-.L426
 	.byte	1,5,16,9
-	.half	.L82-.L427
+	.half	.L73-.L424
 	.byte	3,1,1,5,9,9
-	.half	.L428-.L82
+	.half	.L425-.L73
 	.byte	1,5,16,9
-	.half	.L59-.L428
+	.half	.L57-.L425
 	.byte	3,3,1,5,9,9
-	.half	.L429-.L59
+	.half	.L426-.L57
 	.byte	1,5,16,9
-	.half	.L60-.L429
+	.half	.L58-.L426
 	.byte	3,3,1,5,9,9
-	.half	.L430-.L60
+	.half	.L427-.L58
+	.byte	1,9
+	.half	.L56-.L427
+	.byte	3,3,1,5,20,7,9
+	.half	.L428-.L56
+	.byte	3,1,1,5,13,9
+	.half	.L429-.L428
+	.byte	1,5,9,9
+	.half	.L78-.L429
+	.byte	3,1,1,5,20,7,9
+	.half	.L430-.L78
+	.byte	3,1,1,5,13,9
+	.half	.L431-.L430
+	.byte	1,9
+	.half	.L80-.L431
+	.byte	3,1,1,5,23,9
+	.half	.L432-.L80
+	.byte	1,5,20,9
+	.half	.L433-.L432
+	.byte	3,1,1,5,13,9
+	.half	.L434-.L433
+	.byte	1,5,16,9
+	.half	.L82-.L434
+	.byte	3,1,1,5,9,9
+	.half	.L435-.L82
+	.byte	1,5,16,9
+	.half	.L59-.L435
+	.byte	3,3,1,5,9,9
+	.half	.L436-.L59
+	.byte	1,5,16,9
+	.half	.L60-.L436
+	.byte	3,3,1,5,9,9
+	.half	.L437-.L60
 	.byte	1,5,1,9
-	.half	.L36-.L430
+	.half	.L36-.L437
 	.byte	3,2,1,7,9
 	.half	.L159-.L36
 	.byte	0,1,1
-.L359:
+.L365:
 	.sdecl	'.debug_ranges',debug,cluster('evaluate')
 	.sect	'.debug_ranges'
 .L158:
@@ -2158,16 +2185,16 @@ door_open_start:	.type	object
 	.byte	2
 	.word	.L116
 	.byte	3
-	.byte	'make_command',0,1,156,1,13,1,1
+	.byte	'make_command',0,1,157,1,13,1,1
 	.word	.L113,.L215,.L112
 	.byte	4
-	.byte	'state',0,1,156,1,36
+	.byte	'state',0,1,157,1,36
 	.word	.L185,.L216
 	.byte	4
-	.byte	'sensor',0,1,156,1,61
+	.byte	'sensor',0,1,157,1,61
 	.word	.L189,.L217
 	.byte	4
-	.byte	'cmd',0,1,156,1,85
+	.byte	'cmd',0,1,157,1,85
 	.word	.L218,.L219
 	.byte	5
 	.word	.L113,.L215
@@ -2180,28 +2207,28 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('make_command')
 	.sect	'.debug_line'
 .L162:
-	.word	.L432-.L431
-.L431:
+	.word	.L439-.L438
+.L438:
 	.half	3
-	.word	.L434-.L433
-.L433:
+	.word	.L441-.L440
+.L440:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../App/state_machine.c',0,0,0,0,0
-.L434:
+.L441:
 	.byte	5,13,7,0,5,2
 	.word	.L113
-	.byte	3,155,1,1,5,21,9
-	.half	.L274-.L113
+	.byte	3,156,1,1,5,21,9
+	.half	.L276-.L113
 	.byte	3,2,1,5,46,9
-	.half	.L435-.L274
+	.half	.L442-.L276
 	.byte	3,1,1,5,20,9
-	.half	.L273-.L435
+	.half	.L275-.L442
 	.byte	1,5,1,9
-	.half	.L436-.L273
+	.half	.L443-.L275
 	.byte	3,1,1,7,9
-	.half	.L164-.L436
+	.half	.L164-.L443
 	.byte	0,1,1
-.L432:
+.L439:
 	.sdecl	'.debug_ranges',debug,cluster('make_command')
 	.sect	'.debug_ranges'
 .L163:
@@ -2221,25 +2248,25 @@ door_open_start:	.type	object
 	.byte	2
 	.word	.L116
 	.byte	3
-	.byte	'Task_Judge',0,1,165,1,6,1,1,1
+	.byte	'Task_Judge',0,1,166,1,6,1,1,1
 	.word	.L115,.L220,.L114
 	.byte	4
-	.byte	'param',0,1,165,1,23
+	.byte	'param',0,1,166,1,23
 	.word	.L221,.L222
 	.byte	5
 	.word	.L115,.L220
 	.byte	6
-	.byte	'xLastWake',0,1,167,1,16
+	.byte	'xLastWake',0,1,168,1,16
 	.word	.L182,.L223
 	.byte	5
 	.word	.L90,.L89
 	.byte	6
-	.byte	'local',0,1,172,1,20
+	.byte	'local',0,1,173,1,20
 	.word	.L224,.L225
 	.byte	5
 	.word	.L226,.L89
 	.byte	6
-	.byte	'cmd',0,1,196,1,24
+	.byte	'cmd',0,1,197,1,24
 	.word	.L227,.L228
 	.byte	0,0,0,0,0
 	.sdecl	'.debug_abbrev',debug,cluster('Task_Judge')
@@ -2251,80 +2278,80 @@ door_open_start:	.type	object
 	.sdecl	'.debug_line',debug,cluster('Task_Judge')
 	.sect	'.debug_line'
 .L167:
-	.word	.L438-.L437
-.L437:
+	.word	.L445-.L444
+.L444:
 	.half	3
-	.word	.L440-.L439
-.L439:
+	.word	.L447-.L446
+.L446:
 	.byte	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
 	.byte	'../App/state_machine.c',0,0,0,0,0
-.L440:
+.L447:
 	.byte	5,6,7,0,5,2
 	.word	.L115
-	.byte	3,164,1,1,5,45,9
-	.half	.L278-.L115
+	.byte	3,165,1,1,5,45,9
+	.half	.L280-.L115
 	.byte	3,2,1,5,26,9
-	.half	.L277-.L278
+	.half	.L279-.L280
 	.byte	1,5,5,9
-	.half	.L441-.L277
+	.half	.L448-.L279
 	.byte	3,1,1,5,13,7,9
-	.half	.L88-.L441
+	.half	.L88-.L448
 	.byte	3,2,1,5,28,9
 	.half	.L90-.L88
 	.byte	3,2,1,5,26,9
-	.half	.L442-.L90
-	.byte	1,5,13,9
-	.half	.L443-.L442
-	.byte	3,14,1,5,9,9
-	.half	.L444-.L443
-	.byte	1,5,13,7,9
-	.half	.L445-.L444
-	.byte	3,2,1,5,46,9
-	.half	.L446-.L445
-	.byte	1,5,29,9
-	.half	.L447-.L446
-	.byte	1,5,21,9
-	.half	.L448-.L447
-	.byte	3,1,1,5,19,9
-	.half	.L449-.L448
+	.half	.L449-.L90
 	.byte	1,5,13,9
 	.half	.L450-.L449
-	.byte	3,1,1,5,9,9
-	.half	.L92-.L450
-	.byte	3,4,1,5,35,9
-	.half	.L451-.L92
-	.byte	1,5,42,9
-	.half	.L452-.L451
-	.byte	1,5,23,9
-	.half	.L453-.L452
-	.byte	1,5,22,9
-	.half	.L226-.L453
-	.byte	3,3,1,5,38,9
-	.half	.L454-.L226
-	.byte	1,5,46,9
-	.half	.L455-.L454
-	.byte	1,5,13,9
-	.half	.L456-.L455
-	.byte	3,3,1,5,9,9
-	.half	.L457-.L456
+	.byte	3,14,1,5,9,9
+	.half	.L451-.L450
 	.byte	1,5,13,7,9
-	.half	.L458-.L457
-	.byte	3,2,1,5,25,9
+	.half	.L452-.L451
+	.byte	3,2,1,5,46,9
+	.half	.L453-.L452
+	.byte	1,5,29,9
+	.half	.L454-.L453
+	.byte	1,5,21,9
+	.half	.L455-.L454
+	.byte	3,1,1,5,19,9
+	.half	.L456-.L455
+	.byte	1,5,13,9
+	.half	.L457-.L456
+	.byte	3,1,1,5,9,9
+	.half	.L92-.L457
+	.byte	3,4,1,5,35,9
+	.half	.L458-.L92
+	.byte	1,5,42,9
 	.half	.L459-.L458
 	.byte	1,5,23,9
 	.half	.L460-.L459
+	.byte	1,5,22,9
+	.half	.L226-.L460
+	.byte	3,3,1,5,38,9
+	.half	.L461-.L226
+	.byte	1,5,46,9
+	.half	.L462-.L461
 	.byte	1,5,13,9
-	.half	.L461-.L460
+	.half	.L463-.L462
+	.byte	3,3,1,5,9,9
+	.half	.L464-.L463
+	.byte	1,5,13,7,9
+	.half	.L465-.L464
+	.byte	3,2,1,5,25,9
+	.half	.L466-.L465
+	.byte	1,5,23,9
+	.half	.L467-.L466
+	.byte	1,5,13,9
+	.half	.L468-.L467
 	.byte	3,1,1,5,9,9
-	.half	.L95-.L461
+	.half	.L95-.L468
 	.byte	3,3,1,5,13,9
 	.half	.L89-.L95
 	.byte	3,92,1,5,1,9
-	.half	.L276-.L89
+	.half	.L278-.L89
 	.byte	3,38,1,7,9
-	.half	.L169-.L276
+	.half	.L169-.L278
 	.byte	0,1,1
-.L438:
+.L445:
 	.sdecl	'.debug_ranges',debug,cluster('Task_Judge')
 	.sect	'.debug_ranges'
 .L168:
@@ -2342,7 +2369,7 @@ door_open_start:	.type	object
 	.byte	12,1,2
 	.word	.L116
 	.byte	3
-	.byte	'current_state',0,4,12,18
+	.byte	'current_state',0,4,13,18
 	.word	.L185
 	.byte	5,3
 	.word	current_state
@@ -2364,7 +2391,7 @@ door_open_start:	.type	object
 	.byte	12,1,2
 	.word	.L116
 	.byte	3
-	.byte	'door_open_start',0,4,13,19
+	.byte	'door_open_start',0,4,14,19
 	.word	.L182
 	.byte	5,3
 	.word	door_open_start
@@ -2376,33 +2403,33 @@ door_open_start:	.type	object
 	.sdecl	'.debug_loc',debug,cluster('Task_Judge')
 	.sect	'.debug_loc'
 .L114:
-	.word	-1,.L115,0,.L275-.L115
+	.word	-1,.L115,0,.L277-.L115
 	.half	2
 	.byte	138,0
-	.word	.L275-.L115,.L220-.L115
+	.word	.L277-.L115,.L220-.L115
 	.half	2
 	.byte	138,32
 	.word	0,0
 .L228:
-	.word	-1,.L115,0,.L276-.L115
+	.word	-1,.L115,0,.L278-.L115
 	.half	2
 	.byte	145,120
 	.word	0,0
 .L225:
-	.word	-1,.L115,0,.L276-.L115
+	.word	-1,.L115,0,.L278-.L115
 	.half	2
 	.byte	145,100
 	.word	0,0
 .L222:
-	.word	-1,.L115,0,.L277-.L115
+	.word	-1,.L115,0,.L279-.L115
 	.half	1
 	.byte	100
-	.word	.L278-.L115,.L90-.L115
+	.word	.L280-.L115,.L90-.L115
 	.half	1
 	.byte	111
 	.word	0,0
 .L223:
-	.word	-1,.L115,0,.L276-.L115
+	.word	-1,.L115,0,.L278-.L115
 	.half	2
 	.byte	145,96
 	.word	0,0
@@ -2436,7 +2463,7 @@ door_open_start:	.type	object
 	.byte	95
 	.word	.L243-.L111,.L199-.L111
 	.half	2
-	.byte	145,108
+	.byte	145,112
 	.word	.L266-.L111,.L40-.L111
 	.half	1
 	.byte	95
@@ -2446,7 +2473,7 @@ door_open_start:	.type	object
 	.word	.L269-.L111,.L46-.L111
 	.half	1
 	.byte	95
-	.word	.L272-.L111,.L82-.L111
+	.word	.L274-.L111,.L82-.L111
 	.half	1
 	.byte	95
 	.word	0,0
@@ -2470,7 +2497,7 @@ door_open_start:	.type	object
 	.word	.L261-.L111,.L33-.L111
 	.half	1
 	.byte	95
-	.word	.L270-.L111,.L55-.L111
+	.word	.L272-.L111,.L55-.L111
 	.half	1
 	.byte	95
 	.word	0,0
@@ -2506,7 +2533,7 @@ door_open_start:	.type	object
 	.byte	95
 	.word	.L248-.L111,.L199-.L111
 	.half	2
-	.byte	145,112
+	.byte	145,108
 	.word	.L262-.L111,.L263-.L111
 	.half	1
 	.byte	95
@@ -2526,7 +2553,7 @@ door_open_start:	.type	object
 	.word	.L268-.L111,.L269-.L111
 	.half	1
 	.byte	95
-	.word	.L271-.L111,.L272-.L111
+	.word	.L273-.L111,.L274-.L111
 	.half	1
 	.byte	95
 	.word	0,0
@@ -2543,6 +2570,9 @@ door_open_start:	.type	object
 	.half	1
 	.byte	89
 	.word	.L264-.L111,.L265-.L111
+	.half	1
+	.byte	84
+	.word	.L270-.L111,.L271-.L111
 	.half	1
 	.byte	84
 	.word	0,0
@@ -2589,10 +2619,10 @@ door_open_start:	.type	object
 	.sdecl	'.debug_loc',debug,cluster('make_command')
 	.sect	'.debug_loc'
 .L219:
-	.word	-1,.L113,0,.L273-.L113
+	.word	-1,.L113,0,.L275-.L113
 	.half	1
 	.byte	101
-	.word	.L274-.L113,.L215-.L113
+	.word	.L276-.L113,.L215-.L113
 	.half	1
 	.byte	111
 	.word	0,0
@@ -2602,12 +2632,12 @@ door_open_start:	.type	object
 	.byte	138,0
 	.word	0,0
 .L217:
-	.word	-1,.L113,0,.L273-.L113
+	.word	-1,.L113,0,.L275-.L113
 	.half	1
 	.byte	100
 	.word	0,0
 .L216:
-	.word	-1,.L113,0,.L273-.L113
+	.word	-1,.L113,0,.L275-.L113
 	.half	1
 	.byte	84
 	.word	0,0
@@ -2677,7 +2707,7 @@ door_open_start:	.type	object
 	.word	0,0
 	.sdecl	'.debug_frame',debug
 	.sect	'.debug_frame'
-.L462:
+.L469:
 	.word	48
 	.word	-1
 	.byte	3,0,2,1,27,12,26,0,8,26,8,27,8,30,8,29,8,28,8,16,8,17,8,24,8,25,8,31,8,32,8,33,8,34,8,35,8,36,8,37,8,38
@@ -2685,41 +2715,41 @@ door_open_start:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('vPortSetCCPN')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L462,.L97,.L174-.L97
+	.word	.L469,.L97,.L174-.L97
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('vPortSetICR')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L462,.L99,.L177-.L99
+	.word	.L469,.L99,.L177-.L99
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('xPortSetCCPN')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L462,.L101,.L180-.L101
+	.word	.L469,.L101,.L180-.L101
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('is_auto_brake_state')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L462,.L103,.L184-.L103
+	.word	.L469,.L103,.L184-.L103
 	.byte	8,18,8,19,8,20,8,21,8,22,8,23
 	.sdecl	'.debug_frame',debug,cluster('derive_motion')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L462,.L105,.L188-.L105
+	.word	.L469,.L105,.L188-.L105
 	.byte	8,18,8,19,8,21,8,22,8,23,0,0
 	.sdecl	'.debug_frame',debug,cluster('is_act_brake_engaged')
 	.sect	'.debug_frame'
 	.word	24
-	.word	.L462,.L107,.L193-.L107
+	.word	.L469,.L107,.L193-.L107
 	.byte	8,18,8,19,8,21,8,22,8,23,0,0
 	.sdecl	'.debug_frame',debug,cluster('select_brake_cmd')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L462,.L109,.L196-.L109
+	.word	.L469,.L109,.L196-.L109
 	.sdecl	'.debug_frame',debug,cluster('evaluate')
 	.sect	'.debug_frame'
 	.word	36
-	.word	.L462,.L111,.L199-.L111
+	.word	.L469,.L111,.L199-.L111
 	.byte	4
 	.word	(.L236-.L111)/2
 	.byte	19,24,22,26,3,19,138,24,4
@@ -2728,12 +2758,12 @@ door_open_start:	.type	object
 	.sdecl	'.debug_frame',debug,cluster('make_command')
 	.sect	'.debug_frame'
 	.word	12
-	.word	.L462,.L113,.L215-.L113
+	.word	.L469,.L113,.L215-.L113
 	.sdecl	'.debug_frame',debug,cluster('Task_Judge')
 	.sect	'.debug_frame'
 	.word	28
-	.word	.L462,.L115,.L220-.L115
+	.word	.L469,.L115,.L220-.L115
 	.byte	4
-	.word	(.L275-.L115)/2
+	.word	(.L277-.L115)/2
 	.byte	19,32,22,26,3,19,138,32,0,0,0
 	; Module end

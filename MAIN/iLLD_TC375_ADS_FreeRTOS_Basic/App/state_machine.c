@@ -6,8 +6,9 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-#define VEHICLE_MOVING_THRESHOLD_KMH 1.0f
-#define VEHICLE_ACCEL_THRESHOLD      2
+#define VEHICLE_MOVING_THRESHOLD_KMH 2.0f
+#define VEHICLE_ACCEL_THRESHOLD      20
+#define WARN_LV2_DELAY_MS            10000U
 
 static RiskLevel current_state = RISK_NORMAL;
 static TickType_t door_open_start = 0;
@@ -105,7 +106,7 @@ static RiskLevel evaluate(const SensorData *s, RiskLevel prev)
         return RISK_ROLLAWAY_BRAKE;
 
     /* N단 + 도어 열림은 롤어웨이 경고 */
-    if (gear_n && door_open)
+    if (gear_n && door_open & !is_auto_brake_state(prev))
         return RISK_ROLLAWAY_WARN;
 
     switch (prev)
@@ -120,7 +121,7 @@ static RiskLevel evaluate(const SensorData *s, RiskLevel prev)
             return RISK_NORMAL;
         if ((!gear_dr) && (!gear_n))
             return RISK_NORMAL;
-        if (door_open_ms >= 2000U)
+        if (door_open_ms >= WARN_LV2_DELAY_MS)
             return RISK_WARN_LV2;
         return RISK_WARN_LV1;
 
