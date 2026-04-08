@@ -3,7 +3,7 @@
 
 
 <table align="left"> <tr> <td align="center">
-      <img src="https://github.com/user-attachments/assets/b9765c71-5878-49ef-9b1e-5daa0d42c9af" width="400"/><br/>
+      <img src="https://github.com/user-attachments/assets/b9765c71-5878-49ef-9b1e-5daa0d42c9af" width="500"/><br/>
       <sub><b>전체 모듈</b></sub> </td> </tr> </table> <br clear="left"/>
 
 
