@@ -1,6 +1,11 @@
 # Docs HTML Index
 
-Quick links to open each HTML document in this folder.
+Open in browser now:
+
+- [Web Index](./index.html)
+- Run `powershell -ExecutionPolicy Bypass -File .\docs\open-docs.ps1`
+
+Quick links to each HTML:
 
 - [Pin Map](./Pin%20Map.html)
 - [Functional Requirements](./%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD.html)
