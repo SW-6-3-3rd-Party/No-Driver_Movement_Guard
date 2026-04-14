@@ -120,7 +120,7 @@ NORMAL → WARN_LV1 → WARN_LV2 → D_BRAKE/R_BRAKE → BRAKE_HOLD → RELEASE_
                                 ROLLAWAY_WARN → ROLLAWAY_BRAKE → BRAKE_HOLD
 ```
 
-P단 전환 시 즉시 NORMAL 복귀(SAF-01), 착석+도어닫힘 시 NORMAL 복귀(SAF-02)가 적용됩니다.
+착석+도어닫힘 시 NORMAL 복귀(SAF-01)가 적용됩니다.
 
 ### CAN 통신
 
