@@ -227,7 +227,7 @@
 ## 7. 담당 역할
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/13cc5e82-236a-489f-9eeb-3ecb69ee55e0" width="90%" alt="담당 역할" />
+  <img src="https://github.com/user-attachments/assets/8649e221-9eea-4e5c-952f-191e355cd074" width="90%" alt="담당 역할" />
 </p>
 
 <table>
