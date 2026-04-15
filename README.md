@@ -2,7 +2,10 @@
 
 # VAPS (Vehicle Anti-rollaway Protection System)
 
-### 무인 이동 방지 자동 제어 시스템
+### 무인 이동 방지 자동 제어 시스템  
+
+운전자 부재 상태에서 발생할 수 있는 차량의 비의도적 이동을 감지하고  
+경고 및 제동 제어를 통해 사고를 예방하는 프로젝트  
 
 <p>
   <img src="https://img.shields.io/badge/Infineon-TC375-005B95?style=for-the-badge" alt="TC375" />
